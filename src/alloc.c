@@ -6,11 +6,11 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 08:52:50 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/08/24 08:59:22 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/08/24 11:21:28 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/utils.h"
+#include "../includes/utils.h"
 
 void *var_init(int size)
 {

@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 09:26:45 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/08/24 09:29:14 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/08/24 10:47:16 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,5 @@
 void init(t_cub *cub)
 {
 	cub->mlx = mlx_init();
-	cub->mlx_win = mlx_new_window(cub->mlx, 1920, 1080, "Hello world!");
+	cub->mlx_win = mlx_new_window(cub->mlx, 2880, 1620, "Cub3d");
 }

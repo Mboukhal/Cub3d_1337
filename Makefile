@@ -6,7 +6,7 @@
 #    By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/24 07:24:22 by mboukhal          #+#    #+#              #
-#    Updated: 2022/08/24 09:29:05 by mboukhal         ###   ########.fr        #
+#    Updated: 2022/08/24 11:32:21 by mboukhal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,32 +15,42 @@
 NAME				= cub3d
 
 OPTION				= -Wall -Wextra -Werror
-INCLUDES			= -I /usr/local/include -I includes/ -lmlx \
-					  -L /usr/local/lib/ -framework OpenGL -framework AppKit
-UTILS				= src/utils/
-CFILES				= src/main.c $(UTILS)ft_putstr_fd.c $(UTILS)ft_strlen.c \
-					  src/checks.c $(UTILS)ft_strncmp.c $(UTILS)alloc.c 	\
-					  src/game_entry.c src/key_manip.c src/init.c
+
+INCLUDES			= -I /usr/local/include -I includes/ -lmlx -I libft/ 	\
+					  -L /usr/local/lib/ -framework OpenGL					\
+					  -framework AppKit
+
+S					= src/
+
+CFILES				= $(S)main.c $(S)checks.c $(S)alloc.c $(S)key_manip.c 	\
+					  $(S)init.c $(S)game_entry.c
 
 OBJ					= $(CFILES:.c=.o)
+
+LIB_EXT_MAKE 		= make $@ -C $(S)libft
 
 .c.o:
 	@ $(CC) $(OPTION) -c $< -o $@
 
 $(NAME): $(OBJ)
-	@ $(CC) $(OBJ) $(INCLUDES) -o $(NAME)
+	@ make -C $(S)libft
+	@ $(CC) $(OBJ) $(INCLUDES) $(S)libft/libft.a -o $(NAME)
 
 all: $(NAME)
 
 clean:
+	@ $(LIB_EXT_MAKE)
 	@ $(RM) $(OBJ)
 
 fclean: clean
+	@ $(LIB_EXT_MAKE)
 	@ $(RM) $(NAME)
 
 re: fclean all
 
 run: all clean
+	@ reset
 	@ ./$(NAME) maps/map1.cub
+	@ rm -rf .vscode
 
 .PHONY: re fclean all clean

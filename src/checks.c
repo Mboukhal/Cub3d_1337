@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 08:18:43 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/08/24 09:29:41 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/08/24 11:40:48 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,21 @@ void	check_exteniton(char *file)
 	int	size;
 
 	size = ft_strlen(file);
-	if (ft_strncmp(&file[size - 5], ".cub", 5))
+	if (ft_strncmp(&file[size - 4], ".cub", 4))
 	{
 		ft_putstr_fd("ERROR\n\t\e[0;31m", STDERR_FILENO);
 		ft_putstr_fd(file, STDERR_FILENO);
-		ft_putstr_fd(": is not a \".ber\" file :(\e[0m\n", STDERR_FILENO);
+		ft_putstr_fd(": is not a \".cub\" file :(\e[0m\n",
+			STDERR_FILENO);
 		exit(EXIT_FAILURE);
 	}
 }
 
+/*
+	load file to cub structure
+	
+	check map skip space and check for '1' or '\n' without skipping
+*/
 void	map_init(char *file, t_cub *cub)
 {
 	int	fd;
@@ -36,7 +42,6 @@ void	map_init(char *file, t_cub *cub)
 		perror (file);
 		exit (EXIT_FAILURE);
 	}
-	// file loading
 	close(fd);
 	init(cub);
 	cub->i = 0;

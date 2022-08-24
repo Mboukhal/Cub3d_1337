@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 07:28:51 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/08/24 09:28:11 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/08/24 11:23:40 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ typedef	struct cub
 	void	*mlx_win;
 	char	**map;
 }	t_cub;
-
 
 int		deal_key(int key, t_cub *cub);
 int		exit_game(t_cub *cub);
