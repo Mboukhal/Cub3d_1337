@@ -6,7 +6,7 @@
 #    By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/24 07:24:22 by mboukhal          #+#    #+#              #
-#    Updated: 2022/08/25 14:00:21 by mboukhal         ###   ########.fr        #
+#    Updated: 2022/09/01 14:28:57 by mboukhal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,11 +16,12 @@ NAME				= cub3d
 
 OPTION				= -Wall -Wextra -Werror
 
-INCLUDES			= -I /usr/local/include -I includes/ -lmlx -I libft/ 	\
+S					= src/
+
+INCLUDES			= -I /usr/local/include -I includes/ -lmlx -I $(s)libft/ 	\
 					  -L /usr/local/lib/ -framework OpenGL					\
 					  -framework AppKit
 
-S					= src/
 
 CFILES				= $(S)main.c $(S)checks.c $(S)alloc.c $(S)key_manip.c 	\
 					  $(S)init.c $(S)game_entry.c
