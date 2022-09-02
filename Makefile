@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+         #
+#    By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/24 07:24:22 by mboukhal          #+#    #+#              #
-#    Updated: 2022/09/01 14:28:57 by mboukhal         ###   ########.fr        #
+#    Updated: 2022/09/02 22:19:20 by ahmaidi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-.DEFAULT_GOAL		= run
+#.DEFAULT_GOAL		= run
 
 NAME				= cub3d
 
@@ -24,7 +24,8 @@ INCLUDES			= -I /usr/local/include -I includes/ -lmlx -I $(s)libft/ 	\
 
 
 CFILES				= $(S)main.c $(S)checks.c $(S)alloc.c $(S)key_manip.c 	\
-					  $(S)init.c $(S)game_entry.c
+					  $(S)init.c $(S)game_entry.c $(S)get_next_line/get_next_line_utils.c \
+					  $(S)get_next_line/get_next_line.c $(S)get_texture_color.c $(S)free_it.c $(S)affiche_cub.c
 
 OBJ					= $(CFILES:.c=.o)
 
@@ -49,9 +50,9 @@ fclean: clean
 
 re: fclean all
 
-run: all clean
-	@ reset
-	@ ./$(NAME) maps/map1.cub
-	@ rm -rf .vscode
+#run: all clean
+	#@ reset
+	#@ ./$(NAME) maps/map1.cub.cub
+	#@ rm -rf .vscode
 
 .PHONY: re fclean all clean

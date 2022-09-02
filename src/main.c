@@ -3,20 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 07:28:01 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/08/24 10:43:52 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/09/01 22:50:13 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-    t_cub   cub;
+	t_cub	*cub;
 
-    errno = 0;
+	cub = malloc(sizeof(t_cub) * 1);
+	if (!cub)
+		return (1);
+	errno = 0;
 	if (ac != 2)
 	{
 		ft_putstr_fd("ERROR\n\t\e[31mNeed map file :(\e[0m\n",
@@ -24,8 +27,8 @@ int main(int ac, char **av)
 		return (EXIT_FAILURE);
 	}
 	check_exteniton(av[1]);
-	map_init(av[1], &cub);
-	start_game(&cub);
+	map_init(av[1], cub);
+	// start_game(&cub);
 	// system("leaks cub3d");
-    return (EXIT_SUCCESS);
+	return (EXIT_SUCCESS);
 }

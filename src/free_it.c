@@ -1,40 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
+/*   free_it.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/13 10:39:03 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/01 15:02:28 by ahmaidi          ###   ########.fr       */
+/*   Created: 2022/09/02 21:49:21 by ahmaidi           #+#    #+#             */
+/*   Updated: 2022/09/02 22:08:53 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/cub.h"
 
-void	ft_lstadd_front(t_list **lst, t_list *new)
+void	free_it_split(char **s)
 {
-	new->next = *lst;
-	*lst = new;
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		free(s[i]);
+		i++;
+	}
+	free(s);
 }
 
+void	free_cub(t_cub *cub)
+{
+	printf("here %d\n", cub->size_tab);
+	while (cub->size_tab > 0)
+	{
+		free_it_split(cub->tab_txt_c[cub->size_tab - 1].splt);
+		cub->size_tab--;
+	}
+	free(cub->tab_txt_c);
 
-
-// int main(){
-
-// 	t_list * r = NULL ;
-
-// 	ft_lstadd_front(&r, ft_lstnew((void*)1));
-	
-// 	ft_lstadd_front(&r, ft_lstnew((void*)2));
-
-
-// 	if (r->content == (void*)2)
-// 		printf("2\n");
-// 	if (r->next->content == (void*)1)
-// 		printf("1\n");
-// 	if (!r->next->next)
-// 		printf("0\n");
-
-
-//}
+}

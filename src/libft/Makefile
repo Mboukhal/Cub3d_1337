@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+         #
+#    By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/24 11:08:19 by mboukhal          #+#    #+#              #
-#    Updated: 2022/08/24 11:11:24 by mboukhal         ###   ########.fr        #
+#    Updated: 2022/09/01 15:01:38 by ahmaidi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,18 +28,15 @@ CFILES			= ft_isalpha.c ft_isdigit.c ft_isalnum.c 		\
 				  ft_putnbr_fd.c ft_putstr_fd.c ft_split.c 		\
 				  ft_calloc.c ft_substr.c ft_memmove.c 			\
 				  ft_strjoin.c ft_strnstr.c ft_striteri.c 		\
-				  ft_strmapi.c 
-			
-CBONUS			= ft_lstnew.c ft_lstadd_front.c ft_lstmap.c		\
+				  ft_strmapi.c \
+				  ft_lstnew.c ft_lstadd_front.c ft_lstmap.c		\
 				  ft_lstsize.c ft_lstadd_back.c ft_lstlast.c	\
 				  ft_lstdelone.c ft_lstclear.c ft_lstiter.c
 		 
 OBJS			= $(CFILES:.c=.o)
 
-BOBJS			= $(CBONUS:.c=.o)
-
 clean:
-	@ $(RM) $(OBJS) $(BOBJS)
+	@ $(RM) $(OBJS)
 
 fclean: clean
 	@ $(RM) $(NAME)
@@ -51,9 +48,6 @@ re: fclean all
 
 $(NAME):$(OBJS)
 	@ $(AR) rc $(NAME) $(OBJS)
-	
-bonus: $(OBJS) $(BOBJS)
-	@ $(AR) rc $(NAME) $(OBJS) $(BOBJS)
 
 all : $(NAME) 
 

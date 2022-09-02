@@ -1,40 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/13 10:39:03 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/01 15:02:28 by ahmaidi          ###   ########.fr       */
+/*   Created: 2021/11/22 22:21:42 by ahmaidi           #+#    #+#             */
+/*   Updated: 2022/09/01 17:39:35 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-void	ft_lstadd_front(t_list **lst, t_list *new)
-{
-	new->next = *lst;
-	*lst = new;
-}
+# include <unistd.h>
+# include <stdlib.h>
 
-
-
-// int main(){
-
-// 	t_list * r = NULL ;
-
-// 	ft_lstadd_front(&r, ft_lstnew((void*)1));
-	
-// 	ft_lstadd_front(&r, ft_lstnew((void*)2));
-
-
-// 	if (r->content == (void*)2)
-// 		printf("2\n");
-// 	if (r->next->content == (void*)1)
-// 		printf("1\n");
-// 	if (!r->next->next)
-// 		printf("0\n");
-
-
-//}
+char	*get_next_line(int fd);
+char	*ft_strjoin_g(char const *s1, char const *s2);
+size_t	ft_strlen_g(const char *s);
+int		ft_strchr_g(const char *s, int c);
+char	*ft_strdup_g(const char *s1);
+char	*ft_substr_g(char const *s, unsigned int start, size_t len);
+#endif
