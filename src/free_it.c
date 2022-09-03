@@ -6,7 +6,7 @@
 /*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 21:49:21 by ahmaidi           #+#    #+#             */
-/*   Updated: 2022/09/02 22:08:53 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/09/03 19:03:38 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,5 @@ void	free_cub(t_cub *cub)
 		cub->size_tab--;
 	}
 	free(cub->tab_txt_c);
-
+	free(cub);
 }

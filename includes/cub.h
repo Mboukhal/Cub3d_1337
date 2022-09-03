@@ -6,7 +6,7 @@
 /*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 07:28:51 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/02 22:17:18 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/09/03 19:50:13 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct s_cub
 	t_txt_c	*tab_txt_c;
 	int		size_tab;
 	char	**map;
+	int		size_map;
 }	t_cub;
 
 int		deal_key(int key, t_cub *cub);
@@ -64,6 +65,7 @@ int		get_color(char *str, t_cub **cub, int i);
 void	free_it_split(char **s);
 void	free_cub(t_cub *cub);
 void	affiche_cub(t_cub *cub);
+void	allocate(t_cub **cub, char **str, int type);
 // void	key_right(cub);
 // void	key_left(cub);
 // void	key_down(cub);
