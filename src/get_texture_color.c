@@ -6,12 +6,11 @@
 /*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 21:46:11 by ahmaidi           #+#    #+#             */
-/*   Updated: 2022/09/02 22:34:51 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/09/03 12:37:45 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
-
 
 int	get_texture(char *str, t_cub **cub, int i)
 {
@@ -71,7 +70,7 @@ int	get_color(char *str, t_cub **cub, int i)
 		else
 			break ;
 	}
-	if (rgb[index] != NULL)
+	if (rgb[index] != NULL || index != 3)
 	{
 		free_it_split(rgb);
 		return (0);

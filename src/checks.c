@@ -6,7 +6,7 @@
 /*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 08:18:43 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/02 22:19:58 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/09/03 12:39:21 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	parser_file(int fd, t_cub **cub)
 		free(str);
 		str = get_next_line(fd);
 	}
-	affiche_cub(*cub);
+	//affiche_cub(*cub);
 	return (1);
 }
 
