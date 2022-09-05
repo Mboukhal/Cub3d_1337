@@ -6,7 +6,7 @@
 /*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 22:11:45 by ahmaidi           #+#    #+#             */
-/*   Updated: 2022/09/03 21:31:49 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/09/05 16:43:06 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	affiche_cub(t_cub *cub)
 {
 	int	i;
 
-	printf("\n");
 	while (cub->size_tab > 0)
 	{
 		i = 0;
@@ -30,6 +29,8 @@ void	affiche_cub(t_cub *cub)
 	}
 	i = 0;
 	printf("======= MAP========\n");
+	if (cub->size_map == 0)
+		return ;
 	while (cub->map[i])
 	{
 		printf("%s\n",cub->map[i]);

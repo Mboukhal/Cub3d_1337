@@ -6,7 +6,7 @@
 /*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 07:28:51 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/03 19:50:13 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/09/05 21:24:24 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct s_cub
 	int		size_tab;
 	char	**map;
 	int		size_map;
+	int		in_map;
 }	t_cub;
 
 int		deal_key(int key, t_cub *cub);
@@ -66,6 +67,21 @@ void	free_it_split(char **s);
 void	free_cub(t_cub *cub);
 void	affiche_cub(t_cub *cub);
 void	allocate(t_cub **cub, char **str, int type);
+void	remove_last_nl(t_cub **cub);
+int		check_up_down_walls(char *s1, char *s2);
+int		check_walls(char **map, int size);
+int		find_texture_or_colors(char *str, t_cub **cub);
+void	ft_error(void);
+int		check_charactre(char *str);
+void	remove_last_spaces(char **str);
+void	filling_map(t_cub **cub, char *str);
+void	add_plus(t_cub **cub, int j);
+void	add_front_plus(t_cub **cub);
+void	add_back_plus(t_cub **cub);
+void	add_back(t_cub **cub, int len);
+int		check(char c);
+int		check_around_zero(t_cub **cub);
+void	check_map(t_cub **cub);
 // void	key_right(cub);
 // void	key_left(cub);
 // void	key_down(cub);

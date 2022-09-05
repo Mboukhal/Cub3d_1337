@@ -6,7 +6,7 @@
 /*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 08:18:43 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/03 21:58:29 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/09/05 22:45:15 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,99 +27,14 @@ void	check_exteniton(char *file)
 	}
 }
 
-int	find_texture_or_colors(char *str, t_cub **cub)
+void	compare(char *s1, char *s2)
 {
-	while (*str == ' ' || *str == '\t')
-		str++;
-	if (*str == 'N')
-		return (get_texture(str + 1, cub, 0));
-	else if (*str == 'S')
-		return (get_texture(str + 1, cub, 1));
-	else if (*str == 'W')
-		return (get_texture(str + 1, cub, 2));
-	else if (*str == 'E')
-		return (get_texture(str + 1, cub, 3));
-	else if (*str == 'F')
-		return (get_color(str + 1, cub, 4));
-	else if (*str == 'C')
-		return (get_color(str + 1, cub, 5));
-	else
-		return (0);
-}
-
-void	free_error(char *str, char *s, t_cub *cub)
-{
-	free(str);
-	free(s);
-	free_cub(cub);
-	write(2, "invalid map\n", 12);
-	exit(1);
-}
-
-void	filling_map(t_cub **cub, char *str)
-{
-	str[ft_strlen(str) - 1] = '\0';
-	++(*cub)->size_map;
-		(*cub)->map = ft_realloc((*cub)->map, sizeof(char *) * \
-	(*cub)->size_map - 1, sizeof(char *) * (*cub)->size_map + 1);
-	(*cub)->map[(*cub)->size_map - 1] = ft_strdup(str);
-	(*cub)->map[(*cub)->size_map] = NULL;
-}
-
-int	check_up_down_walls(char *s1, char *s2)
-{
-	int	i;
-
-	i = 1;
-	while (s1[i])
-	{
-		if (s1[i] != '1' && s1[i] != ' ')
-			break ;
-		i++;
-	}
-	if (s1[i] != '\0')
-		return (1);
-	i = 1;
-	while (s2[i])
-	{
-		if (s2[i] != '1' && s2[i] != ' ')
-			break ;
-		i++;
-	}
-	if (s2[i] != '\0')
-		return (1);
-	return (0);
-}
-
-int	check_walls(char **map, int size)
-{
-	int	i;
-
-	i = 0;
-	while (i < size)
-	{
-		while (*map[i] == ' ')
-			map[i]++;
-		if (map[i][0] != '1' || map[i][ft_strlen(map[i]) - 1] != '1')
-			return (1);
-		i++;
-	}
-	if (check_up_down_walls(map[0], map[size - 1]))
-		return (1);
-	return (0);
-}
-
-void	check_map(t_cub *cub)
-{
-	int	i;
-
-	i = 1;
-	if (check_walls(cub->map, cub->size_map))
-	{
-		free_cub(cub);
-		write(2, "ERROR\n", 6);
-		exit(1);
-	}
+	while (*s1 == ' ' || *s1 == '\t')
+		s1++;
+	while (*s2 == ' ' || *s2 == '\t')
+		s2++;
+	if (!ft_strncmp(s1, s2, 2))
+		ft_error();
 }
 
 int	parser_file(int fd, t_cub **cub)
@@ -135,7 +50,8 @@ int	parser_file(int fd, t_cub **cub)
 	while (str)
 	{
 		prev = in_map;
-		if (*str == '\n')
+		remove_last_spaces(&str);
+		if (*str == '\0' && !(*cub)->in_map)
 		{
 			free(str);
 			str = get_next_line(fd);
@@ -143,12 +59,16 @@ int	parser_file(int fd, t_cub **cub)
 		}
 		else
 		{
+			if (in_map != 6)
+				compare(str_depl, str);
 			if (in_map == 6)
 				filling_map(cub, str);
 			in_map += find_texture_or_colors(str, cub);
-			if ((in_map == prev && in_map != 6) || \
-			(!ft_strncmp(str_depl, str, 2) && in_map != 6))
-				free_error(str, str_depl, *cub);
+			if ((in_map == prev && in_map != 6))
+			{
+				printf("here\n");
+				ft_error();
+			}
 		}
 		free(str_depl);
 		str_depl = ft_strdup(str);
@@ -156,8 +76,9 @@ int	parser_file(int fd, t_cub **cub)
 		str = get_next_line(fd);
 	}
 	free(str_depl);
-	check_map(*cub);
+	remove_last_nl(cub);
 	//affiche_cub(*cub);
+	check_map(cub);
 	return (1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 21:46:11 by ahmaidi           #+#    #+#             */
-/*   Updated: 2022/09/03 19:40:57 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/09/05 22:33:20 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,12 @@ int	check_path(char *str, t_cub **cub, int i)
 	str++;
 	while (*str == ' ' || *str == '\t')
 		str++;
+	printf("==>%s\n", str);
 	texture = ft_split(str, '\n');
 	pth = ft_strjoin(texture[0], ".xpm");
 	fd = open(pth, O_RDONLY, 664);
 	free (pth);
-	if (ft_strncmp(pth, "./", 2) || fd < 0)
+	if (fd < 0)
 	{
 		free_it_split(texture);
 		write(2, "One of the textures doesn't exit OR Permission denied\n", 54);
@@ -65,6 +66,11 @@ int	ft_isnumber(char *str)
 	i = 0;
 	while (str[i])
 	{
+		if (str[i] == ' ' || str[i] == '\t')
+		{
+			i++;
+			continue ;
+		}
 		if (str[i] < '0' || str[i] > '9')
 			return (0);
 		i++;
@@ -82,7 +88,6 @@ int	get_color(char *str, t_cub **cub, int i)
 		return (0);
 	while (*str == ' ' || *str == '\t')
 		str++;
-	str[ft_strlen(str) - 1] = '\0';
 	rgb = ft_split(str, ',');
 	while (rgb[index] != NULL)
 	{
