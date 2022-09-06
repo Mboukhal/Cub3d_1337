@@ -6,7 +6,7 @@
 /*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 21:23:06 by ahmaidi           #+#    #+#             */
-/*   Updated: 2022/09/05 21:46:38 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/09/06 15:40:16 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int	check_around_zero(t_cub **cub)
 
 void	check_map(t_cub **cub)
 {
+	remove_last_nl(cub);
 	if (check_walls((*cub)->map, (*cub)->size_map))
 		ft_error();
 	add_front_plus(cub);

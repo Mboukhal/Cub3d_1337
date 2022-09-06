@@ -6,7 +6,7 @@
 /*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 08:18:43 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/05 22:45:15 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/09/06 15:40:39 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,30 @@ void	compare(char *s1, char *s2)
 		ft_error();
 }
 
+void	parse_it(t_cub **cub, char **str, char **str_depl, int *in_map)
+{
+	int	prev;
+
+	if (*str != '\0' || (*cub)->in_map)
+	{
+		prev = *in_map;
+		if (*in_map != 6)
+			compare(*str_depl, *str);
+		if (*in_map == 6)
+			filling_map(cub, *str);
+		*in_map += find_texture_or_colors(*str, cub);
+		if ((*in_map == prev && *in_map != 6))
+			ft_error();
+	}
+	free(*str_depl);
+	*str_depl = ft_strdup(*str);
+	free(*str);
+}
+
 int	parser_file(int fd, t_cub **cub)
 {
 	char	*str;
 	int		in_map;
-	int		prev;
 	char	*str_depl;
 
 	in_map = 0;
@@ -49,7 +68,6 @@ int	parser_file(int fd, t_cub **cub)
 	str = get_next_line(fd);
 	while (str)
 	{
-		prev = in_map;
 		remove_last_spaces(&str);
 		if (*str == '\0' && !(*cub)->in_map)
 		{
@@ -57,27 +75,10 @@ int	parser_file(int fd, t_cub **cub)
 			str = get_next_line(fd);
 			continue ;
 		}
-		else
-		{
-			if (in_map != 6)
-				compare(str_depl, str);
-			if (in_map == 6)
-				filling_map(cub, str);
-			in_map += find_texture_or_colors(str, cub);
-			if ((in_map == prev && in_map != 6))
-			{
-				printf("here\n");
-				ft_error();
-			}
-		}
-		free(str_depl);
-		str_depl = ft_strdup(str);
-		free(str);
+		parse_it(cub, &str, &str_depl, &in_map);
 		str = get_next_line(fd);
 	}
 	free(str_depl);
-	remove_last_nl(cub);
-	//affiche_cub(*cub);
 	check_map(cub);
 	return (1);
 }

@@ -6,7 +6,7 @@
 #    By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/24 07:24:22 by mboukhal          #+#    #+#              #
-#    Updated: 2022/09/05 21:24:44 by ahmaidi          ###   ########.fr        #
+#    Updated: 2022/09/06 18:48:24 by ahmaidi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ INCLUDES			= -I /usr/local/include -I includes/ -lmlx -I $(s)libft/ 	\
 CFILES				= $(S)main.c $(S)checks.c $(S)alloc.c $(S)key_manip.c 	\
 					  $(S)init.c $(S)game_entry.c $(S)get_next_line/get_next_line_utils.c \
 					  $(S)get_next_line/get_next_line.c $(S)get_texture_color.c $(S)free_it.c $(S)affiche_cub.c \
-					  $(S)parsing_utils_2.c $(S)parsing_utils_1.c $(S)transform_map.c $(S)valid_map.c
+					  $(S)parsing_utils_2.c $(S)parsing_utils_1.c $(S)transform_map.c $(S)valid_map.c $(S)check_str.c
 
 OBJ					= $(CFILES:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 21:46:11 by ahmaidi           #+#    #+#             */
-/*   Updated: 2022/09/05 22:33:20 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/09/06 18:47:43 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	check_path(char *str, t_cub **cub, int i)
 	str++;
 	while (*str == ' ' || *str == '\t')
 		str++;
-	printf("==>%s\n", str);
+	check_str_valid(str);
 	texture = ft_split(str, '\n');
 	pth = ft_strjoin(texture[0], ".xpm");
 	fd = open(pth, O_RDONLY, 664);
@@ -88,6 +88,7 @@ int	get_color(char *str, t_cub **cub, int i)
 		return (0);
 	while (*str == ' ' || *str == '\t')
 		str++;
+	check_nbr_vrg(str);
 	rgb = ft_split(str, ',');
 	while (rgb[index] != NULL)
 	{
