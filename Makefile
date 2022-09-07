@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+         #
+#    By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/24 07:24:22 by mboukhal          #+#    #+#              #
-#    Updated: 2022/09/06 18:48:24 by ahmaidi          ###   ########.fr        #
+#    Updated: 2022/09/07 12:35:03 by mboukhal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-#.DEFAULT_GOAL		= run
+.DEFAULT_GOAL		= all
 
 NAME				= cub3d
 
@@ -51,9 +51,9 @@ fclean: clean
 
 re: fclean all
 
-#run: all clean
-	#@ reset
-	#@ ./$(NAME) maps/map1.cub.cub
-	#@ rm -rf .vscode
+run: all clean
+	@ reset
+	@ ./$(NAME) maps/map1.cub.cub
+	@ rm -rf .vscode
 
 .PHONY: re fclean all clean
