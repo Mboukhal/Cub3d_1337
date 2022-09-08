@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 07:28:51 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/06 18:47:57 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/09/08 16:26:16 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,7 @@ typedef enum s_type
 	WEST,
 	EAST,
 	FLOOR,
-	CIEL,
-	MAP
+	CIEL
 }	t_type;
 
 typedef struct s_txt_c
@@ -53,11 +52,11 @@ typedef struct s_cub
 	int		in_map;
 }	t_cub;
 
+t_cub	*cub_init(void);
 int		deal_key(int key, t_cub *cub);
 int		exit_game(t_cub *cub);
-void	init(t_cub *cub);
 void	check_exteniton(char *file);
-void	map_init(char *file, t_cub *cub);
+t_cub	*map_init(char *file);
 void	start_game(t_cub *cub);
 int		parser_file(int fd, t_cub **cub);
 int		find_texture_or_colors(char *str, t_cub **cub);

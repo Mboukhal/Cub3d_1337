@@ -3,22 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 09:26:45 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/04 12:08:59 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/09/08 16:25:12 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub.h"
 
-void	init(t_cub *cub)
+t_cub	*cub_init(void)
 {
-	cub->map = NULL;
-	cub->tab_txt_c = NULL;
-	cub->size_tab = 0;
-	cub->size_map = 0;
-	cub->in_map = 0;
-	// cub->mlx = mlx_init();
-	// cub->mlx_win = mlx_new_window(cub->mlx, 2880, 1620, "Cub3d");
+	t_cub	*c;
+
+	c = var_init(sizeof(t_cub));
+	c->tab_txt_c = NULL;
+	c->map = NULL;
+	c->i = 0;
+	c->size_tab = 0;
+	c->size_map = 0;
+	c->in_map = 0;
+	return (c);
 }
