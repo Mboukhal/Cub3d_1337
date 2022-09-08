@@ -6,12 +6,11 @@
 /*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 18:51:49 by ahmaidi           #+#    #+#             */
-/*   Updated: 2022/09/04 20:18:25 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/09/08 18:43:53 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub.h"
-
+#include "../../includes/cub.h"
 
 void	remove_last_nl(t_cub **cub)
 {
@@ -30,7 +29,6 @@ int	check_up_down_walls(char *s1, char *s2)
 	int	i;
 
 	i = 1;
-
 	while (s1[i])
 	{
 		if (s1[i] != '1' && s1[i] != ' ' && s2[i] != '\t')

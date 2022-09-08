@@ -6,11 +6,11 @@
 /*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 19:02:43 by ahmaidi           #+#    #+#             */
-/*   Updated: 2022/09/05 21:04:43 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/09/08 18:43:31 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub.h"
+#include "../../includes/cub.h"
 
 void	add_plus(t_cub **cub, int j)
 {

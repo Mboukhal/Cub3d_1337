@@ -6,11 +6,11 @@
 /*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 17:53:06 by ahmaidi           #+#    #+#             */
-/*   Updated: 2022/09/08 16:48:18 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/09/08 18:42:17 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub.h"
+#include "../../includes/cub.h"
 
 void	check_str_valid(char *str)
 {

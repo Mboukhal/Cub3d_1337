@@ -6,11 +6,11 @@
 /*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 08:18:43 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/08 16:52:01 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/09/08 18:42:04 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub.h"
+#include "../../includes/cub.h"
 
 void	check_exteniton(char *file, char *str)
 {

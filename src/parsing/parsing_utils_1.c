@@ -6,11 +6,11 @@
 /*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 18:49:29 by ahmaidi           #+#    #+#             */
-/*   Updated: 2022/09/08 16:36:28 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/09/08 18:42:33 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub.h"
+#include "../../includes/cub.h"
 
 int	find_texture_or_colors(char *str, t_cub **cub)
 {

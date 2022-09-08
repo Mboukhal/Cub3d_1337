@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+         #
+#    By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/24 07:24:22 by mboukhal          #+#    #+#              #
-#    Updated: 2022/09/08 16:26:43 by mboukhal         ###   ########.fr        #
+#    Updated: 2022/09/08 18:46:27 by ahmaidi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,10 +23,10 @@ INCLUDES			= -I /usr/local/include -I includes/ -lmlx -I $(s)libft/ 	\
 					  -framework AppKit
 
 
-CFILES				= $(S)main.c $(S)checks.c $(S)alloc.c $(S)key_manip.c 	\
-					  $(S)init.c $(S)game_entry.c $(S)get_next_line/get_next_line_utils.c \
-					  $(S)get_next_line/get_next_line.c $(S)get_texture_color.c $(S)free_it.c $(S)affiche_cub.c \
-					  $(S)parsing_utils_2.c $(S)parsing_utils_1.c $(S)transform_map.c $(S)valid_map.c $(S)check_str.c
+CFILES				= $(S)main.c $(S)parsing/checks.c $(S)parsing/alloc.c $(S)key_manip.c 	\
+					  $(S)parsing/init.c $(S)game_entry.c $(S)get_next_line/get_next_line_utils.c \
+					  $(S)get_next_line/get_next_line.c $(S)parsing/get_texture_color.c $(S)parsing/free_it.c $(S)parsing/affiche_cub.c \
+					  $(S)parsing/parsing_utils_2.c $(S)parsing/parsing_utils_1.c $(S)parsing/transform_map.c $(S)parsing/valid_map.c $(S)parsing/check_str.c
 
 OBJ					= $(CFILES:.c=.o)
 

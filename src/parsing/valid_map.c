@@ -6,11 +6,11 @@
 /*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 21:23:06 by ahmaidi           #+#    #+#             */
-/*   Updated: 2022/09/08 16:40:54 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/09/08 18:48:02 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub.h"
+#include "../../includes/cub.h"
 
 int	check(char c)
 {
@@ -61,5 +61,5 @@ void	check_map(t_cub **cub)
 		write(2, "There's a non correct key around Zero\n", 38);
 		ft_error();
 	}
-	affiche_cub(*cub);
+	// affiche_cub(*cub);
 }

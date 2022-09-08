@@ -6,11 +6,11 @@
 /*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 21:49:21 by ahmaidi           #+#    #+#             */
-/*   Updated: 2022/09/05 15:51:49 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/09/08 18:43:20 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub.h"
+#include "../../includes/cub.h"
 
 void	free_it_split(char **s)
 {

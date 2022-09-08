@@ -6,11 +6,11 @@
 /*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 21:46:11 by ahmaidi           #+#    #+#             */
-/*   Updated: 2022/09/08 16:48:06 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/09/08 18:43:24 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub.h"
+#include "../../includes/cub.h"
 
 void	allocate(t_cub **cub, char **str, int type)
 {
