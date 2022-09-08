@@ -6,7 +6,7 @@
 /*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 21:46:11 by ahmaidi           #+#    #+#             */
-/*   Updated: 2022/09/08 16:42:57 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/09/08 16:48:06 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,7 @@ int	get_color(char *str, t_cub **cub, int i)
 	if (rgb[index] != NULL || index != 3)
 	{
 		free_it_split(rgb);
-		write(2, "The color's value doesn't include to 0-255\n",43);
-		return (0);
+		return (wrong_color());
 	}
 	allocate(cub, rgb, i);
 	return (1);

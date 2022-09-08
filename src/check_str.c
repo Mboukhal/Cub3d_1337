@@ -6,7 +6,7 @@
 /*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 17:53:06 by ahmaidi           #+#    #+#             */
-/*   Updated: 2022/09/08 16:37:16 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/09/08 16:48:18 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,10 @@ void	check_nbr_vrg(char *str)
 		write(2, "nbre of comma not equal three\n", 30);
 		ft_error();
 	}
+}
+
+int	wrong_color(void)
+{
+	write(2, "The color's value doesn't include to 0-255\n", 43);
+	return (0);
 }

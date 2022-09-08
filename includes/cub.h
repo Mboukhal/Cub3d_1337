@@ -6,7 +6,7 @@
 /*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 07:28:51 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/08 16:23:14 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/09/08 16:48:29 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ int		check_around_zero(t_cub **cub);
 void	check_map(t_cub **cub);
 void	check_str_valid(char *str);
 void	check_nbr_vrg(char *str);
+int		wrong_color(void);
 // void	key_right(cub);
 // void	key_left(cub);
 // void	key_down(cub);
