@@ -6,7 +6,7 @@
 /*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 08:18:43 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/08 16:33:48 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/09/08 16:52:01 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,13 +90,10 @@ int	parser_file(int fd, t_cub **cub)
 	return (1);
 }
 
-/*
-	TODO:load file to cub structure
-	check map skip space and check for '1' or '\n' without skipping
-*/
-void	map_init(char *file, t_cub *cub)
+t_cub	*map_init(char *file)
 {
-	int	fd;
+	t_cub	*cub;
+	int		fd;
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
@@ -104,8 +101,8 @@ void	map_init(char *file, t_cub *cub)
 		perror (file);
 		exit (EXIT_FAILURE);
 	}
-	init(cub);
+	cub = cub_init();
 	parser_file(fd, &cub);
-	cub->i = 0;
 	close(fd);
+	return (cub);
 }

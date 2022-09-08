@@ -6,7 +6,7 @@
 /*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 07:28:01 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/08 16:23:35 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/09/08 16:54:58 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,6 @@ int	main(int ac, char **av)
 {
 	t_cub	*cub;
 
-	cub = malloc(sizeof(t_cub) * 1);
-	if (!cub)
-		return (1);
 	errno = 0;
 	if (ac != 2)
 	{
@@ -27,8 +24,7 @@ int	main(int ac, char **av)
 		return (EXIT_FAILURE);
 	}
 	check_exteniton(av[1], ".cub");
-	map_init(av[1], cub);
+	cub = map_init(av[1]);
 	// start_game(&cub);
-	system("leaks cub3d");
 	return (EXIT_SUCCESS);
 }
