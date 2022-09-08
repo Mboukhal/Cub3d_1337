@@ -6,7 +6,7 @@
 /*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 21:46:11 by ahmaidi           #+#    #+#             */
-/*   Updated: 2022/09/06 18:47:43 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/09/08 16:42:57 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,14 @@ int	check_path(char *str, t_cub **cub, int i)
 {
 	int		fd;
 	char	**texture;
-	char	*pth;
 
 	str++;
 	while (*str == ' ' || *str == '\t')
 		str++;
 	check_str_valid(str);
 	texture = ft_split(str, '\n');
-	pth = ft_strjoin(texture[0], ".xpm");
-	fd = open(pth, O_RDONLY, 664);
-	free (pth);
+	check_exteniton(str, ".xpm");
+	fd = open(*texture, O_RDONLY, 664);
 	if (fd < 0)
 	{
 		free_it_split(texture);
@@ -101,6 +99,7 @@ int	get_color(char *str, t_cub **cub, int i)
 	if (rgb[index] != NULL || index != 3)
 	{
 		free_it_split(rgb);
+		write(2, "The color's value doesn't include to 0-255\n",43);
 		return (0);
 	}
 	allocate(cub, rgb, i);

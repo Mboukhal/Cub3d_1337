@@ -6,7 +6,7 @@
 /*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 07:28:01 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/05 19:10:31 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/09/08 16:23:35 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int ac, char **av)
 			STDERR_FILENO);
 		return (EXIT_FAILURE);
 	}
-	check_exteniton(av[1]);
+	check_exteniton(av[1], ".cub");
 	map_init(av[1], cub);
 	// start_game(&cub);
 	system("leaks cub3d");

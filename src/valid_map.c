@@ -6,7 +6,7 @@
 /*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 21:23:06 by ahmaidi           #+#    #+#             */
-/*   Updated: 2022/09/06 15:40:16 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/09/08 16:40:54 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,16 @@ void	check_map(t_cub **cub)
 {
 	remove_last_nl(cub);
 	if (check_walls((*cub)->map, (*cub)->size_map))
+	{
+		write(2, "missing Wall up or down\n", 24);
 		ft_error();
+	}
 	add_front_plus(cub);
 	add_back_plus(cub);
 	if (!check_around_zero(cub))
+	{
+		write(2, "There's a non correct key around Zero\n", 38);
 		ft_error();
+	}
 	affiche_cub(*cub);
 }

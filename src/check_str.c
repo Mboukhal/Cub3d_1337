@@ -6,7 +6,7 @@
 /*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 17:53:06 by ahmaidi           #+#    #+#             */
-/*   Updated: 2022/09/06 18:48:58 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/09/08 16:37:16 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ void	check_str_valid(char *str)
 		i++;
 	}
 	if (str[i] != '\0')
+	{
+		write(2, "texture not valid\n", 18);
 		ft_error();
+	}
 }
 
 void	check_nbr_vrg(char *str)
@@ -41,5 +44,8 @@ void	check_nbr_vrg(char *str)
 		i++;
 	}
 	if (nbr_vrg != 2)
+	{
+		write(2, "nbre of comma not equal three\n", 30);
 		ft_error();
+	}
 }

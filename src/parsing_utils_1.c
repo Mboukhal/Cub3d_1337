@@ -6,7 +6,7 @@
 /*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 18:49:29 by ahmaidi           #+#    #+#             */
-/*   Updated: 2022/09/05 22:14:51 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/09/08 16:36:28 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	ft_error(void)
 	exit(1);
 }
 
-int	check_charactre(char *str)
+int	check_charactre(char *str, t_cub **cub)
 {
 	int	i;
 
@@ -50,6 +50,10 @@ int	check_charactre(char *str)
 		if (str[i] != '0' && str[i] != ' ' && str[i] != '1' && str[i] != '\t'\
 		&& str[i] != 'N' && str[i] != 'S' && str[i] != 'E' && str[i] != 'W')
 			return (0);
+		if ((*cub)->is_player > 1)
+			return (0);
+		if (str[i] == 'N' || str[i] == 'S' || str[i] == 'E' || str[i] == 'W')
+			(*cub)->is_player += 1;
 		i++;
 	}
 	return (1);
@@ -66,8 +70,11 @@ void	filling_map(t_cub **cub, char *str)
 {
 	(*cub)->in_map = 1;
 	remove_last_spaces(&str);
-	if (!check_charactre(str))
+	if (!check_charactre(str, cub))
+	{
+		write(2, "There's a foreign key in the map OR much players\n", 49);
 		ft_error();
+	}
 	++((*cub)->size_map);
 	(*cub)->map = ft_realloc((*cub)->map, sizeof(char *) * \
 	(*cub)->size_map - 1, sizeof(char *) * (*cub)->size_map + 1);

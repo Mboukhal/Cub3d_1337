@@ -6,7 +6,7 @@
 /*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 07:28:51 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/06 18:47:57 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/09/08 16:23:14 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,13 @@ typedef struct s_cub
 	char	**map;
 	int		size_map;
 	int		in_map;
+	int		is_player;
 }	t_cub;
 
 int		deal_key(int key, t_cub *cub);
 int		exit_game(t_cub *cub);
 void	init(t_cub *cub);
-void	check_exteniton(char *file);
+void	check_exteniton(char *file, char *str);
 void	map_init(char *file, t_cub *cub);
 void	start_game(t_cub *cub);
 int		parser_file(int fd, t_cub **cub);
@@ -72,7 +73,7 @@ int		check_up_down_walls(char *s1, char *s2);
 int		check_walls(char **map, int size);
 int		find_texture_or_colors(char *str, t_cub **cub);
 void	ft_error(void);
-int		check_charactre(char *str);
+int		check_charactre(char *str, t_cub **cub);
 void	remove_last_spaces(char **str);
 void	filling_map(t_cub **cub, char *str);
 void	add_plus(t_cub **cub, int j);
