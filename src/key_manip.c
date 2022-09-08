@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 09:11:22 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/08/24 09:23:20 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/09/08 16:32:29 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	exit_game(t_cub *cub)
 	// 	free_it(cub->map[iter++]);
 	mlx_destroy_window(cub->mlx, cub->mlx_win);
 	// free_it(cub->map);
+	// system ("leaks cub3d");
 	exit(EXIT_SUCCESS);
 	return (EXIT_SUCCESS);
 }

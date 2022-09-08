@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 07:28:51 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/08 17:03:11 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/09/08 16:33:54 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,12 @@ typedef struct s_cub
 	char	**map;
 	int		size_map;
 	int		in_map;
-	int		is_player;
 }	t_cub;
 
 t_cub	*cub_init(void);
 int		deal_key(int key, t_cub *cub);
 int		exit_game(t_cub *cub);
-void	init(t_cub *cub);
-void	check_exteniton(char *file, char *str);
+void	check_exteniton(char *file);
 t_cub	*map_init(char *file);
 void	start_game(t_cub *cub);
 int		parser_file(int fd, t_cub **cub);
@@ -74,7 +72,7 @@ int		check_up_down_walls(char *s1, char *s2);
 int		check_walls(char **map, int size);
 int		find_texture_or_colors(char *str, t_cub **cub);
 void	ft_error(void);
-int		check_charactre(char *str, t_cub **cub);
+int		check_charactre(char *str);
 void	remove_last_spaces(char **str);
 void	filling_map(t_cub **cub, char *str);
 void	add_plus(t_cub **cub, int j);
@@ -86,7 +84,6 @@ int		check_around_zero(t_cub **cub);
 void	check_map(t_cub **cub);
 void	check_str_valid(char *str);
 void	check_nbr_vrg(char *str);
-int		wrong_color(void);
 // void	key_right(cub);
 // void	key_left(cub);
 // void	key_down(cub);
