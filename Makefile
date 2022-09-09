@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+         #
+#    By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/24 07:24:22 by mboukhal          #+#    #+#              #
-#    Updated: 2022/09/08 18:46:27 by ahmaidi          ###   ########.fr        #
+#    Updated: 2022/09/09 18:36:41 by mboukhal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,16 +17,17 @@ NAME				= cub3d
 OPTION				= -Wall -Wextra -Werror #-fsanitize=address 
 
 S					= src/
+P					= $(S)parsing/
 
 INCLUDES			= -I /usr/local/include -I includes/ -lmlx -I $(s)libft/ 	\
 					  -L /usr/local/lib/ -framework OpenGL					\
 					  -framework AppKit
 
 
-CFILES				= $(S)main.c $(S)parsing/checks.c $(S)parsing/alloc.c $(S)key_manip.c 	\
-					  $(S)parsing/init.c $(S)game_entry.c $(S)get_next_line/get_next_line_utils.c \
-					  $(S)get_next_line/get_next_line.c $(S)parsing/get_texture_color.c $(S)parsing/free_it.c $(S)parsing/affiche_cub.c \
-					  $(S)parsing/parsing_utils_2.c $(S)parsing/parsing_utils_1.c $(S)parsing/transform_map.c $(S)parsing/valid_map.c $(S)parsing/check_str.c
+CFILES				= $(S)main.c $(P)checks.c $(P)alloc.c $(S)key_manip.c $(S)drow_minimap.c	\
+					  $(P)init.c $(S)game_entry.c $(S)get_next_line/get_next_line_utils.c $(S)drow.c\
+					  $(S)get_next_line/get_next_line.c $(P)get_texture_color.c $(P)free_it.c $(P)affiche_cub.c \
+					  $(P)parsing_utils_2.c $(P)parsing_utils_1.c $(P)transform_map.c $(P)valid_map.c $(P)check_str.c
 
 OBJ					= $(CFILES:.c=.o)
 

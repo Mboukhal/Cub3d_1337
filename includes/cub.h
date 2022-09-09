@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 07:28:51 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/08 17:03:11 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/09/09 19:31:31 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,13 @@
 # define RIGHT_KEY		2
 # define LEFT_KEY		0
 # define EXIT_BOTTON	17
-# define ELEMENT_SIZE	32
+
+# define FIX_FIT		-4
+# define ELEMENT_SIZE	235
+
+# define WIN_W			2880
+# define WIN_H			1620
+
 
 typedef enum s_type
 {
@@ -34,6 +40,20 @@ typedef enum s_type
 	FLOOR,
 	CIEL
 }	t_type;
+
+typedef struct s_image
+{
+	void	*no;
+	void	*so;
+	void	*we;
+	void	*ea;
+	void	*empty;
+	void	*wall;
+	void	*tmplet;
+	char	**f;
+	char	**c;
+
+} t_image;
 
 typedef struct s_txt_c
 {
@@ -47,8 +67,11 @@ typedef struct s_cub
 	void	*mlx;
 	void	*mlx_win;
 	t_txt_c	*tab_txt_c;
+	t_image	*image;
 	int		size_tab;
 	char	**map;
+	char	*bf;
+	int		bf_in;
 	int		size_map;
 	int		in_map;
 	int		is_player;
@@ -90,6 +113,6 @@ int		wrong_color(void);
 // void	key_right(cub);
 // void	key_left(cub);
 // void	key_down(cub);
-// void	key_up(cub);
+void	key_up(t_cub *cub);
 
 #endif /* __CUB_H__ */
