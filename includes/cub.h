@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 07:28:51 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/09 19:31:31 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/09/11 18:17:32 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ typedef struct s_txt_c
 {
 	t_type	type;
 	char	**splt;
+	int		color_floor[3];
+	int		color_ceilling[3];
 }	t_txt_c;
 
 typedef struct s_cub
@@ -72,6 +74,8 @@ typedef struct s_cub
 	char	**map;
 	char	*bf;
 	int		bf_in;
+	int		flor_trgb[4];
+	int		ceill_trgb[4];
 	int		size_map;
 	int		in_map;
 	int		is_player;

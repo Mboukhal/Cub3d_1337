@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 09:11:22 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/09 19:22:30 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/09/11 18:38:40 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	exit_game(t_cub *cub)
 	while (cub->map[++i])
 		free_it(cub->map[i]);
 	free(cub->image);
-	system ("leaks cub3d");
+	// system ("leaks cub3d");
 	exit(EXIT_SUCCESS);
 	return (EXIT_SUCCESS);
 }
@@ -52,6 +52,6 @@ int	deal_key(int key, t_cub *cub)
 // void	key_down(cub);
 void	key_up(t_cub *cub)
 {
-	update(cub);
+	// update(cub);
 	drow_minimap(cub);
 }

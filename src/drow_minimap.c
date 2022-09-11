@@ -6,67 +6,41 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 18:33:51 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/09 19:33:50 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/09/11 21:12:44 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/game_action.h"
 
-int	create_trgb(int r, int g, int b)
-{
-	return (0 << 24 | r << 16 | g << 8 | b);
-}
-
-unsigned char	get_trgb(int trgb, int index)
-{
-	return (((unsigned char *)&trgb)[index]);
-}
-
-void	set_buffer(char *buffer, int color)
-{
-	*buffer = 0;
-	buffer[1] = get_trgb(color, 1);
-	buffer[2] = get_trgb(color, 2);
-	buffer[3] = get_trgb(color, 3);
-}
-
-char	*ss(t_cub *c)
+void	rect(char *buffer, int winh, int winw, int h, int w)
 {
 	int index[2];
-	int color[2];
+	int color;
 	int pixel;
-	char *buffer;
+	int cc1[3] = { 0, 0, 0 } ;
 
-	buffer = c->bf;
-	// buffer = mlx_get_data_addr(c->image->tmplet, i, &i[1], &i[2]);
+	(void) h, (void) w;
+	create_trgb(cc1, &color);
 	index[0] = -1;
-	color[0] = create_trgb(ft_atoi(c->image->c[0]),
-			ft_atoi(c->image->c[1]), ft_atoi(c->image->c[2]));
-	color[1] = create_trgb(ft_atoi(c->image->f[0]),
-			ft_atoi(c->image->f[1]), ft_atoi(c->image->f[2]));
-	while (++index[0] < WIN_H)
+	while (++index[0] < winh)
 	{
 		index[1] = -1;
-		while (++index[1] < WIN_W)
+		while (++index[1] < winw)
 		{
-			// TODO: need more info
-			pixel = (index[0] * c->bf_in) + (index[1] * 4);
-			if (index[0] > (WIN_H / 2) - 1 )
-				set_buffer(&buffer[pixel], color[0]);
-			// else
-			// 	set_buffer(&buffer[pixel], color[1]);
+			pixel = (index[0] * (winw * 4)) + (index[1] * 4);
+
+			if (index[0] >= 50 && index[0] <= 200
+				&& index[1] >= 50 && index[1] <= 200)
+				set_buffer(&buffer[pixel], color);
 		}
 	}
-	return (buffer);
 }
 
 void	drow_minimap(t_cub *cub)
 {
 
-	char	*buff;
-
 	// cub->image->tmplet = mlx_new_image(cub->mlx, WIN_W, WIN_H);
-	buff = ss(cub);
+	rect(cub->bf, WIN_H, WIN_W, 50, 200);
 	mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->image->tmplet, 0, 0);
 	// mlx_put_image_to_window(c->mlx, c->mlx_win, c->image->no, FIX_FIT, FIX_FIT);
 	// mlx_put_image_to_window(c->mlx, c->mlx_win, c->image->so, ELEMENT_SIZE FIX_FIT, FIX_FIT);
