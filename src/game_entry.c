@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 09:01:42 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/12 12:53:57 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/09/12 13:01:49 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ void	start_game(t_cub *cub)
 	load_imges(cub);
 	cub->mlx_win = mlx_new_window(cub->mlx, WIN_W, WIN_H, "CuB3D");
 	update_image(cub);
+	mlx_string_put(cub->mlx, cub->mlx_win, 50, 50, 0, "HI");
 	// mlx_do_key_autorepeaton(cub->mlx);
 	mlx_hook(cub->mlx_win, EXIT_BOTTON, 0L, exit_game, cub);
 	mlx_key_hook(cub->mlx_win, deal_key, cub);
