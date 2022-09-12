@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 18:33:51 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/12 16:10:54 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/09/12 18:22:09 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,6 @@ void	drow_minimap(t_cub *cub)
 	// mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->image->we, (ELEMENT_SIZE * 3) , 0);
 	// mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->image->we, (ELEMENT_SIZE * 4) , 0);
 
-	rect(cub, WIN_H, WIN_W, 50, 200, 2550);
+	rect(cub, WIN_H, WIN_W, 100, WIN_H - 100, 255);
 	
 }

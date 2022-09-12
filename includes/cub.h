@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 07:28:51 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/12 15:31:55 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/09/12 18:22:43 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ typedef struct s_cub
 	char	**map;
 	char	*bf;
 	int		bf_in;
+	int		key_minimap;
 	int		flor_trgb[4];
 	int		ceill_trgb[4];
 	int		size_map;

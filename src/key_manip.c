@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 09:11:22 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/11 18:38:40 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/09/12 18:37:41 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,26 @@ int	exit_game(t_cub *cub)
 	exit(EXIT_SUCCESS);
 	return (EXIT_SUCCESS);
 }
-
+void	minimap_manip(t_cub *cub)
+{
+	if (cub->key_minimap)
+	{
+		cub->key_minimap = 0;
+		update_image(cub);
+		drow_minimap(cub);
+		return ;
+	}
+	update_image(cub);
+	cub->key_minimap = 1;
+}
 						/* key controle {01} */
 int	deal_key(int key, t_cub *cub)
 {
+	printf("deal_key: [%d] [%d]\n", key, cub->key_minimap);
 	if (key == 53)
 		exit_game(cub);
+	if (key == 48)
+		minimap_manip(cub);
 	if (key == UP_KEY)
 		key_up(cub);
 	// if (key == DOWN_KEY)
@@ -53,5 +67,5 @@ int	deal_key(int key, t_cub *cub)
 void	key_up(t_cub *cub)
 {
 	// update(cub);
-	drow_minimap(cub);
+	// drow_minimap(cub);
 }
