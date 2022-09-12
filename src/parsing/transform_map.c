@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   transform_map.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 19:02:43 by ahmaidi           #+#    #+#             */
-/*   Updated: 2022/09/08 18:43:31 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/09/12 14:52:58 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ void	add_back(t_cub **cub, int len)
 		}
 		i++;
 	}
+	(*cub)->s_map[0] = len;
+	(*cub)->s_map[1] = (int) i;
 }
 
 void	add_back_plus(t_cub **cub)

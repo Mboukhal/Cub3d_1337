@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 09:01:42 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/12 13:01:49 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/09/12 15:15:42 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,10 @@ static void	update_image(t_cub *cub)
 	cub->bf = mlx_get_data_addr(cub->image->tmplet, i, &i[1], &i[2]);
 	cub->bf_in = i[1];
 	drow_floor_and_ceilling(cub);
-	drow_minimap(cub);
 	// drow_row_minimap(cub);
 	mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->image->tmplet, 0, 0);
+	drow_minimap(cub);
+	
 }
 
 void	start_game(t_cub *cub)
@@ -85,8 +86,9 @@ void	start_game(t_cub *cub)
 	cub->mlx = mlx_init();
 	load_imges(cub);
 	cub->mlx_win = mlx_new_window(cub->mlx, WIN_W, WIN_H, "CuB3D");
+	printf("x[%d] y[%d]\n" , cub->s_map[0], cub->s_map[1]);
 	update_image(cub);
-	mlx_string_put(cub->mlx, cub->mlx_win, 50, 50, 0, "HI");
+
 	// mlx_do_key_autorepeaton(cub->mlx);
 	mlx_hook(cub->mlx_win, EXIT_BOTTON, 0L, exit_game, cub);
 	mlx_key_hook(cub->mlx_win, deal_key, cub);

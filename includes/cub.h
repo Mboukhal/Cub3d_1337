@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 07:28:51 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/12 12:50:31 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/09/12 15:31:55 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,12 @@
 # define LEFT_KEY		0
 # define EXIT_BOTTON	17
 
-# define FIX_FIT		-4
-# define ELEMENT_SIZE	235
+// # define FIX_FIT_H		-15
+// # define FIX_FIT_V		-4
+# define FIX_FIT_H		+0
+# define FIX_FIT_V		+0
+# define ELEMENT_SIZE	250
+
 
 # define WIN_W			1600
 # define WIN_H			900
@@ -77,6 +81,7 @@ typedef struct s_cub
 	int		flor_trgb[4];
 	int		ceill_trgb[4];
 	int		size_map;
+	int		s_map[2];
 	int		in_map;
 	int		is_player;
 }	t_cub;
