@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 09:11:22 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/12 18:37:41 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/09/12 19:02:45 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,10 @@ void	minimap_manip(t_cub *cub)
 	{
 		cub->key_minimap = 0;
 		update_image(cub);
-		drow_minimap(cub);
 		return ;
 	}
-	update_image(cub);
 	cub->key_minimap = 1;
+	update_image(cub);
 }
 						/* key controle {01} */
 int	deal_key(int key, t_cub *cub)

@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 19:02:43 by ahmaidi           #+#    #+#             */
-/*   Updated: 2022/09/12 14:52:58 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/09/12 22:33:03 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,18 @@ void	add_front_plus(t_cub **cub)
 	add_plus(cub, len);
 }
 
+static void check_map_size(t_cub *cub, int i, int len)
+{
+		printf("size:[%d][%d]\n", len, i);
+	if (len > 36 || i > 36)
+	{
+		ft_putstr_fd("ERROR:\n\t\e[31mInvalid map size!\e[00m\n", 2);
+		exit(1);
+	}
+	cub->s_map[0] = len;	// can't be more than36
+	cub->s_map[1] = (int) i; // can't be more than 36
+}
+
 void	add_back(t_cub **cub, int len)
 {
 	size_t	i;
@@ -68,35 +80,34 @@ void	add_back(t_cub **cub, int len)
 		}
 		i++;
 	}
-	(*cub)->s_map[0] = len;
-	(*cub)->s_map[1] = (int) i;
+	check_map_size(*cub, (int)i, len);
 }
 
-void	add_back_plus(t_cub **cub)
+void	add_back_plus(t_cub *cub)
 {
 	size_t	i;
 	size_t	j;
 	size_t	len;
 
 	i = 0;
-	len = ft_strlen((*cub)->map[0]);
+	len = ft_strlen(cub->map[0]);
 	i = 0;
-	while ((*cub)->map[i])
+	while (cub->map[i])
 	{
 		j = 0;
-		while ((*cub)->map[i][j] == ' ' || (*cub)->map[i][j] == '\t')
+		while (cub->map[i][j] == ' ' || cub->map[i][j] == '\t')
 		{
-			(*cub)->map[i][j] = '+';
+			cub->map[i][j] = '+';
 			j++;
 		}
 		i++;
 	}
 	i = 0;
-	while ((*cub)->map[i])
+	while (cub->map[i])
 	{
-		if (len < ft_strlen((*cub)->map[i]))
-			len = ft_strlen((*cub)->map[i]);
+		if (len < ft_strlen(cub->map[i]))
+			len = ft_strlen(cub->map[i]);
 		i++;
 	}
-	add_back(cub, len);
+	add_back(&cub, len);
 }

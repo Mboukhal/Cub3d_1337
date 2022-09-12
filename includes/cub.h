@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 07:28:51 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/12 18:22:43 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/09/12 22:22:11 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,6 @@
 # include <fcntl.h>
 # include <errno.h>
 # include "utils.h"
-
-# define UP_KEY			13
-# define DOWN_KEY		1
-# define RIGHT_KEY		2
-# define LEFT_KEY		0
-# define EXIT_BOTTON	17
-
-// # define FIX_FIT_H		-15
-// # define FIX_FIT_V		-4
-# define FIX_FIT_H		+0
-# define FIX_FIT_V		+0
-# define ELEMENT_SIZE	250
-
-
-# define WIN_W			1600
-# define WIN_H			900
-
 
 typedef enum s_type
 {
@@ -54,6 +37,7 @@ typedef struct s_image
 	void	*empty;
 	void	*wall;
 	void	*tmplet;
+	void	*bg;
 	char	**f;
 	char	**c;
 
@@ -63,8 +47,8 @@ typedef struct s_txt_c
 {
 	t_type	type;
 	char	**splt;
-	int		color_floor[4];
-	int		color_ceilling[4];
+	int		cc[4];
+	int		cf[4];
 }	t_txt_c;
 
 typedef struct s_cub
@@ -112,7 +96,7 @@ void	remove_last_spaces(char **str);
 void	filling_map(t_cub **cub, char *str);
 void	add_plus(t_cub **cub, int j);
 void	add_front_plus(t_cub **cub);
-void	add_back_plus(t_cub **cub);
+void	add_back_plus(t_cub *cub);
 void	add_back(t_cub **cub, int len);
 int		check(char c);
 int		check_around_zero(t_cub **cub);

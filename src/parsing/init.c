@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 09:26:45 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/12 18:35:58 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/09/12 19:01:00 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ t_cub	*cub_init(void)
 	c->size_map = 0;
 	c->in_map = 0;
 	c->is_player = 0;
-	c->key_minimap = 1;
+	c->key_minimap = 0;
 	return (c);
 }
