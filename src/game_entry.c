@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 09:01:42 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/11 18:33:20 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/09/12 12:53:57 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,28 @@ static void	set_color(t_cub *c, int index)
 {
 	if (c->tab_txt_c[index].type == FLOOR)
 	{
-		c->tab_txt_c->color_floor[0] = ft_atoi(c->tab_txt_c[index].splt[0]);
-		c->tab_txt_c->color_floor[1] = ft_atoi(c->tab_txt_c[index].splt[1]);
-		c->tab_txt_c->color_floor[2] = ft_atoi(c->tab_txt_c[index].splt[2]);
+		c->tab_txt_c->color_floor[0] = 0;
+		c->tab_txt_c->color_floor[1] = ft_atoi(c->tab_txt_c[index].splt[0]);
+		c->tab_txt_c->color_floor[2] = ft_atoi(c->tab_txt_c[index].splt[1]);
+		c->tab_txt_c->color_floor[3] = ft_atoi(c->tab_txt_c[index].splt[2]);
+		for (int i = 0; i < 4; i++)
+		{
+			printf("ff[%d]\n", c->tab_txt_c->color_floor[i]);
+		}
 
 	}
 	else if (c->tab_txt_c[index].type == CIEL)
 	{
-		c->tab_txt_c->color_ceilling[0] = ft_atoi(c->tab_txt_c[index].splt[0]);
-		c->tab_txt_c->color_ceilling[1] = ft_atoi(c->tab_txt_c[index].splt[1]);
-		c->tab_txt_c->color_ceilling[2] = ft_atoi(c->tab_txt_c[index].splt[2]);
+		c->tab_txt_c->color_ceilling[0] = 0;
+		c->tab_txt_c->color_ceilling[1] = ft_atoi(c->tab_txt_c[index].splt[0]);
+		c->tab_txt_c->color_ceilling[2] = ft_atoi(c->tab_txt_c[index].splt[1]);
+		c->tab_txt_c->color_ceilling[3] = ft_atoi(c->tab_txt_c[index].splt[2]);
+		for (int i = 0; i < 4; i++)
+		{
+			printf("cc[%d]\n", c->tab_txt_c->color_ceilling[i]);
+		}
 	}
+		printf("\n");
 }
 
 static void load_imges(t_cub *c)

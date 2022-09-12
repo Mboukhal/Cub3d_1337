@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 07:28:51 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/11 18:17:32 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/09/12 12:50:31 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@
 # define FIX_FIT		-4
 # define ELEMENT_SIZE	235
 
-# define WIN_W			2880
-# define WIN_H			1620
+# define WIN_W			1600
+# define WIN_H			900
 
 
 typedef enum s_type
@@ -59,8 +59,8 @@ typedef struct s_txt_c
 {
 	t_type	type;
 	char	**splt;
-	int		color_floor[3];
-	int		color_ceilling[3];
+	int		color_floor[4];
+	int		color_ceilling[4];
 }	t_txt_c;
 
 typedef struct s_cub

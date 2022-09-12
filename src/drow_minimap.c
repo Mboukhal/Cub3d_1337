@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 18:33:51 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/11 21:12:44 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/09/12 12:47:46 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	rect(char *buffer, int winh, int winw, int h, int w)
 	int index[2];
 	int color;
 	int pixel;
-	int cc1[3] = { 0, 0, 0 } ;
+	int cc1[4] = { 0, 0, 0, 255 } ;
 
 	(void) h, (void) w;
 	create_trgb(cc1, &color);

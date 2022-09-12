@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 16:36:19 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/11 18:23:19 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/09/12 12:55:10 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 void	create_trgb(int *rgb, int *color)
 {
-	*color = (0 << 24 | *rgb << 16 | rgb[1] << 8 | rgb[2]);
-}
+	*color = (rgb[0] << 24 | rgb[1] << 16 | rgb[2] << 8 | rgb[3]);
+}   
 
 void	set_buffer(char *buffer, int color)
 {
-	*buffer = 0;
+	buffer[0] = ((unsigned char *)&color)[0];
 	buffer[1] = ((unsigned char *)&color)[1];
 	buffer[2] = ((unsigned char *)&color)[2];
 	buffer[3] = ((unsigned char *)&color)[3]; 
@@ -33,8 +33,8 @@ void	drow_floor_and_ceilling(t_cub *c)
 	char *buffer;
 
 	buffer = c->bf;
-	create_trgb(c->tab_txt_c->color_floor, &color[0]);
-	create_trgb(c->tab_txt_c->color_ceilling, &color[1]);
+	create_trgb(c->tab_txt_c->color_ceilling, &color[0]);
+	create_trgb(c->tab_txt_c->color_floor, &color[1]);
 	index[0] = -1;
 	while (++index[0] < WIN_H)
 	{
