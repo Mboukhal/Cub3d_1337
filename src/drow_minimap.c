@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 18:33:51 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/12 18:22:09 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/09/12 18:41:21 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	rect(t_cub *cub, int winh, int winw, int h, int w, int color)
 
 void	drow_minimap(t_cub *cub)
 {
-
+									
 	// mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->image->no, 0, 0);
 	// mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->image->so, ELEMENT_SIZE , 0);
 	// mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->image->ea, (ELEMENT_SIZE * 2) , 0);
