@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 09:11:22 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/12 19:02:45 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/09/13 14:29:43 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	minimap_manip(t_cub *cub)
 						/* key controle {01} */
 int	deal_key(int key, t_cub *cub)
 {
-	printf("deal_key: [%d] [%d]\n", key, cub->key_minimap);
+	// printf("deal_key: [%d] [%d]\n", key, cub->key_minimap);
 	if (key == 53)
 		exit_game(cub);
 	if (key == 48)

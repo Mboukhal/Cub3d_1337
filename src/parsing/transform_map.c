@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 19:02:43 by ahmaidi           #+#    #+#             */
-/*   Updated: 2022/09/12 22:33:03 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/09/13 14:30:08 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,13 @@ void	add_front_plus(t_cub **cub)
 
 static void check_map_size(t_cub *cub, int i, int len)
 {
-		printf("size:[%d][%d]\n", len, i);
 	if (len > 36 || i > 36)
 	{
 		ft_putstr_fd("ERROR:\n\t\e[31mInvalid map size!\e[00m\n", 2);
 		exit(1);
 	}
-	cub->s_map[0] = len;	// can't be more than36
-	cub->s_map[1] = (int) i; // can't be more than 36
+	cub->s_map[0] = len;
+	cub->s_map[1] = (int) i;
 }
 
 void	add_back(t_cub **cub, int len)
