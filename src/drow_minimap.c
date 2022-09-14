@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 18:33:51 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/13 15:24:34 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/09/14 17:01:29 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,55 +33,123 @@ void	rect(t_cub *cub, int winh, int winw, int position, int color)
 	}
 }
 
-static void set_player(t_cub *cub, int x , int y)
+static void set_player(t_cub *cub)
 {
 	int	player_size;
-	int	player_x;
-	int	player_y;
-	int i;
-	int j;
+	int	player_color;
+	int i[2];
 	
-	player_x = (6 + x);
-	player_y = (6 + y);
 	player_size = 8;
-	i = -1;
-	mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->image->empty, x , y);
-	while (++i < player_size)
+	player_color = 11605993;
+	i[0] = -1;
+	while (++i[0] < player_size)
 	{
-		j = -1;
-		while (++j < player_size)
-			mlx_pixel_put(cub->mlx, cub->mlx_win, player_x + i, player_y + j, 11605993);
+		i[1] = -1;
+		while (++i[1] < player_size)
+		{
+			mlx_pixel_put(cub->mlx, cub->mlx_win,
+					cub->player_x + i[0] + 6, cub->player_y + i[1] + 6, player_color);
+		}
 	}
 }
 
+/*
+	map and background need to be saved in buffer
+	for fixing randreing performance issues
+*/
+
 void	set_map(t_cub *cub)
 {
-	int x = (MINI_BG - (cub->s_map[0] * 22)) / 2;
-	int y = (MINI_BG - (cub->s_map[1] * 22)) / 2;
+	int x = ((MINI_BG - (cub->s_map[0] * 22)) / 2);
+	int y = ((MINI_BG - (cub->s_map[1] * 22)) / 2);
 	char	p;
 	int xi = -1;
 	int yi;
 
-	printf("set_map: x %d y %d\n", x, y);
-	printf("map_size: x %d y %d\n", cub->s_map[0], cub->s_map[1]);
-	// printf("set_map: xi %d yi %d\n", xi, yi);
 	while (++xi < cub->s_map[0])
 	{
 		yi = -1;
 		while (++yi < cub->s_map[1])
 		{
 			p = cub->map[yi][xi];
-			// printf("map: first %c yi [%s]\n", cub->map[yi][xi], cub->map[yi]);
 			if (p == '0')
 				mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->image->empty, x + (22 * xi) , y + (22 * yi));
 			else if (p == '1')
 				mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->image->wall, x + (22 * xi) , y + (22 * yi));
 			else if (p != '+' && p != ' ')
-				set_player(cub, x + (22 * xi), y + (22 * yi));
+			{
+				if (!cub->player_x && !cub->player_y)
+				{
+					cub->player_x = x + (22 * xi);
+					cub->player_y = y + (22 * yi);
+				}
+				mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->image->empty, x + (22 * xi) , y + ((22 * yi)));
+			}
 		}
 	}
-	printf("xi = [%d]", xi);
-	printf("yi = [%d]", yi);
+	set_player(cub);//, , );
+	// printf("xi = [%d]\n", xi);
+	// printf("yi = [%d]\n", yi);
+}
+
+// void	set_map(t_cub *cub, char *buffer)
+// {
+// 	int		x;
+// 	int		y;
+// 	char	p;
+// 	int		xi;
+// 	int		yi;
+
+// 	x = ((MINI_BG - (cub->s_map[0] * 22)) / 2);
+// 	y = ((MINI_BG - (cub->s_map[1] * 22)) / 2);
+// 	xi = -1;
+// 	while (++xi < cub->s_map[0])
+// 	{
+// 		yi = -1;
+// 		while (++yi < cub->s_map[1])
+// 		{
+// 			p = cub->map[yi][xi];
+// 			if (p == '0')
+// 				mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->image->empty, x + (22 * xi) , y + (22 * yi));
+// 			else if (p == '1')
+// 				mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->image->wall, x + (22 * xi) , y + (22 * yi));
+// 			else if (p != '+' && p != ' ')
+// 			{
+// 				if (!cub->player_x && !cub->player_y)
+// 				{
+// 					cub->player_x = x + (22 * xi);
+// 					cub->player_y = y + (22 * yi);
+// 				}
+// 				mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->image->empty, x + (22 * xi) , y + ((22 * yi)));
+// 			}
+// 		}
+
+// 	}
+// 	set_player(cub);//, , );
+// 	printf("xi = [%d]\n", xi);
+// 	printf("yi = [%d]\n", yi);
+// }
+
+
+void	set_image(int x, int y, t_cub *cub)
+{
+	int i[3];
+	char *map;
+	char *bg;
+
+	cub->image->tmplet = mlx_new_image(cub->mlx, y, x);
+	map = mlx_get_data_addr(cub->image->tmplet, i, &i[1], &i[2]);
+	bg  = mlx_get_data_addr(cub->image->bg, i, &i[1], &i[2]);
+	int r =-1;
+	printf("%s\n",bg);
+	while (bg[++r])
+	{
+		map[r] = bg[r];
+	}
+	// set_map(cub, buffer);
+	// cub->bf_in = i[1];
+	// drow_row_minimap(cub);
+	mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->image->tmplet, 20, 20);
 }
 
 /*
@@ -96,7 +164,7 @@ void	drow_minimap(t_cub *cub)
 	// int rect_size;
 	
 	mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->image->bg, 20, 20);
-
+	// set_image(860, 860, cub);
 	set_map(cub);
 	// rect_size = (int)(cub->s_map[0] / 100);
 	// rect_size = 835 - 22 ;

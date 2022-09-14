@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 09:01:42 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/13 14:09:34 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/09/13 17:59:56 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ static void	set_color(t_cub *c, int index, int *size)
 		exit(1);
 	}
 }
+
 
 static void load_imges_const(t_cub *c, int *size)
 {

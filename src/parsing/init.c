@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 09:26:45 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/12 19:01:00 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/09/13 15:41:52 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ t_cub	*cub_init(void)
 	c->tab_txt_c = NULL;
 	c->map = NULL;
 	c->i = 0;
+	c->player_x = 0;
+	c->player_y = 0;
 	c->size_tab = 0;
 	c->size_map = 0;
 	c->in_map = 0;

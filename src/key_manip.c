@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 09:11:22 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/13 14:29:43 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/09/13 16:06:17 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ int	deal_key(int key, t_cub *cub)
 // void	key_down(cub);
 void	key_up(t_cub *cub)
 {
-	// update(cub);
-	// drow_minimap(cub);
+	// cub->player_x ;
+	cub->player_y -= 5;
+	update_image(cub);
 }
