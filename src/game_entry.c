@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_entry.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 09:01:42 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/13 17:59:56 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/09/16 07:58:27 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ static void	set_color(t_cub *c, int index, int *size)
 		exit(1);
 	}
 }
-
 
 static void load_imges_const(t_cub *c, int *size)
 {
@@ -82,20 +81,26 @@ void	update_image(t_cub *cub)
 	drow_floor_and_ceilling(cub);
 	// drow_row_minimap(cub);
 	// mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->image->tmplet, 0, 0);
-	if (cub->key_minimap)
-		drow_minimap(cub);
+	// if (cub->key_minimap)
+	// 	drow_minimap(cub);
 	
 }
 
 void	start_game(t_cub *cub)
 {
+	int     bpp;
+	int     size_line;
+	int     endian;
+	int 	color[2];
+
 	cub->mlx = mlx_init();
 	load_imges(cub);
 	cub->mlx_win = mlx_new_window(cub->mlx, WIN_W, WIN_H, "CuB3D");
 	// printf("x[%d] y[%d]\n" , cub->s_map[0], cub->s_map[1]);
 	update_image(cub);
+	mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->img_ptr, 0, 0);
+	// mlx_hook(cub->mlx_win, 2, 1, deal_key, cub);
 	mlx_key_hook(cub->mlx_win, deal_key, cub);
-
 	// mlx_do_key_autorepeaton(cub->mlx);
 	mlx_hook(cub->mlx_win, EXIT_BOTTON, 0L, exit_game, cub);
 	mlx_loop(cub->mlx);

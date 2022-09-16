@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 07:28:51 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/13 15:42:02 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/09/16 07:49:54 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ typedef struct s_cub
 	int		s_map[2];
 	int		in_map;
 	int		is_player;
+	void    *img_ptr;
+	char    *buffer;
 }	t_cub;
 
 t_cub	*cub_init(void);
@@ -106,6 +108,7 @@ void	check_map(t_cub **cub);
 void	check_str_valid(char *str);
 void	check_nbr_vrg(char *str);
 int		wrong_color(void);
+void	create_trgb(int *rgb, int *color);
 // void	key_right(cub);
 // void	key_left(cub);
 // void	key_down(cub);
