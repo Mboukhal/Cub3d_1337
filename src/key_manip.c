@@ -6,11 +6,13 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 09:11:22 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/13 16:06:17 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/09/16 19:50:37 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/game_action.h"
+
+#define STEPSIZE	4
 
 int	exit_game(t_cub *cub)
 {
@@ -41,6 +43,39 @@ void	minimap_manip(t_cub *cub)
 	cub->key_minimap = 1;
 	update_image(cub);
 }
+
+void	key_up(t_cub *cub)
+{
+	// cub->player_x ;
+	if (cub->player_y)
+		cub->player_y -= STEPSIZE;
+	update_image(cub);
+}
+
+void	key_left(t_cub *cub)
+{
+	// cub->player_x ;
+	if (cub->player_x)
+		cub->player_x -= STEPSIZE;
+	update_image(cub);
+}
+
+void	key_right(t_cub *cub)
+{
+	// cub->player_x ;
+	if (cub->player_x)
+		cub->player_x += STEPSIZE;
+	update_image(cub);
+}
+
+void	key_down(t_cub *cub)
+{
+	// cub->player_x ;
+	if (cub->player_y)
+		cub->player_y += STEPSIZE;
+	update_image(cub);
+}
+
 						/* key controle {01} */
 int	deal_key(int key, t_cub *cub)
 {
@@ -51,21 +86,11 @@ int	deal_key(int key, t_cub *cub)
 		minimap_manip(cub);
 	if (key == UP_KEY)
 		key_up(cub);
-	// if (key == DOWN_KEY)
-	// 	key_down(cub);
-	// if (key == LEFT_KEY)
-	// 	key_left(cub);
-	// if (key == RIGHT_KEY)
-	// 	key_right(cub);
+	if (key == DOWN_KEY)
+		key_down(cub);
+	if (key == LEFT_KEY)
+		key_left(cub);
+	if (key == RIGHT_KEY)
+		key_right(cub);
 	return (EXIT_SUCCESS);
-}
-
-// void	key_right(cub);
-// void	key_left(cub);
-// void	key_down(cub);
-void	key_up(t_cub *cub)
-{
-	// cub->player_x ;
-	cub->player_y -= 5;
-	update_image(cub);
 }

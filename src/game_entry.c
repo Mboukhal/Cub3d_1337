@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_entry.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 09:01:42 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/16 07:58:27 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/09/16 20:01:57 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,21 +68,22 @@ static void load_imges(t_cub *c)
 		else if (c->tab_txt_c[i].type == FLOOR || c->tab_txt_c[i].type == CIEL)
 			set_color(c, i, size);
 	}
+	// need to remove empty and wall
 	load_imges_const(c, size);
 }
 
+// cub->image->tmplet = mlx_new_image(cub->mlx, WIN_W, WIN_H);
+// cub->bf = mlx_get_data_addr(cub->image->tmplet, i, &i[1], &i[2]);
+// cub->bf_in = i[1];
+// drow_row_minimap(cub);
+// mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->image->tmplet, 0, 0);
 void	update_image(t_cub *cub)
 {
 	int		i[3];
 
-	// cub->image->tmplet = mlx_new_image(cub->mlx, WIN_W, WIN_H);
-	// cub->bf = mlx_get_data_addr(cub->image->tmplet, i, &i[1], &i[2]);
-	// cub->bf_in = i[1];
-	drow_floor_and_ceilling(cub);
-	// drow_row_minimap(cub);
-	// mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->image->tmplet, 0, 0);
-	// if (cub->key_minimap)
-	// 	drow_minimap(cub);
+	mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->layer1, 0, 0);
+	if (cub->key_minimap)
+		drow_minimap(cub);
 	
 }
 
@@ -95,13 +96,16 @@ void	start_game(t_cub *cub)
 
 	cub->mlx = mlx_init();
 	load_imges(cub);
+	drow_floor_and_ceilling(cub);
+
 	cub->mlx_win = mlx_new_window(cub->mlx, WIN_W, WIN_H, "CuB3D");
-	// printf("x[%d] y[%d]\n" , cub->s_map[0], cub->s_map[1]);
 	update_image(cub);
-	mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->img_ptr, 0, 0);
-	// mlx_hook(cub->mlx_win, 2, 1, deal_key, cub);
-	mlx_key_hook(cub->mlx_win, deal_key, cub);
-	// mlx_do_key_autorepeaton(cub->mlx);
+
+
+	mlx_hook(cub->mlx_win, 2, 1, deal_key, cub);
 	mlx_hook(cub->mlx_win, EXIT_BOTTON, 0L, exit_game, cub);
 	mlx_loop(cub->mlx);
 }
+// printf("x[%d] y[%d]\n" , cub->s_map[0], cub->s_map[1]);
+// mlx_key_hook(cub->mlx_win, deal_key, cub);
+// mlx_do_key_autorepeaton(cub->mlx);

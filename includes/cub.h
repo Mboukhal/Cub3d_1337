@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 07:28:51 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/16 07:49:54 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/09/16 08:16:04 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ typedef struct s_cub
 	int		s_map[2];
 	int		in_map;
 	int		is_player;
-	void    *img_ptr;
-	char    *buffer;
+	void    *layer1;
+	char    *layer1_buffer;
 }	t_cub;
 
 t_cub	*cub_init(void);
