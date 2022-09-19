@@ -6,11 +6,11 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 16:37:31 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/19 16:20:47 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/09/19 16:21:34 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub.h"
+#include "cub.h"
 
 # define UP_KEY				13
 # define DOWN_KEY			1
