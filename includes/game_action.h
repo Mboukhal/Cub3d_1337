@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 16:37:31 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/19 16:24:06 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/09/19 16:58:25 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,10 @@ void	create_trgb(int *rgb, int *color);
 void	update_image(t_cub *cub);
 void	moveplayer(t_cub *cub);
 void	minimap_manip(t_cub *cub);
-void	key_W(t_cub *cub);
+void	key_W_S(t_cub *cub, int i);
 void	key_A(t_cub *cub);
 void	key_D(t_cub *cub);
-void	key_S(t_cub *cub);
-void	key_rotate_right(t_cub *cub);
-void	key_rotate_left(t_cub *cub);
+void	key_rotate(t_cub *cub, int i);
 
 
 #endif

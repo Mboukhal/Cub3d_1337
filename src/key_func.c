@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 16:13:43 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/19 16:25:14 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/09/19 16:57:52 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ void	minimap_manip(t_cub *cub)
 	update_image(cub);
 }
 
-void	key_W(t_cub *cub)
+void	key_W_S(t_cub *cub, int i)
 {
-	cub->player->walkdirection = 1;
+	cub->player->walkdirection = i;
 	update_image(cub);
 }
 
@@ -46,20 +46,9 @@ void	key_D(t_cub *cub)
 	update_image(cub);
 }
 
-void	key_S(t_cub *cub)
-{
-	cub->player->walkdirection = -1;
-	update_image(cub);
-}
 
-void	key_rotate_right(t_cub *cub)
+void	key_rotate(t_cub *cub, int i)
 {
-	cub->player->turndirection = 1;
-	update_image(cub);
-}
-
-void	key_rotate_left(t_cub *cub)
-{
-	cub->player->turndirection = -1;
+	cub->player->turndirection = i;
 	update_image(cub);
 }

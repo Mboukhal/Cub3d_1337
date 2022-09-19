@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 09:11:22 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/19 16:25:04 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/09/19 16:58:07 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,17 @@ int	deal_key(int key, t_cub *cub)
 	if (key == 48)
 		minimap_manip(cub);
 	if (key == UP_KEY)
-		key_W(cub);
+		key_W_S(cub, 1);
 	if (key == DOWN_KEY)
-		key_S(cub);
+		key_W_S(cub, -1);
 	if (key == LEFT_KEY)
 		key_A(cub);
 	if (key == RIGHT_KEY)
 		key_D(cub);
 	if (key == R_ARROW_KEY)
-		key_rotate_right(cub);
+		key_rotate(cub, 1);
 	if (key == L_ARROW_KEY)
-		key_rotate_left(cub);
+		key_rotate(cub, -1);
 	cub->player->turndirection = 0;
 	cub->player->walkdirection = 0;
 	return (EXIT_SUCCESS);
