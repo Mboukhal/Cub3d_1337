@@ -6,13 +6,11 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 09:11:22 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/19 16:24:27 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/09/19 16:25:04 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/game_action.h"
-
-#define STEPSIZE	4
 
 int	exit_game(t_cub *cub)
 {

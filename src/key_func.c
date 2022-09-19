@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 16:13:43 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/19 16:14:34 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/09/19 16:25:14 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	key_W(t_cub *cub)
 void	key_A(t_cub *cub)
 {
 	// cub->player->rotationangle += PI / 2;
-	// cub->player->player_x -= 4;
+	cub->player->player_x -= 4;
 	update_image(cub);
 }
 
