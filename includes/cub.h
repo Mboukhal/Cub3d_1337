@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 07:28:51 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/17 14:53:52 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/09/19 13:04:40 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ typedef struct s_cub
 	int			size_tab;
 	char		**map;
 	char		*bf;
+	char		playerside;
 	int			bf_in;
 	int			key_minimap;
 	t_player	*player;

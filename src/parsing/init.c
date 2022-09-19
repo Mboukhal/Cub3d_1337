@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 09:26:45 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/17 12:08:43 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/09/19 13:16:03 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,5 @@ t_cub	*cub_init(void)
 	c->player->walkspeed = 4;
 	c->player->turnspeed = 45 * (PI / 180);
 	c->key_minimap = 0;
-	printf("here\n");
 	return (c);
 }
