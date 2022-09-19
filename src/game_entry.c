@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_entry.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 09:01:42 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/16 20:01:57 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/09/17 12:04:56 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,13 @@ static void	set_color(t_cub *c, int index, int *size)
 	}
 	else if (size[0] > 250 || size[1] > 250)
 	{
-		ft_putstr_fd("ERROR:\n\tSize textures must be less or equal than 250x250", 2);
+		ft_putstr_fd("ERROR:\n\tSize textures must \
+		be less or equal than 250x250", 2);
 		exit(1);
 	}
 }
 
-static void load_imges_const(t_cub *c, int *size)
+static void	load_imges_const(t_cub *c, int *size)
 {
 	c->image->bg = mlx_xpm_file_to_image(c->mlx,
 			"images/minimap_xmp/BgMinimap.xpm", &size[0], &size[1]);
@@ -45,25 +46,25 @@ static void load_imges_const(t_cub *c, int *size)
 			"images/minimap_xmp/wall.xpm", &size[0], &size[1]);
 }
 
-static void load_imges(t_cub *c)
+static void	load_imges(t_cub *c)
 {
 	int	i;
 	int	size[2];
 
 	i = -1;
-	while ( ++i < c->size_tab)
+	while (++i < c->size_tab)
 	{
 		if (c->tab_txt_c[i].type == EAST)
-			c->image->ea = mlx_xpm_file_to_image(c->mlx, 
+			c->image->ea = mlx_xpm_file_to_image(c->mlx, \
 				c->tab_txt_c[i].splt[0], &size[0], &size[1]);
 		else if (c->tab_txt_c[i].type == NORTH)
-			c->image->no = mlx_xpm_file_to_image(c->mlx, 
+			c->image->no = mlx_xpm_file_to_image(c->mlx, \
 				c->tab_txt_c[i].splt[0], &size[0], &size[1]);
 		else if (c->tab_txt_c[i].type == SOUTH)
-			c->image->so = mlx_xpm_file_to_image(c->mlx, 
+			c->image->so = mlx_xpm_file_to_image(c->mlx, \
 				c->tab_txt_c[i].splt[0], &size[0], &size[1]);
 		else if (c->tab_txt_c[i].type == WEST)
-			c->image->we = mlx_xpm_file_to_image(c->mlx, 
+			c->image->we = mlx_xpm_file_to_image(c->mlx, \
 				c->tab_txt_c[i].splt[0], &size[0], &size[1]);
 		else if (c->tab_txt_c[i].type == FLOOR || c->tab_txt_c[i].type == CIEL)
 			set_color(c, i, size);
@@ -79,29 +80,18 @@ static void load_imges(t_cub *c)
 // mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->image->tmplet, 0, 0);
 void	update_image(t_cub *cub)
 {
-	int		i[3];
-
 	mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->layer1, 0, 0);
 	if (cub->key_minimap)
 		drow_minimap(cub);
-	
 }
 
 void	start_game(t_cub *cub)
 {
-	int     bpp;
-	int     size_line;
-	int     endian;
-	int 	color[2];
-
 	cub->mlx = mlx_init();
 	load_imges(cub);
 	drow_floor_and_ceilling(cub);
-
 	cub->mlx_win = mlx_new_window(cub->mlx, WIN_W, WIN_H, "CuB3D");
 	update_image(cub);
-
-
 	mlx_hook(cub->mlx_win, 2, 1, deal_key, cub);
 	mlx_hook(cub->mlx_win, EXIT_BOTTON, 0L, exit_game, cub);
 	mlx_loop(cub->mlx);

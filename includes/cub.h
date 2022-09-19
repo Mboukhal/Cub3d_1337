@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 07:28:51 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/16 08:16:04 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/09/17 14:53:52 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,11 @@
 # include <mlx.h>
 # include <fcntl.h>
 # include <errno.h>
+# include <math.h>
 # include "utils.h"
+
+# define PI 3.14159265
+# define TWO_PI 6.28318530
 
 typedef enum s_type
 {
@@ -41,7 +45,19 @@ typedef struct s_image
 	char	**f;
 	char	**c;
 
-} t_image;
+}	t_image;
+
+typedef struct s_player{
+	float	player_x;
+	float	player_y;
+	float	width;
+	float	height;
+	int		turndirection;
+	int		walkdirection;
+	float	rotationangle;
+	float	walkspeed;
+	float	turnspeed;
+}	t_player;
 
 typedef struct s_txt_c
 {
@@ -53,26 +69,25 @@ typedef struct s_txt_c
 
 typedef struct s_cub
 {
-	int		i;
-	void	*mlx;
-	void	*mlx_win;
-	t_txt_c	*tab_txt_c;
-	t_image	*image;
-	int		size_tab;
-	char	**map;
-	char	*bf;
-	int		bf_in;
-	int		player_x;
-	int		player_y;
-	int		key_minimap;
-	int		flor_trgb[4];
-	int		ceill_trgb[4];
-	int		size_map;
-	int		s_map[2];
-	int		in_map;
-	int		is_player;
-	void    *layer1;
-	char    *layer1_buffer;
+	int			i;
+	void		*mlx;
+	void		*mlx_win;
+	t_txt_c		*tab_txt_c;
+	t_image		*image;
+	int			size_tab;
+	char		**map;
+	char		*bf;
+	int			bf_in;
+	int			key_minimap;
+	t_player	*player;
+	int			flor_trgb[4];
+	int			ceill_trgb[4];
+	int			size_map;
+	int			s_map[2];
+	int			in_map;
+	int			is_player;
+	void		*layer1;
+	char		*layer1_buffer;
 }	t_cub;
 
 t_cub	*cub_init(void);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_manip.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 09:11:22 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/16 19:50:37 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/09/18 23:54:33 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 int	exit_game(t_cub *cub)
 {
-	int i;
+	int	i;
 	// mlx_destroy_image(cub->mlx, cub->image->empty);
 	// mlx_destroy_image(cub->mlx, cub->image->wall);
 	mlx_destroy_image(cub->mlx, cub->image->ea);
@@ -32,6 +32,7 @@ int	exit_game(t_cub *cub)
 	exit(EXIT_SUCCESS);
 	return (EXIT_SUCCESS);
 }
+
 void	minimap_manip(t_cub *cub)
 {
 	if (cub->key_minimap)
@@ -46,40 +47,46 @@ void	minimap_manip(t_cub *cub)
 
 void	key_up(t_cub *cub)
 {
-	// cub->player_x ;
-	if (cub->player_y)
-		cub->player_y -= STEPSIZE;
+	cub->player->walkdirection = 1;
 	update_image(cub);
 }
 
 void	key_left(t_cub *cub)
 {
-	// cub->player_x ;
-	if (cub->player_x)
-		cub->player_x -= STEPSIZE;
+	cub->player->rotationangle += PI / 2;
 	update_image(cub);
 }
 
 void	key_right(t_cub *cub)
 {
-	// cub->player_x ;
-	if (cub->player_x)
-		cub->player_x += STEPSIZE;
+	cub->player->rotationangle -= PI / 2;
 	update_image(cub);
 }
 
 void	key_down(t_cub *cub)
 {
-	// cub->player_x ;
-	if (cub->player_y)
-		cub->player_y += STEPSIZE;
+	printf("key down \n");
+	cub->player->walkdirection = -1;
 	update_image(cub);
 }
 
+void	key_rotate_right(t_cub *cub)
+{
+	printf("here 142\n");
+	cub->player->turndirection = 1;
+	update_image(cub);
+}
+
+void	key_rotate_left(t_cub *cub)
+{
+	cub->player->turndirection = -1;
+	update_image(cub);
+}
 						/* key controle {01} */
 int	deal_key(int key, t_cub *cub)
 {
 	// printf("deal_key: [%d] [%d]\n", key, cub->key_minimap);
+	printf("key == %d\n", key);
 	if (key == 53)
 		exit_game(cub);
 	if (key == 48)
@@ -92,5 +99,11 @@ int	deal_key(int key, t_cub *cub)
 		key_left(cub);
 	if (key == RIGHT_KEY)
 		key_right(cub);
+	if (key == R_ARROW_KEY)
+		key_rotate_right(cub);
+	if (key == L_ARROW_KEY)
+		key_rotate_left(cub);
+	cub->player->turndirection = 0;
+	cub->player->walkdirection = 0;
 	return (EXIT_SUCCESS);
 }

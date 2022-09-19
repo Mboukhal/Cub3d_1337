@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_action.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 16:37:31 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/16 08:15:41 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/09/18 21:03:23 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # define RIGHT_KEY		2
 # define LEFT_KEY		0
 # define EXIT_BOTTON	17
-# define L_ARROW_KEY		124
-# define R_ARROW_KEY		123
+# define L_ARROW_KEY		123
+# define R_ARROW_KEY		124
 
 # define ELEMENT_SIZE	250
 
