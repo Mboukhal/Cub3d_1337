@@ -3,7 +3,7 @@
 //WADS to move player.
 
 #include <stdlib.h>
-// #include <GL/glut.h>
+#include <GLUT/glut.h>
 #include <math.h>
 
 //-----------------------------MAP----------------------------------------------

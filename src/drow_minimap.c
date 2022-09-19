@@ -6,13 +6,13 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 18:33:51 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/19 13:35:47 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/09/19 15:55:43 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/game_action.h"
 
-int draw_line(t_cub *cub, int begin_x, int begin_y, int end_x, int end_y, int color)
+int	draw_line(t_cub *cub, int begin_x, int begin_y, int color, int size)
 {
 	double	delta_x;
 	double	delta_y;
@@ -20,8 +20,10 @@ int draw_line(t_cub *cub, int begin_x, int begin_y, int end_x, int end_y, int co
 	double	pixel_x;
 	double	pixel_y;
 
-	delta_x = end_x - begin_x;
-	delta_y = end_y - begin_y;
+	delta_x = (begin_x + cos(cub->player->rotationangle) \
+			* size) - begin_x;
+	delta_y = (begin_y + sin(cub->player->rotationangle) \
+			* size) - begin_y;
 	pixels = sqrt((delta_x * delta_x) + (delta_y * delta_y));
 	delta_x /= pixels;
 	delta_y /= pixels;
@@ -42,6 +44,7 @@ static void	set_player(t_cub *cub)
 	int	player_size;
 	int	player_color;
 	int	i[2];
+	int	r;
 
 	player_size = 8;
 	player_color = 11605993;
@@ -51,16 +54,14 @@ static void	set_player(t_cub *cub)
 		i[1] = -1;
 		while (++i[1] < player_size)
 		{
+			r = i[0] + 3;
 			mlx_pixel_put(cub->mlx, cub->mlx_win, \
 			cub->player->player_x + i[0] + 6, cub->player->player_y + \
 			i[1] + 6, player_color);
 		}
 	}
-	draw_line(cub, cub->player->player_x + 9, \
-	cub->player->player_y + 9, \
-	cub->player->player_x + 9 + cos(cub->player->rotationangle) \
-	* 40, cub->player->player_y + sin(cub->player->rotationangle) \
-	* 40, 0xFF0000);
+	draw_line(cub, cub->player->player_x + r , \
+	cub->player->player_y + r, 0xFF0000, 40);
 }
 
 static void set_player_info(t_cub *cub, int x, int y, int xi, int yi)
@@ -109,7 +110,7 @@ void	moveplayer(t_cub *cub)
 	mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->image->bg, 20, 20);
 	cub->player->rotationangle += cub->player->turndirection * \
 	cub->player->turnspeed;
-	printf("%f\n", cub->player->rotationangle);
+	// printf("%f\n", cub->player->rotationangle);
 	movestep = cub->player->walkdirection * cub->player->walkspeed;
 	cub->player->player_x += cos(cub->player->rotationangle) * movestep;
 	cub->player->player_y += sin(cub->player->rotationangle) * movestep;
