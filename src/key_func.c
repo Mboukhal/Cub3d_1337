@@ -6,7 +6,7 @@
 /*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 16:13:43 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/20 20:39:18 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/09/20 20:40:16 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,20 +25,20 @@ void	minimap_manip(t_cub *cub)
 	update_image(cub);
 }
 
-void	key_W_S(t_cub *cub, int i)
+void	key_w_s(t_cub *cub, int i)
 {
 	cub->player->walkdirection = i;
 	update_image(cub);
 }
 
-void	key_A(t_cub *cub)
+void	key_a(t_cub *cub)
 {
 	cub->player->walkdirection = 1;
 	cub->player->turnleft = PI / 2;
 	update_image(cub);
 }
 
-void	key_D(t_cub *cub)
+void	key_d(t_cub *cub)
 {
 	cub->player->walkdirection = -1;
 	cub->player->turnleft = PI / 2;

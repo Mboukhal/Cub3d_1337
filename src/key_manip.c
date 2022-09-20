@@ -6,7 +6,7 @@
 /*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 20:38:14 by ahmaidi           #+#    #+#             */
-/*   Updated: 2022/09/20 20:38:20 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/09/20 20:40:50 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,13 @@ int	deal_key(int key, t_cub *cub)
 	if (key == 48)
 		minimap_manip(cub);
 	if (key == UP_KEY)
-		key_W_S(cub, 1);
+		key_w_s(cub, 1);
 	if (key == DOWN_KEY)
-		key_W_S(cub, -1);
+		key_w_s(cub, -1);
 	if (key == LEFT_KEY)
-		key_A(cub);
+		key_a(cub);
 	if (key == RIGHT_KEY)
-		key_D(cub);
+		key_d(cub);
 	if (key == R_ARROW_KEY)
 		key_rotate(cub, 1);
 	if (key == L_ARROW_KEY)
