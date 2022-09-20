@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   transform_map.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 19:02:43 by ahmaidi           #+#    #+#             */
-/*   Updated: 2022/09/13 14:30:08 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/09/20 09:05:38 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	add_front_plus(t_cub **cub)
 	add_plus(cub, len);
 }
 
-static void check_map_size(t_cub *cub, int i, int len)
+static void	check_map_size(t_cub *cub, int i, int len)
 {
 	if (len > 36 || i > 36)
 	{

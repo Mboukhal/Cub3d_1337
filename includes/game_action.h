@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   game_action.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 16:37:31 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/19 16:24:06 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/09/20 09:53:14 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GAME_ACTION_H
 # define GAME_ACTION_H
 
-#include "cub.h"
+# include "cub.h"
 
 # define UP_KEY				13
 # define DOWN_KEY			1
@@ -34,12 +34,12 @@ void	create_trgb(int *rgb, int *color);
 void	update_image(t_cub *cub);
 void	moveplayer(t_cub *cub);
 void	minimap_manip(t_cub *cub);
-void	key_W(t_cub *cub);
-void	key_A(t_cub *cub);
-void	key_D(t_cub *cub);
-void	key_S(t_cub *cub);
+void	key_w(t_cub *cub);
+void	key_a(t_cub *cub);
+void	key_d(t_cub *cub);
+void	key_s(t_cub *cub);
 void	key_rotate_right(t_cub *cub);
 void	key_rotate_left(t_cub *cub);
-
+void	put_image(t_cub *cub, int *coord, int *coord_i, int empty);
 
 #endif

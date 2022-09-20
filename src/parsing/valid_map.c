@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   valid_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 21:23:06 by ahmaidi           #+#    #+#             */
-/*   Updated: 2022/09/12 22:22:39 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/09/20 09:05:53 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,4 @@ void	check_map(t_cub **cub)
 		write(2, "There's a non correct key around Zero\n", 38);
 		ft_error();
 	}
-	// affiche_cub(*cub);
 }

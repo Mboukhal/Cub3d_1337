@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_entry.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 09:01:42 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/19 13:14:31 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/09/20 11:23:53 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ static void	load_imges(t_cub *c)
 	}
 	load_imges_const(c, size);
 }
+
 void	update_image(t_cub *cub)
 {
 	mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->layer1, 0, 0);

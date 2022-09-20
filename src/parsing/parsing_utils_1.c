@@ -6,7 +6,7 @@
 /*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 18:49:29 by ahmaidi           #+#    #+#             */
-/*   Updated: 2022/09/08 18:42:33 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/09/20 09:42:05 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,10 @@ int	check_charactre(char *str, t_cub **cub)
 		if ((*cub)->is_player > 1)
 			return (0);
 		if (str[i] == 'N' || str[i] == 'S' || str[i] == 'E' || str[i] == 'W')
+		{
+			(*cub)->side_of_player = str[i];
 			(*cub)->is_player += 1;
+		}
 		i++;
 	}
 	return (1);

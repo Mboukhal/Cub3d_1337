@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/13 13:50:18 by mboukhal          #+#    #+#             */
-/*   Updated: 2021/11/15 17:27:30 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/09/20 09:06:34 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 		t = t->next;
 	t->next = new;
 }
-
 
 // int main ()
 // {

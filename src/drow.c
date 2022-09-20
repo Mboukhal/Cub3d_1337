@@ -6,7 +6,7 @@
 /*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 16:36:19 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/18 23:26:23 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/09/20 09:53:02 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,30 @@ void	drow_floor_and_ceilling(t_cub *c)
 				set_buffer(c, pixel, color[1]);
 		}
 	}
+}
+
+void	put_image(t_cub *cub, int *coord, int *coord_i, int empty)
+{
+	if (empty == 1)
+	{
+		mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->image->empty,
+			coord[0] + (cub->player->width * coord_i[0]), coord[1]
+			+ (cub->player->height * coord_i[1]));
+	}
+	else
+	{
+		mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->image->wall,
+			coord[0] + (cub->player->width * coord_i[0]), coord[1]
+			+ (cub->player->height * coord_i[1]));
+	}
+}
+
+void	side_of_player(t_cub *cub)
+{
+	if (cub->side_of_player == 'N')
+		cub->player->rotationangle += PI;
+	else if (cub->side_of_player == 'E')
+		cub->player->rotationangle -= PI / 2;
+	else if (cub->side_of_player == 'W')
+		cub->player->rotationangle += PI / 2;
 }

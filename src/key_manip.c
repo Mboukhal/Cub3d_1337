@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_manip.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 09:11:22 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/19 16:25:04 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/09/20 09:10:09 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	exit_game(t_cub *cub)
 {
 	int	i;
+
 	mlx_destroy_image(cub->mlx, cub->image->empty);
 	mlx_destroy_image(cub->mlx, cub->image->wall);
 	mlx_destroy_image(cub->mlx, cub->image->ea);
@@ -26,12 +27,23 @@ int	exit_game(t_cub *cub)
 	while (cub->map[++i])
 		free_it(cub->map[i]);
 	free(cub->image);
-	// system ("leaks cub3d");
 	exit(EXIT_SUCCESS);
 	return (EXIT_SUCCESS);
 }
 
-						/* key controle {01} */
+void	key_rotate_right(t_cub *cub)
+{
+	cub->player->turndirection = 1;
+	update_image(cub);
+}
+
+void	key_rotate_left(t_cub *cub)
+{
+	cub->player->turndirection = -1;
+	update_image(cub);
+}
+
+/* key controle {01} */
 int	deal_key(int key, t_cub *cub)
 {
 	if (key == 53)
@@ -39,18 +51,19 @@ int	deal_key(int key, t_cub *cub)
 	if (key == 48)
 		minimap_manip(cub);
 	if (key == UP_KEY)
-		key_W(cub);
+		key_w(cub);
 	if (key == DOWN_KEY)
-		key_S(cub);
+		key_s(cub);
 	if (key == LEFT_KEY)
-		key_A(cub);
+		key_a(cub);
 	if (key == RIGHT_KEY)
-		key_D(cub);
+		key_d(cub);
 	if (key == R_ARROW_KEY)
 		key_rotate_right(cub);
 	if (key == L_ARROW_KEY)
 		key_rotate_left(cub);
 	cub->player->turndirection = 0;
 	cub->player->walkdirection = 0;
+	cub->player->turnleft = 0;
 	return (EXIT_SUCCESS);
 }

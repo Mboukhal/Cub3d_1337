@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 07:28:51 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/19 13:04:40 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/09/20 09:53:30 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct s_player{
 	float	height;
 	int		turndirection;
 	int		walkdirection;
+	float	turnleft;
 	float	rotationangle;
 	float	walkspeed;
 	float	turnspeed;
@@ -77,6 +78,7 @@ typedef struct s_cub
 	int			size_tab;
 	char		**map;
 	char		*bf;
+	char		side_of_player;
 	char		playerside;
 	int			bf_in;
 	int			key_minimap;
@@ -89,6 +91,7 @@ typedef struct s_cub
 	int			is_player;
 	void		*layer1;
 	char		*layer1_buffer;
+	int			size_line;
 }	t_cub;
 
 t_cub	*cub_init(void);
@@ -125,9 +128,6 @@ void	check_str_valid(char *str);
 void	check_nbr_vrg(char *str);
 int		wrong_color(void);
 void	create_trgb(int *rgb, int *color);
-// void	key_right(cub);
-// void	key_left(cub);
-// void	key_down(cub);
-void	key_up(t_cub *cub);
+void	side_of_player(t_cub *cub);
 
 #endif /* __CUB_H__ */
