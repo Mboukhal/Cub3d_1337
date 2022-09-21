@@ -6,7 +6,7 @@
 #    By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/24 07:24:22 by mboukhal          #+#    #+#              #
-#    Updated: 2022/09/19 16:23:22 by mboukhal         ###   ########.fr        #
+#    Updated: 2022/09/21 11:57:20 by mboukhal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ CFILES				= $(S)main.c $(P)checks.c $(P)alloc.c $(S)key_manip.c $(S)drow_minimap
 					  $(P)init.c $(S)game_entry.c $(S)get_next_line/get_next_line_utils.c $(S)drow.c\
 					  $(S)get_next_line/get_next_line.c $(P)get_texture_color.c $(P)free_it.c $(P)affiche_cub.c \
 					  $(P)parsing_utils_2.c $(P)parsing_utils_1.c $(P)transform_map.c $(P)valid_map.c $(P)check_str.c \
-					  $(S)key_func.c
+					  $(S)key_func.c $(S)drow_rays.c
 
 OBJ					= $(CFILES:.c=.o)
 

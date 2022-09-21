@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_action.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 16:37:31 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/20 20:40:28 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/09/21 16:37:50 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,7 @@ void	key_w_s(t_cub *cub, int i);
 void	key_a(t_cub *cub);
 void	key_d(t_cub *cub);
 void	key_rotate(t_cub *cub, int i);
+int		draw_line(t_cub *cub, int begin_x, int begin_y, int color);
+void	drow_rays(t_cub *cub);
+
 #endif

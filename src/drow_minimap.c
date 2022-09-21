@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drow_minimap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 18:33:51 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/20 20:22:55 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/09/21 17:44:40 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,10 @@ static void	set_player(t_cub *cub)
 			i[1] + 6, player_color);
 		}
 	}
-	cub->size_line = 40;
+	cub->size_line = 15;
 	draw_line(cub, cub->player->player_x + r, \
 	cub->player->player_y + r, 0xFF0000);
+	drow_rays(cub);
 }
 
 static void	set_player_info(t_cub *cub, int *coord, int *coord_i)
@@ -107,14 +108,15 @@ int	is_it_hitt_wall(t_cub *cub, float x, float y)
 	int	index_x;
 	int	index_y;
 
-	index_y = floor(y / 22);
-	index_x = floor(x / 22);
+	index_y = floor(y / 32);
+	index_x = floor(x / 32);
 	//printf("");
-	if (cub->map[index_y][index_x] == '1')
-	{
-		printf("char == %c\n", cub->map[index_y][index_x]);
-		return (1);
-	}
+	// printf("char == %c\n", cub->map[index_y][index_x]);
+	// if (cub->map[index_y][index_x] == '1')
+	// {
+	// 	// printf("char == %c\n", cub->map[index_y][index_x]);
+	// 	return (1);
+	// }
 	return (0);
 }
 

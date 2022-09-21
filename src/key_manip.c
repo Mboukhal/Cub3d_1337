@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_manip.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 20:38:14 by ahmaidi           #+#    #+#             */
-/*   Updated: 2022/09/20 20:40:50 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/09/21 11:44:11 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,9 @@ int	deal_key(int key, t_cub *cub)
 	if (key == DOWN_KEY)
 		key_w_s(cub, -1);
 	if (key == LEFT_KEY)
-		key_a(cub);
-	if (key == RIGHT_KEY)
 		key_d(cub);
+	if (key == RIGHT_KEY)
+		key_a(cub);
 	if (key == R_ARROW_KEY)
 		key_rotate(cub, 1);
 	if (key == L_ARROW_KEY)
