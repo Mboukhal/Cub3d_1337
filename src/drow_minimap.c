@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   drow_minimap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 18:33:51 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/05 19:31:45 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/05 22:41:24 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/game_action.h"
 
-int	draw_line	(t_cub *cub, int begin_x, int begin_y, int color)
+int	draw_line(t_cub *cub, int begin_x, int begin_y, int color)
 {
 	double	delta_x;
 	double	delta_y;
@@ -39,6 +39,43 @@ int	draw_line	(t_cub *cub, int begin_x, int begin_y, int color)
 	return (0);
 }
 
+int	is_it_hitt_wall(t_cub *cub, float x, float y)
+{
+	int	index_x;
+	int	index_y;
+
+	index_y = floor((y - 106) / 20);
+	index_x = floor((x - 115) / 20) + 1;
+	if (index_y < 0 || index_y < 0)
+		return (0);
+
+	if (cub->map[index_y][index_x] != '0' && cub->map[index_y][index_x] != 'N'
+		&& cub->map[index_y][index_x] != 'S' && cub->map[index_y][index_x] != 'W'
+		&& cub->map[index_y][index_x] != 'E')
+		return (1);
+	return (0);
+}
+
+static void	dorw_ray(t_cub *cub)
+{
+	int	y;
+	int	i;
+
+	y = cub->player->player_y;
+	cub->size_line = 0;
+	printf("here %f || %f\n", cub->player->rotationangle, (float)-(PI / 2));
+	if (cub->player->rotationangle == (float)-(PI / 2))
+	{
+		while (!is_it_hitt_wall(cub, cub->player->player_x, y))
+		{
+			printf("N %f || %f\n", cub->player->rotationangle, (float)-(PI / 2));
+			cub->size_line++;
+			y--;
+		}
+	}
+}
+
+
 static void	set_player(t_cub *cub)
 {
 	int	player_size;
@@ -60,10 +97,9 @@ static void	set_player(t_cub *cub)
 			cub->player->player_y + i[1] + 6, player_color);
 		}
 	}
-	cub->size_line = 15;
+	dorw_ray(cub);
 	draw_line(cub, cub->player->player_x + r, \
-	cub->player->player_y + r, 0xFF0000);
-	// drow_rays(cub);
+	cub->player->player_y + r, 0x0000FF);
 }
 
 static void	set_player_info(t_cub *cub, int *coord, int *coord_i)
@@ -86,7 +122,6 @@ static void	set_map(t_cub *cub)
 	coord[0] = ((MINI_BG - (cub->s_map[0] * 18)) / 2);
 	coord[1] = ((MINI_BG - (cub->s_map[1] * 18)) / 2);
 	coord_i[0] = -1;
-	printf("char ==  [%d] || [%d]\n", coord[0], coord[1]);
 	while (++coord_i[0] < cub->s_map[0])
 	{
 		coord_i[1] = -1;
@@ -101,34 +136,9 @@ static void	set_map(t_cub *cub)
 				set_player_info(cub, coord, coord_i);
 		}
 	}
-	// mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->image->empty, 34, 45);
 	set_player(cub);
 }
 
-int	is_it_hitt_wall(t_cub *cub, float x, float y)
-{
-	int	index_x;
-	int	index_y;
-
-	index_y = floor((y - 106) / 20);
-	index_x = floor((x - 115) / 20) + 1;
-	if (index_y < 0 || index_y < 0)
-		return 0;
-	// if (cub->map[index_y][index_x] != 'N')
-		// index_x++;
-	//printf("");
-	// printf("char == %c || [%d] || [%d]\n", cub->map[index_y][index_x], index_y, index_x);
-	printf("char ==  || [%d] || [%d]\n", index_y, index_x);
-
-	if (cub->map[index_y][index_x] != '0' && cub->map[index_y][index_x] != 'N'
-		&& cub->map[index_y][index_x] != 'S' && cub->map[index_y][index_x] != 'W'
-		&& cub->map[index_y][index_x] != 'E')
-	{
-		// printf("char == %c\n", cub->map[index_y][index_x]);
-		return (1);
-	}
-	return (0);
-}
 
 void	moveplayer(t_cub *cub)
 {
@@ -137,6 +147,10 @@ void	moveplayer(t_cub *cub)
 	mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->image->bg, 20, 20);
 	cub->player->rotationangle += cub->player->turndirection * \
 	cub->player->turnspeed;
+	if (cub->player->rotationangle >= (float)(PI * 2))
+		cub->player->rotationangle = -PI / 2;
+	if (cub->player->rotationangle <= (float)(-PI * 2))
+		cub->player->rotationangle = PI / 2;
 	movestep = cub->player->walkdirection * cub->player->walkspeed;
 	if (!is_it_hitt_wall(cub, (cub->player->player_x + cos(cub->player->rotationangle \
 		+ cub->player->turnleft) * movestep), \
