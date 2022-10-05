@@ -3,15 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 09:26:45 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/20 20:37:42 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/10/05 19:19:30 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "../../includes/cub.h"
+
+static void ray_init(t_cub *cub)
+{
+	int i;
+
+	i = -1;
+	while (++i < NUM_RAYS)
+	{
+		cub->ray[i].ray_angle = 0;
+		// cub->ray[i].wall_hint_x = 0;
+		// cub->ray[i].wall_hint_y = 0;
+		cub->ray[i].distance = 0;
+		cub->ray[i].was_hit_vertical = 0;
+		cub->ray[i].is_ray_facing_no = 0;
+		cub->ray[i].is_ray_facing_so = 0;
+		cub->ray[i].is_ray_facing_we = 0;
+		cub->ray[i].is_ray_facing_ea = 0;
+		// cub->ray[i].wall_hint_conter = 0;
+	}
+}
 
 t_cub	*cub_init(void)
 {
@@ -29,15 +49,16 @@ t_cub	*cub_init(void)
 	c->is_player = 0;
 	c->player->player_x = 0;
 	c->player->player_y = 0;
-	c->player->height = 22;
-	c->player->width = 22;
+	c->player->height = 20;
+	c->player->width = 20;
 	c->player->turndirection = 0;
 	c->player->walkdirection = 0;
 	c->player->rotationangle = PI / 2;
 	c->player->turnleft = 0;
-	c->player->walkspeed = 4;
+	c->player->walkspeed = 8;
 	c->player->turnspeed = 45 * (PI / 180);
 	c->size_line = 0;
 	c->key_minimap = 0;
+	ray_init(c);
 	return (c);
 }

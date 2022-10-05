@@ -6,13 +6,13 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 18:33:51 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/21 17:44:40 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/05 19:31:45 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/game_action.h"
 
-int	draw_line(t_cub *cub, int begin_x, int begin_y, int color)
+int	draw_line	(t_cub *cub, int begin_x, int begin_y, int color)
 {
 	double	delta_x;
 	double	delta_y;
@@ -55,15 +55,15 @@ static void	set_player(t_cub *cub)
 		while (++i[1] < player_size)
 		{
 			r = i[0] + 3;
-			mlx_pixel_put(cub->mlx, cub->mlx_win, \
-			cub->player->player_x + i[0] + 6, cub->player->player_y + \
-			i[1] + 6, player_color);
+			mlx_pixel_put(cub->mlx, cub->mlx_win,
+			cub->player->player_x + i[0] + 6,
+			cub->player->player_y + i[1] + 6, player_color);
 		}
 	}
 	cub->size_line = 15;
 	draw_line(cub, cub->player->player_x + r, \
 	cub->player->player_y + r, 0xFF0000);
-	drow_rays(cub);
+	// drow_rays(cub);
 }
 
 static void	set_player_info(t_cub *cub, int *coord, int *coord_i)
@@ -75,7 +75,7 @@ static void	set_player_info(t_cub *cub, int *coord, int *coord_i)
 		cub->player->player_y = coord[1] + (cub->player->height * coord_i[1]);
 	}
 	mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->image->empty,
-		coord[0] + (22 * coord_i[0]), coord[1] + ((22 * coord_i[1])));
+		coord[0] + (20 * coord_i[0]), coord[1] + ((20 * coord_i[1])));
 }
 
 static void	set_map(t_cub *cub)
@@ -83,9 +83,10 @@ static void	set_map(t_cub *cub)
 	int		coord[2];
 	int		coord_i[2];
 
-	coord[0] = ((MINI_BG - (cub->s_map[0] * 22)) / 2);
-	coord[1] = ((MINI_BG - (cub->s_map[1] * 22)) / 2);
+	coord[0] = ((MINI_BG - (cub->s_map[0] * 18)) / 2);
+	coord[1] = ((MINI_BG - (cub->s_map[1] * 18)) / 2);
 	coord_i[0] = -1;
+	printf("char ==  [%d] || [%d]\n", coord[0], coord[1]);
 	while (++coord_i[0] < cub->s_map[0])
 	{
 		coord_i[1] = -1;
@@ -100,6 +101,7 @@ static void	set_map(t_cub *cub)
 				set_player_info(cub, coord, coord_i);
 		}
 	}
+	// mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->image->empty, 34, 45);
 	set_player(cub);
 }
 
@@ -108,15 +110,23 @@ int	is_it_hitt_wall(t_cub *cub, float x, float y)
 	int	index_x;
 	int	index_y;
 
-	index_y = floor(y / 32);
-	index_x = floor(x / 32);
+	index_y = floor((y - 106) / 20);
+	index_x = floor((x - 115) / 20) + 1;
+	if (index_y < 0 || index_y < 0)
+		return 0;
+	// if (cub->map[index_y][index_x] != 'N')
+		// index_x++;
 	//printf("");
-	// printf("char == %c\n", cub->map[index_y][index_x]);
-	// if (cub->map[index_y][index_x] == '1')
-	// {
-	// 	// printf("char == %c\n", cub->map[index_y][index_x]);
-	// 	return (1);
-	// }
+	// printf("char == %c || [%d] || [%d]\n", cub->map[index_y][index_x], index_y, index_x);
+	printf("char ==  || [%d] || [%d]\n", index_y, index_x);
+
+	if (cub->map[index_y][index_x] != '0' && cub->map[index_y][index_x] != 'N'
+		&& cub->map[index_y][index_x] != 'S' && cub->map[index_y][index_x] != 'W'
+		&& cub->map[index_y][index_x] != 'E')
+	{
+		// printf("char == %c\n", cub->map[index_y][index_x]);
+		return (1);
+	}
 	return (0);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 07:28:51 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/20 09:53:30 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/10/05 18:40:58 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@
 # include <math.h>
 # include "utils.h"
 
-# define PI 3.14159265
-# define TWO_PI 6.28318530
+# define PI 		3.14159265
+# define TWO_PI 	6.28318530
+# define NUM_RAYS	1
+# define FOV_ANGLE	60
 
 typedef enum s_type
 {
@@ -31,6 +33,21 @@ typedef enum s_type
 	FLOOR,
 	CIEL
 }	t_type;
+
+typedef struct s_ray
+{
+	float 	ray_angle;
+	// float 	wall_hit_x;
+	// float 	wall_hit_y;
+	float 	distance;
+	int		was_hit_vertical;
+	int		is_ray_facing_no;
+	int		is_ray_facing_so;
+	int		is_ray_facing_we;
+	int		is_ray_facing_ea;
+	// int		wall_hit_content;
+
+}	t_ray;
 
 typedef struct s_image
 {
@@ -50,6 +67,8 @@ typedef struct s_image
 typedef struct s_player{
 	float	player_x;
 	float	player_y;
+	int		px;
+	int		py;
 	float	width;
 	float	height;
 	int		turndirection;
@@ -70,19 +89,20 @@ typedef struct s_txt_c
 
 typedef struct s_cub
 {
-	int			i;
 	void		*mlx;
 	void		*mlx_win;
-	t_txt_c		*tab_txt_c;
-	t_image		*image;
-	int			size_tab;
 	char		**map;
 	char		*bf;
+	t_txt_c		*tab_txt_c;
+	t_image		*image;
+	t_player	*player;
+	t_ray		ray[NUM_RAYS];
+	int			i;
+	int			size_tab;
 	char		side_of_player;
 	char		playerside;
 	int			bf_in;
 	int			key_minimap;
-	t_player	*player;
 	int			flor_trgb[4];
 	int			ceill_trgb[4];
 	int			size_map;

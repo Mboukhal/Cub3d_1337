@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 16:37:31 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/21 16:37:50 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/05 18:19:37 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,15 @@
 # define RIGHT_KEY			2
 # define LEFT_KEY			0
 # define EXIT_BOTTON		17
+
 # define L_ARROW_KEY		123
 # define R_ARROW_KEY		124
+
 # define ELEMENT_SIZE		250
+
 # define WIN_W				1600
 # define WIN_H				900
+
 # define MINI_BG			860
 
 void	drow_row_minimap(t_cub *c);
@@ -40,7 +44,7 @@ void	key_w_s(t_cub *cub, int i);
 void	key_a(t_cub *cub);
 void	key_d(t_cub *cub);
 void	key_rotate(t_cub *cub, int i);
+// void	drow_rays(t_cub *cub);
 int		draw_line(t_cub *cub, int begin_x, int begin_y, int color);
-void	drow_rays(t_cub *cub);
 
 #endif
