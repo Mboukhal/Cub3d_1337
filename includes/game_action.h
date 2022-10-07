@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 16:37:31 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/05 18:19:37 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/07 18:47:46 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # define GAME_ACTION_H
 
 # include "cub.h"
+# include <limits.h>
 
 # define UP_KEY				13
 # define DOWN_KEY			1
@@ -44,7 +45,10 @@ void	key_w_s(t_cub *cub, int i);
 void	key_a(t_cub *cub);
 void	key_d(t_cub *cub);
 void	key_rotate(t_cub *cub, int i);
-// void	drow_rays(t_cub *cub);
+void	drow_rays(t_cub *cub);
 int		draw_line(t_cub *cub, int begin_x, int begin_y, int color);
+float	normalize_angle(float angle);
+int		is_it_hitt_wall(t_cub *cub, float x, float y);
+// void	cast_ray(t_cub *cub, float ra, int stripl)
 
 #endif

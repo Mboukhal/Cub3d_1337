@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 20:38:14 by ahmaidi           #+#    #+#             */
-/*   Updated: 2022/10/05 19:32:56 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/07 15:51:52 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	exit_game(t_cub *cub)
 	while (cub->map[++i])
 		free_it(cub->map[i]);
 	free(cub->image);
-	system("leaks cub3d");
+	// system("leaks cub3d");
 	exit(EXIT_SUCCESS);
 
 	return (EXIT_SUCCESS);

@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 07:28:51 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/05 18:40:58 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/07 19:01:13 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,16 @@
 # include <math.h>
 # include "utils.h"
 
-# define PI 		3.14159265
-# define TWO_PI 	6.28318530
-# define NUM_RAYS	1
-# define FOV_ANGLE	60
+#define FALSE			0
+#define TRUE			1
+
+# define PI 			3.14159265
+# define TWO_PI 		6.28318530
+# define NUM_RAYS		1
+# define FOV_ANGLE		(60 * (PI / 180))	
+# define TILE_SIZE		40
+# define LOG(x, s)			printf("%s:\t[%f]\n", s, x);
+# define LOGC(c, msg)			printf("%s:\t[%c]\n", msg, c);
 
 typedef enum s_type
 {
@@ -67,8 +73,6 @@ typedef struct s_image
 typedef struct s_player{
 	float	player_x;
 	float	player_y;
-	int		px;
-	int		py;
 	float	width;
 	float	height;
 	int		turndirection;
@@ -97,6 +101,8 @@ typedef struct s_cub
 	t_image		*image;
 	t_player	*player;
 	t_ray		ray[NUM_RAYS];
+	float		px;
+	float		py;
 	int			i;
 	int			size_tab;
 	char		side_of_player;

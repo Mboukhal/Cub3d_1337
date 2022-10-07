@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 09:26:45 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/05 22:03:38 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/10/07 16:18:13 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ t_cub	*cub_init(void)
 	c->player->player_y = 0;
 	c->player->height = 20;
 	c->player->width = 20;
+	c->px = 0;
+	c->py = 0;
 	c->player->turndirection = 0;
 	c->player->walkdirection = 0;
 	c->player->rotationangle = PI / 2;

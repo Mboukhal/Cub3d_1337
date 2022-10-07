@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drow.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 16:36:19 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/05 22:06:49 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/10/07 15:53:43 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,11 @@ void	put_image(t_cub *cub, int *coord, int *coord_i, int empty)
 void	side_of_player(t_cub *cub)
 {
 	if (cub->side_of_player == 'N')
-		cub->player->rotationangle = -(PI / 2);
+		cub->player->rotationangle = (3 * PI) / 2;
 	else if (cub->side_of_player == 'E')
-		cub->player->rotationangle = -PI;
-	else if (cub->side_of_player == 'W')
 		cub->player->rotationangle = 0;
+	else if (cub->side_of_player == 'W')
+		cub->player->rotationangle = PI;
+	else if (cub->side_of_player == 'S')
+		cub->player->rotationangle = PI / 2;
 }
