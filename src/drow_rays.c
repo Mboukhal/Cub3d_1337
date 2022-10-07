@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drow_rays.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:56:33 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/07 19:09:40 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/07 22:47:51 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,20 @@ float	normalize_angle(float angle)
 	return (angle);
 }
 
+int	hitt_wall(t_cub *cub, float x, float y)
+{
+	int	index_x;
+	int	index_y;
+
+	index_y = floor((y - DY) / 20);
+	index_x = floor((x - DX) / 20);
+	// if (index_y < 0 || index_y < 0)
+	// 	return (0);
+	if (cub->map[index_y][index_x] == '1')
+		return (1);
+	return (0);
+}
+
 float distanceBetweenPoints(float x1, float y1, float x2, float y2) {
     return sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
 }
@@ -68,61 +82,65 @@ void	cast_ray(t_cub *cub, float ray_angle, int stripl)
 	ray_angle = normalize_angle(ray_angle);
 	is_ray_facing_down = ray_angle > 0 && ray_angle < PI;
 	is_ray_facing_up = !is_ray_facing_down;
-	is_ray_facing_right = ray_angle < (0.5 * PI) || ray_angle > (0.5 * PI);
+	is_ray_facing_right = ray_angle < 0.5 * PI || ray_angle > 1.5 * PI;
 	is_ray_facing_left = !is_ray_facing_right;
 
-	yintercept = floor(cub->player->player_y / TILE_SIZE ) * TILE_SIZE;
+	yintercept = floor(cub->py / TILE_SIZE ) * TILE_SIZE;
 	yintercept += is_ray_facing_down ? TILE_SIZE : 0;
 
 
-	xintercept = cub->player->player_x + (yintercept - cub->player->player_y) / tan(ray_angle);
+	xintercept = cub->px + (yintercept - cub->py) / tan(ray_angle);
 
 
-	ystep = (TILE_SIZE / 2);
+	ystep = TILE_SIZE;
 	ystep *= is_ray_facing_up ? -1 : 1;
 	int found_horz_touch = FALSE;
 
-	xstep = (TILE_SIZE / 2) / tan(ray_angle);
+	xstep = TILE_SIZE / tan(ray_angle);
 	xstep *= (is_ray_facing_left && xstep > 0) ? -1 : 1;
 	xstep *= (is_ray_facing_right && xstep < 0) ? -1 : 1;
-
-	// printf("cub->player->player_x = %f, cub->player->player_y = %f\n", cub->player->player_x, cub->player->player_y);
-	// printf("cub->px = %f, cub->py = %f\n", cub->px, cub->py);
-	// printf("xintercept = %f, yintercept = %f\n", xintercept, yintercept);
-	// draw_l(cub, 0, 0, 300, 300, 0x0000FF);
+	
 
 	float next_horz_touch_x = xintercept;
 	float next_horz_touch_y = yintercept;
+	
 	int map_x = cub->s_map[0] * 20;
 	int map_y = cub->s_map[1] * 20;
+
 	float x_to_check;
 	float y_to_check;
 
-	printf("==> x[%f] y [%f] \n", cub->px, cub->py);
+	// printf("steps ==> x[%f] y [%f] \n", xstep, ystep);
+	// printf("==> x[%f] y [%f] \n", cub->player->player_x, cub->player->player_y);
+	// printf("==> next : x[%f] y [%f] \n", next_horz_touch_x, next_horz_touch_y);
 	draw_l(cub, cub->px, cub->py, next_horz_touch_x, next_horz_touch_y, 0xFF0000);
-	while (next_horz_touch_x >= 0 && next_horz_touch_x <= map_x && next_horz_touch_y >= 0 && next_horz_touch_y <= map_y)
+	while (next_horz_touch_x >= DX && next_horz_touch_x <= map_x && next_horz_touch_y >= DY && next_horz_touch_y <= map_y)
 	{
 		x_to_check = next_horz_touch_x;
-		y_to_check = next_horz_touch_y + (is_ray_facing_up ? -1 : 1);
-		if (is_it_hitt_wall(cub, x_to_check, y_to_check))
+		y_to_check = next_horz_touch_y;// + (is_ray_facing_up ? -1 : 1);
+		if (hitt_wall(cub, x_to_check, y_to_check))
 		{
 			horz_wall_hit_x = next_horz_touch_x;
-			horz_wall_hit_y = next_horz_touch_y;
-			// horz_wall_content = cub->map[(int)floor(y_to_check / TILE_SIZE)][(int)floor(x_to_check / TILE_SIZE)];
-			found_horz_touch = TRUE;
+            horz_wall_hit_y = next_horz_touch_y;
 			break;
 		}
 		else
 		{
 			next_horz_touch_x += xstep;
 			next_horz_touch_y += ystep;
+			// LOGF(next_horz_touch_x, "next_horz_touch_x")
+			// LOGF(next_horz_touch_y, "next_horz_touch_y")
+			// LOGF(xstep, "xstep\t")
+			// LOGF(ystep, "ystep\t")
+			// printf("\n\n\n");
 		}
 	}
 	// float horzHitDistance = found_horz_touch ? distanceBetweenPoints(
 	// 		cub->player->player_x, cub->player->player_y, horz_wall_hit_x, horz_wall_hit_y)
 	// : FLT_MAX;
 
-	draw_l(cub, cub->px, cub->py, next_horz_touch_x + 20 , next_horz_touch_y + 20, 0x0000FF);
+	draw_l(cub, cub->px, cub->py, next_horz_touch_x , next_horz_touch_y, 0x0000FF);
+	// draw_l(cub, cub->px, cub->py, horz_wall_hit_x , horz_wall_hit_y, 0x0000FF);
 }
 
 void	drow_rays(t_cub *cub)
