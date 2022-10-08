@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 16:36:19 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/07 15:53:43 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/08 16:16:55 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,19 +60,17 @@ void	drow_floor_and_ceilling(t_cub *c)
 	}
 }
 
-void	put_image(t_cub *cub, int *coord, int *coord_i, int empty)
+void	put_image(t_cub *cub, int *coord_i, int empty)
 {
 	if (empty == 1)
 	{
 		mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->image->empty,
-			coord[0] + (cub->player->width * coord_i[0]), coord[1]
-			+ (cub->player->height * coord_i[1]));
+			TILE_SIZE * coord_i[0], TILE_SIZE * coord_i[1]);
 	}
 	else
 	{
 		mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->image->wall,
-			coord[0] + (cub->player->width * coord_i[0]), coord[1]
-			+ (cub->player->height * coord_i[1]));
+			TILE_SIZE * coord_i[0], TILE_SIZE * coord_i[1]);
 	}
 }
 

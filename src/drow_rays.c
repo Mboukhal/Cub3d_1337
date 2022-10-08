@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drow_rays.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:56:33 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/07 22:47:51 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/10/08 16:56:57 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ int	hitt_wall(t_cub *cub, float x, float y)
 	int	index_x;
 	int	index_y;
 
-	index_y = floor((y - DY) / 20);
-	index_x = floor((x - DX) / 20);
+	index_y = floor(y / 20);
+	index_x = floor(x / 20);
 	// if (index_y < 0 || index_y < 0)
 	// 	return (0);
 	if (cub->map[index_y][index_x] == '1')
@@ -74,7 +74,7 @@ void	cast_ray(t_cub *cub, float ray_angle, int stripl)
 	int		is_ray_facing_right;
 	int		is_ray_facing_left;
 
-	int 	fod_hoz_wall_hit = 0;
+	int 	fod_hoz_wall_hit = FALSE;
 	float	horz_wall_hit_x = 0;
 	float	horz_wall_hit_y = 0;
 	int		horz_wall_content = 0;
@@ -94,7 +94,6 @@ void	cast_ray(t_cub *cub, float ray_angle, int stripl)
 
 	ystep = TILE_SIZE;
 	ystep *= is_ray_facing_up ? -1 : 1;
-	int found_horz_touch = FALSE;
 
 	xstep = TILE_SIZE / tan(ray_angle);
 	xstep *= (is_ray_facing_left && xstep > 0) ? -1 : 1;
@@ -104,42 +103,86 @@ void	cast_ray(t_cub *cub, float ray_angle, int stripl)
 	float next_horz_touch_x = xintercept;
 	float next_horz_touch_y = yintercept;
 	
-	int map_x = cub->s_map[0] * 20;
-	int map_y = cub->s_map[1] * 20;
+	int map_x = cub->s_map[0] * TILE_SIZE;
+	int map_y = cub->s_map[1] * TILE_SIZE;
 
 	float x_to_check;
 	float y_to_check;
-
-	// printf("steps ==> x[%f] y [%f] \n", xstep, ystep);
-	// printf("==> x[%f] y [%f] \n", cub->player->player_x, cub->player->player_y);
-	// printf("==> next : x[%f] y [%f] \n", next_horz_touch_x, next_horz_touch_y);
-	draw_l(cub, cub->px, cub->py, next_horz_touch_x, next_horz_touch_y, 0xFF0000);
-	while (next_horz_touch_x >= DX && next_horz_touch_x <= map_x && next_horz_touch_y >= DY && next_horz_touch_y <= map_y)
+	// draw_l(cub, cub->px, cub->py, next_horz_touch_x, next_horz_touch_y, 0xFF0000);
+	while (next_horz_touch_x >= 0 && next_horz_touch_x <= map_x && next_horz_touch_y >= 0 && next_horz_touch_y <= map_y)
 	{
 		x_to_check = next_horz_touch_x;
-		y_to_check = next_horz_touch_y;// + (is_ray_facing_up ? -1 : 1);
+		y_to_check = next_horz_touch_y + (is_ray_facing_up ? -1 : 1);
 		if (hitt_wall(cub, x_to_check, y_to_check))
 		{
 			horz_wall_hit_x = next_horz_touch_x;
             horz_wall_hit_y = next_horz_touch_y;
+			fod_hoz_wall_hit = TRUE;
 			break;
 		}
 		else
 		{
 			next_horz_touch_x += xstep;
 			next_horz_touch_y += ystep;
-			// LOGF(next_horz_touch_x, "next_horz_touch_x")
-			// LOGF(next_horz_touch_y, "next_horz_touch_y")
-			// LOGF(xstep, "xstep\t")
-			// LOGF(ystep, "ystep\t")
-			// printf("\n\n\n");
 		}
 	}
-	// float horzHitDistance = found_horz_touch ? distanceBetweenPoints(
-	// 		cub->player->player_x, cub->player->player_y, horz_wall_hit_x, horz_wall_hit_y)
-	// : FLT_MAX;
 
-	draw_l(cub, cub->px, cub->py, next_horz_touch_x , next_horz_touch_y, 0x0000FF);
+	    
+    ///////////////////////////////////////////
+    // VERTICAL RAY-GRID INTERSECTION CODE
+    ///////////////////////////////////////////
+	int 	fod_vert_wall_hit = FALSE;
+	float	vert_wall_hit_x = 0;
+	float	vert_wall_hit_y = 0;
+	int		vert_wall_content = 0;
+
+	
+	xintercept = floor(cub->px / TILE_SIZE ) * TILE_SIZE;
+	xintercept += is_ray_facing_right ? TILE_SIZE : 0;
+
+
+	yintercept = cub->py + (xintercept - cub->px) * tan(ray_angle);
+
+
+	xstep = TILE_SIZE;
+	xstep *= is_ray_facing_left ? -1 : 1;
+
+	ystep = TILE_SIZE * tan(ray_angle);
+	ystep *= (is_ray_facing_up && ystep > 0) ? -1 : 1;
+	ystep *= (is_ray_facing_down && ystep < 0) ? -1 : 1;
+	
+
+	float next_vert_touch_x = xintercept;
+	float next_vert_touch_y = yintercept;
+
+	while (next_vert_touch_x >= 0 && next_vert_touch_x <= map_x && next_vert_touch_y >= 0 && next_vert_touch_y <= map_y)
+	{
+		x_to_check = next_vert_touch_x+ (is_ray_facing_left ? -1 : 1);
+		y_to_check = next_vert_touch_y ;
+		if (hitt_wall(cub, x_to_check, y_to_check))
+		{
+			vert_wall_hit_x = next_vert_touch_x;
+            vert_wall_hit_y = next_vert_touch_y;
+			fod_vert_wall_hit = TRUE;
+			break;
+		}
+		else
+		{
+			next_vert_touch_x += xstep;
+			next_vert_touch_y += ystep;
+		}
+	}
+
+	float horzHitDistance = fod_hoz_wall_hit ? distanceBetweenPoints(
+		cub->px, cub->py, horz_wall_hit_x, horz_wall_hit_y)
+	: FLT_MAX;
+	float vertHitDistance = fod_vert_wall_hit ? distanceBetweenPoints(
+		cub->px, cub->py, vert_wall_hit_x, vert_wall_hit_y)
+	: FLT_MAX;
+	if (vertHitDistance > horzHitDistance)
+		draw_l(cub, cub->px, cub->py, next_horz_touch_x , next_horz_touch_y, 0x0000FF);
+	else
+		draw_l(cub, cub->px, cub->py, next_vert_touch_x , next_vert_touch_y, 0x0000FF);
 	// draw_l(cub, cub->px, cub->py, horz_wall_hit_x , horz_wall_hit_y, 0x0000FF);
 }
 
@@ -153,7 +196,7 @@ void	drow_rays(t_cub *cub)
 	while (stripl < NUM_RAYS)
 	{
 		cast_ray(cub, ra, stripl);
-		ra -= FOV_ANGLE / NUM_RAYS;
+		ra += FOV_ANGLE / NUM_RAYS;
 		stripl++;
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 07:28:51 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/07 22:51:59 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/10/08 16:57:57 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@
 
 # define PI 			3.14159265
 # define TWO_PI 		6.28318530
-# define NUM_RAYS		40
+# define NUM_RAYS		150
 # define FOV_ANGLE		(60 * (PI / 180))	
-# define TILE_SIZE		40
+# define TILE_SIZE		20
 
-# define DX				115
-# define DY				106
+// # define DX				115
+// # define DY				106
 
 # define LOG(x, s)		printf("%s:\t\t[%d]\n", s, x);
 # define LOGF(x, s)		printf("%s:\t\t[%f]\n", s, x);
@@ -78,8 +78,6 @@ typedef struct s_image
 typedef struct s_player{
 	float	player_x;
 	float	player_y;
-	float	width;
-	float	height;
 	int		turndirection;
 	int		walkdirection;
 	float	turnleft;

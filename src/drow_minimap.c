@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drow_minimap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 18:33:51 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/07 21:15:59 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/10/08 16:33:07 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,13 @@ int	is_it_hitt_wall(t_cub *cub, float x, float y)
 	int	index_x;
 	int	index_y;
 
-	index_y = floor((y - 106) / 20);
-	index_x = floor((x - 115) / 20) + 1;
+	index_y = floor(y / TILE_SIZE);
+	index_x = floor(x / TILE_SIZE);
 	if (index_y < 0 || index_y < 0)
 		return (0);
-	// LOG((float)index_x, "index_x")
-	// LOG((float)index_y, "index_y")
-	// LOGC(cub->map[index_y][index_x], "player")
+	LOG(index_x, "index_x")
+	LOG(index_y, "index_y")
+	LOGC(cub->map[index_y][index_x], "player")
 	if (cub->map[index_y][index_x] != '0' && cub->map[index_y][index_x] != 'N'
 		&& cub->map[index_y][index_x] != 'S' && cub->map[index_y][index_x] != 'W'
 		&& cub->map[index_y][index_x] != 'E')
@@ -85,7 +85,7 @@ static void	set_player(t_cub *cub)
 	int	i[2];
 	int	r;
 
-	player_size = 8;
+	player_size = 2;
 	player_color = 11605993;
 	i[0] = -1;
 	while (++i[0] < player_size)
@@ -95,12 +95,12 @@ static void	set_player(t_cub *cub)
 		{
 			r = i[0] + 3;
 			mlx_pixel_put(cub->mlx, cub->mlx_win,
-			cub->player->player_x + i[0] + 6,
-			cub->player->player_y + i[1] + 6, player_color);
+			cub->player->player_x + i[0] ,
+			cub->player->player_y + i[1] , player_color);
 		}
 	}
-	cub->px = cub->player->player_x + r;
-	cub->py = cub->player->player_y + r;
+	cub->px = cub->player->player_x;
+	cub->py = cub->player->player_y;
 	drow_rays(cub);
 	// cub->size_line = 40;
 	// draw_line(cub, cub->player->player_x + r, \
@@ -112,20 +112,17 @@ static void	set_player_info(t_cub *cub, int *coord, int *coord_i)
 	cub->playerside = cub->map[coord_i[1]][coord_i[0]];
 	if (!cub->player->player_x && !cub->player->player_y)
 	{
-		cub->player->player_x = coord[0] + (cub->player->width * coord_i[0]);
-		cub->player->player_y = coord[1] + (cub->player->height * coord_i[1]);
+		cub->player->player_x = coord[0] + (TILE_SIZE * coord_i[0]);
+		cub->player->player_y = coord[1] + (TILE_SIZE * coord_i[1]);
 	}
 	mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->image->empty,
-		coord[0] + (20 * coord_i[0]), coord[1] + ((20 * coord_i[1])));
+		coord[0] + (TILE_SIZE * coord_i[0]), coord[1] + ((TILE_SIZE * coord_i[1])));
 }
 
 static void	set_map(t_cub *cub)
 {
-	int		coord[2];
 	int		coord_i[2];
 
-	coord[0] = ((MINI_BG - (cub->s_map[0] * 18)) / 2);
-	coord[1] = ((MINI_BG - (cub->s_map[1] * 18)) / 2);
 	coord_i[0] = -1;
 	while (++coord_i[0] < cub->s_map[0])
 	{
@@ -133,12 +130,21 @@ static void	set_map(t_cub *cub)
 		while (++coord_i[1] < cub->s_map[1])
 		{
 			if (cub->map[coord_i[1]][coord_i[0]] == '0')
-				put_image(cub, coord, coord_i, 1);
+				put_image(cub, coord_i, 1);
 			else if (cub->map[coord_i[1]][coord_i[0]] == '1')
-				put_image(cub, coord, coord_i, 0);
+				put_image(cub, coord_i, 0);
 			else if (cub->map[coord_i[1]][coord_i[0]] != '+'
 				&& cub->map[coord_i[1]][coord_i[0]] != ' ')
-				set_player_info(cub, coord, coord_i);
+			{
+				cub->playerside = cub->map[coord_i[1]][coord_i[0]];
+				if (!cub->player->player_x && !cub->player->player_y)
+				{
+					cub->player->player_x = (TILE_SIZE) * coord_i[0];
+					cub->player->player_y = (TILE_SIZE) * coord_i[1];
+				}
+				mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->image->empty,
+					TILE_SIZE * coord_i[0],  TILE_SIZE * coord_i[1]);
+			}
 		}
 	}
 	set_player(cub);
@@ -150,7 +156,7 @@ void	moveplayer(t_cub *cub)
 	float	movestep;
 
 	cub->player->rotationangle = normalize_angle(cub->player->rotationangle);
-	mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->image->bg, 20, 20);
+	// mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->image->bg, 0, 0);
 	cub->player->rotationangle += cub->player->turndirection * \
 	cub->player->turnspeed;
 	movestep = cub->player->walkdirection * cub->player->walkspeed;
