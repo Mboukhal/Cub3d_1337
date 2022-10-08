@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 07:28:51 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/08 16:57:57 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/08 18:04:50 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define PI 			3.14159265
 # define TWO_PI 		6.28318530
 # define NUM_RAYS		150
-# define FOV_ANGLE		(60 * (PI / 180))	
+# define FOV_ANGLE		(90 * (PI / 180))	
 # define TILE_SIZE		20
 
 // # define DX				115

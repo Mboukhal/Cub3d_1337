@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:56:33 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/08 16:56:57 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/08 18:08:35 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,10 @@ int	hitt_wall(t_cub *cub, float x, float y)
 	int	index_x;
 	int	index_y;
 
-	index_y = floor(y / 20);
-	index_x = floor(x / 20);
-	// if (index_y < 0 || index_y < 0)
-	// 	return (0);
+	index_y = floor(y / TILE_SIZE);
+	index_x = floor(x / TILE_SIZE);
+	if (index_y < 0 || index_y < 0)
+		return (0);
 	if (cub->map[index_y][index_x] == '1')
 		return (1);
 	return (0);
@@ -113,7 +113,7 @@ void	cast_ray(t_cub *cub, float ray_angle, int stripl)
 	{
 		x_to_check = next_horz_touch_x;
 		y_to_check = next_horz_touch_y + (is_ray_facing_up ? -1 : 1);
-		if (hitt_wall(cub, x_to_check, y_to_check))
+		if (is_it_hitt_wall(cub, x_to_check, y_to_check))
 		{
 			horz_wall_hit_x = next_horz_touch_x;
             horz_wall_hit_y = next_horz_touch_y;
@@ -159,7 +159,7 @@ void	cast_ray(t_cub *cub, float ray_angle, int stripl)
 	{
 		x_to_check = next_vert_touch_x+ (is_ray_facing_left ? -1 : 1);
 		y_to_check = next_vert_touch_y ;
-		if (hitt_wall(cub, x_to_check, y_to_check))
+		if (is_it_hitt_wall(cub, x_to_check, y_to_check))
 		{
 			vert_wall_hit_x = next_vert_touch_x;
             vert_wall_hit_y = next_vert_touch_y;

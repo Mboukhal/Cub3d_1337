@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 18:33:51 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/08 16:33:07 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/08 18:07:33 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ int	is_it_hitt_wall(t_cub *cub, float x, float y)
 	index_x = floor(x / TILE_SIZE);
 	if (index_y < 0 || index_y < 0)
 		return (0);
-	LOG(index_x, "index_x")
-	LOG(index_y, "index_y")
-	LOGC(cub->map[index_y][index_x], "player")
+	// LOG(index_x, "index_x")
+	// LOG(index_y, "index_y")
+	// LOGC(cub->map[index_y][index_x], "player")
 	if (cub->map[index_y][index_x] != '0' && cub->map[index_y][index_x] != 'N'
 		&& cub->map[index_y][index_x] != 'S' && cub->map[index_y][index_x] != 'W'
 		&& cub->map[index_y][index_x] != 'E')
