@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:56:33 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/08 18:08:35 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/08 18:21:33 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,20 +43,6 @@ float	normalize_angle(float angle)
 	if (angle < 0)
 		angle = TWO_PI + angle;
 	return (angle);
-}
-
-int	hitt_wall(t_cub *cub, float x, float y)
-{
-	int	index_x;
-	int	index_y;
-
-	index_y = floor(y / TILE_SIZE);
-	index_x = floor(x / TILE_SIZE);
-	if (index_y < 0 || index_y < 0)
-		return (0);
-	if (cub->map[index_y][index_x] == '1')
-		return (1);
-	return (0);
 }
 
 float distanceBetweenPoints(float x1, float y1, float x2, float y2) {
