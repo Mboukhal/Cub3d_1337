@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 09:26:45 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/08 16:06:49 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/08 18:27:04 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ t_cub	*cub_init(void)
 	c->player->walkdirection = 0;
 	c->player->rotationangle = PI / 2;
 	c->player->turnleft = 0;
-	c->player->walkspeed = 8;
-	c->player->turnspeed = 45 * (PI / 180);
+	c->player->walkspeed = 10;
+	c->player->turnspeed = 10 * (PI / 180);
 	c->size_line = 0;
 	c->key_minimap = 0;
 	ray_init(c);

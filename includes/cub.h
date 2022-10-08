@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 07:28:51 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/08 18:04:50 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/08 18:26:17 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,9 @@
 
 # define PI 			3.14159265
 # define TWO_PI 		6.28318530
-# define NUM_RAYS		150
-# define FOV_ANGLE		(90 * (PI / 180))	
+# define NUM_RAYS		500
+# define FOV_ANGLE		(60 * (PI / 180))	
 # define TILE_SIZE		20
-
-// # define DX				115
-// # define DY				106
 
 # define LOG(x, s)		printf("%s:\t\t[%d]\n", s, x);
 # define LOGF(x, s)		printf("%s:\t\t[%f]\n", s, x);
