@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 18:33:51 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/09 15:23:03 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/09 17:50:56 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ static void	set_player_info(t_cub *cub, int *coord_i)
 			TILE_SIZE * coord_i[0], TILE_SIZE * coord_i[1]);
 }
 
-static void	set_map(t_cub *cub)
+void	set_map(t_cub *cub, int mode)
 {
 	int		coord_i[2];
 
@@ -104,20 +104,20 @@ static void	set_map(t_cub *cub)
 		coord_i[1] = -1;
 		while (++coord_i[1] < cub->s_map[1])
 		{
-			if (cub->map[coord_i[1]][coord_i[0]] == '0' && cub->key_minimap)
-				put_image(cub, coord_i, 1);
-			else if (cub->map[coord_i[1]][coord_i[0]] == '1' && cub->key_minimap)
-				put_image(cub, coord_i, 0);
+			if (mode)
+			{
+				if (cub->map[coord_i[1]][coord_i[0]] == '0' && cub->key_minimap )
+					put_image(cub, coord_i, 1);
+				else if (cub->map[coord_i[1]][coord_i[0]] == '1' && cub->key_minimap)
+					put_image(cub, coord_i, 0);
+			}
 			else if (cub->map[coord_i[1]][coord_i[0]] != '+'
 				&& cub->map[coord_i[1]][coord_i[0]] != ' ' && cub->map[coord_i[1]][coord_i[0]] != '1' 
 				&& cub->map[coord_i[1]][coord_i[0]] != '0')
-			{
 				set_player_info(cub, coord_i);
-				// LOGF(cub->px, "cub->px")
-				// set_player(cub);
-			}
 		}
 	}
+	// mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->layer1, 0, 0);
 }
 
 
@@ -139,5 +139,4 @@ void	moveplayer(t_cub *cub)
 		cub->py += sin(cub->player->rotationangle
 				+ cub->player->turnleft) * movestep;
 	}
-	set_map(cub);
 }

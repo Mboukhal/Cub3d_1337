@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 09:01:42 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/09 16:42:15 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/09 17:52:20 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,15 @@ static void	load_imges(t_cub *c)
 
 void	update_image(t_cub *cub)
 {
-	generate_3d_projection(cub);
-	mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->layer1, 0, 0);
+
+	set_map(cub, 0);
 	moveplayer(cub);
 	drow_rays(cub);
-
+	generate_3d_projection(cub);
+	mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->layer1, 0, 0);
 	if (cub->key_minimap)
 		rander_reys(cub);
+
 }
 
 void	start_game(t_cub *cub)
@@ -92,9 +94,9 @@ void	start_game(t_cub *cub)
 	cub->layer1 = mlx_new_image(cub->mlx, WIN_W, WIN_H);
 	cub->layer1_buffer = mlx_get_data_addr(cub->layer1, &i[1], &i[0], &i[2]);
 	load_imges(cub);
-	// drow_floor_and_ceilling(cub);
 	cub->mlx_win = mlx_new_window(cub->mlx, WIN_W, WIN_H, "CuB3D");
 	update_image(cub);
+
 	mlx_hook(cub->mlx_win, 2, 1, deal_key, cub);
 	mlx_hook(cub->mlx_win, EXIT_BOTTON, 0L, exit_game, cub);
 	mlx_loop(cub->mlx);

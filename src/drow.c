@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 16:36:19 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/09 16:39:03 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/09 17:17:07 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	create_trgb(int *rgb, int *color)
 	*color = (rgb[1] << 16 | rgb[2] << 8 | rgb[3]);
 }
 
-static void	set_buffer(t_cub *c, int pixel, int color)
+void	set_buffer(t_cub *c, int pixel, int color)
 {
 	c->layer1_buffer[pixel + 0] = (color) & 0xFF;
 	c->layer1_buffer[pixel + 1] = (color >> 8) & 0xFF;

@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:56:33 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/09 15:30:37 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/09 17:52:29 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	rander_reys(t_cub *cub)
 	int	i;
 	int color; 
 
+
+	set_map(cub, 1);
 	i = 0;
 	while (i < NUM_RAYS)
 	{

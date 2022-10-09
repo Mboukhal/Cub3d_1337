@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 15:37:19 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/09 17:13:55 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/09 17:30:17 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	generate_3d_projection(t_cub *cub)
 	while (i < NUM_RAYS)
 	{
 		perp_distance = cub->ray[i].distance * cos(cub->ray[i].ray_angle - cub->player->rotationangle);
-		distance_proj_plane = (WIN_W) / tan(FOV_ANGLE / 2);
+		distance_proj_plane = (WIN_W / 2) / tan(FOV_ANGLE / 2);
 		projected_wall_height = (TILE_SIZE / perp_distance) * distance_proj_plane;
 		wall_strip_height = (int)projected_wall_height;
 		wall_top_pixel = (WIN_H / 2) -(wall_strip_height / 2);
@@ -42,7 +42,7 @@ void	generate_3d_projection(t_cub *cub)
 		wall_bottom_pixel = wall_bottom_pixel > WIN_H ? WIN_H : wall_bottom_pixel;
 
 
-		y = wall_top_pixel;
+		y = wall_top_pixel ;
 		while (y < wall_bottom_pixel)
 		{
 			// if (cub->ray[i].was_hit_vertical)
