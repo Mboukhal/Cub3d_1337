@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 15:37:19 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/09 18:03:49 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/09 18:07:32 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ void	generate_3d_projection(t_cub *cub)
 	int 	wall_strip_height;
 	int 	wall_top_pixel;
 	int 	wall_bottom_pixel;
-	int		c[3] = {255, 0, 0};
-	int		color;
-	create_trgb(c, &color);
+	// int		c[3] = {255, 0, 0};
+	// int		color;
+	// create_trgb(c, &color);
 
 	drow_floor_and_ceilling(cub);
 	i = 0;
@@ -42,19 +42,17 @@ void	generate_3d_projection(t_cub *cub)
 		wall_bottom_pixel = wall_bottom_pixel > WIN_H ? WIN_H : wall_bottom_pixel;
 
 
-		y = wall_top_pixel ;
+		y = wall_top_pixel;
 		while (y < wall_bottom_pixel)
 		{
-			// if (cub->ray[i].was_hit_vertical)
-			// ft_memset(&(cub->layer1_buffer[(WIN_H * 2) + 1]), 0xFF, 4); 
 			// cub->layer1_buffer[(WIN_H * 2) + 1] = (color) & 0xFF;
 			// cub->layer1_buffer[(WIN_H * 2) + 2] = (color >> 8) & 0xFF;
 			// cub->layer1_buffer[(WIN_H * 2) + 3] = (color >> 16) & 0xFF;
 			// cub->layer1_buffer[(WIN_H * 2) + 4] = (color >> 24);
 			cub->layer1_buffer[(((WIN_W * y) + i) * 4)] = (char)255;
-			// cub->layer1_buffer[(((WIN_W * y) + i) * 4) + 1] = (char)255;
-			// cub->layer1_buffer[(((WIN_W * y) + i) * 4) + 2] = (char)255;
-			// cub->layer1_buffer[(((WIN_W * y) + i) * 4) + 3] = (char)255;
+			cub->layer1_buffer[(((WIN_W * y) + i + 1) * 4) + 1] = (char)255;
+			cub->layer1_buffer[(((WIN_W * y) + i + 2) * 4) + 2] = (char)255;
+			cub->layer1_buffer[(((WIN_W * y) + i + 3) * 4) + 3] = (char)255;
 
 			y++;
 		}
