@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 18:33:51 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/09 17:54:26 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/09 18:01:59 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,6 @@ static void	set_player(t_cub *cub)
 			cub->py + i[1] , player_color);
 		}
 	}
-	// cub->px = cub->px;
-	// cub->py = cub->py;
 }
 
 static void	set_player_info(t_cub *cub, int *coord_i)
@@ -84,10 +82,8 @@ static void	set_player_info(t_cub *cub, int *coord_i)
 	cub->playerside = cub->map[coord_i[1]][coord_i[0]];
 	if (!cub->px && !cub->py)
 	{
-		// cub->px = TILE_SIZE * coord_i[0];
-		// cub->py = TILE_SIZE * coord_i[1];
-		cub->px = TILE_SIZE * coord_i[0];
-		cub->py = TILE_SIZE * coord_i[1];
+		cub->px = (TILE_SIZE * coord_i[0]) + TILE_SIZE / 2;
+		cub->py = (TILE_SIZE * coord_i[1]) + TILE_SIZE / 2;
 	}
 	if (cub->key_minimap)
 		mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->image->empty,
@@ -104,20 +100,17 @@ void	set_map(t_cub *cub, int mode)
 		coord_i[1] = -1;
 		while (++coord_i[1] < cub->s_map[1])
 		{
-			if (mode)
-			{
-				if (cub->map[coord_i[1]][coord_i[0]] == '0' && cub->key_minimap )
-					put_image(cub, coord_i, 1);
-				else if (cub->map[coord_i[1]][coord_i[0]] == '1' && cub->key_minimap)
-					put_image(cub, coord_i, 0);
-			}
+			if (mode && cub->map[coord_i[1]][coord_i[0]] == '0' && cub->key_minimap )
+				put_image(cub, coord_i, 1);
+			else if (mode && cub->map[coord_i[1]][coord_i[0]] == '1' && cub->key_minimap)
+				put_image(cub, coord_i, 0);
 			else if (cub->map[coord_i[1]][coord_i[0]] != '+'
 				&& cub->map[coord_i[1]][coord_i[0]] != ' ' && cub->map[coord_i[1]][coord_i[0]] != '1' 
 				&& cub->map[coord_i[1]][coord_i[0]] != '0')
 				set_player_info(cub, coord_i);
+
 		}
 	}
-	// mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->layer1, 0, 0);
 }
 
 

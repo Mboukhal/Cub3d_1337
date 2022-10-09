@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 09:01:42 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/09 17:54:19 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/09 18:03:41 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ void	update_image(t_cub *cub)
 
 	moveplayer(cub);
 	generate_3d_projection(cub);
-	mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->layer1, 0, 0);
 	if (cub->key_minimap)
 		rander_reys(cub);
 

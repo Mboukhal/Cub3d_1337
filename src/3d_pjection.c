@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 15:37:19 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/09 17:30:17 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/09 18:03:49 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,5 @@ void	generate_3d_projection(t_cub *cub)
 		}
 		i++;
 	}
-
+	mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->layer1, 0, 0);
 }
