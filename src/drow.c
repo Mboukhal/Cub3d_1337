@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 16:36:19 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/09 17:17:07 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/09 17:53:25 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,12 @@ void	set_buffer(t_cub *c, int pixel, int color)
 
 void	drow_floor_and_ceilling(t_cub *c)
 {
-	// int		i[3];
 	int		color[2];
 	int		index[2];
 	int		pixel;
 
 	create_trgb(c->tab_txt_c->cc, &color[0]);
 	create_trgb(c->tab_txt_c->cf, &color[1]);
-	// c->layer1 = mlx_new_image(c->mlx, WIN_W, WIN_H);
-	// c->layer1_buffer = mlx_get_data_addr(c->layer1, &i[1], &i[0], &i[2]);
-	// LOG((*color) & 0xFF, "color");
 	index[0] = -1;
 	while (++index[0] < WIN_H)
 	{

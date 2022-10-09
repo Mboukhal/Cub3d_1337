@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 18:33:51 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/09 17:50:56 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/09 17:54:26 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ void	moveplayer(t_cub *cub)
 {
 	float	movestep;
 
+	set_map(cub, 0);
 	cub->player->rotationangle = normalize_angle(cub->player->rotationangle);
 	cub->player->rotationangle += cub->player->turndirection * \
 	cub->player->turnspeed;
@@ -139,4 +140,5 @@ void	moveplayer(t_cub *cub)
 		cub->py += sin(cub->player->rotationangle
 				+ cub->player->turnleft) * movestep;
 	}
+	drow_rays(cub);
 }
