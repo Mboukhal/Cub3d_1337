@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 16:37:31 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/09 15:21:19 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/09 15:37:52 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,6 @@ int		is_it_hitt_wall(t_cub *cub, float x, float y);
 void	cast_ray(t_cub *cub, float ra, int stripl);
 void	drow_rays(t_cub *cub);
 void	rander_reys(t_cub *cub);
+void	generate3DProjection(t_cub *cub);
 
 #endif

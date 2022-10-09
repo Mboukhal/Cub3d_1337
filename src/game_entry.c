@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 09:01:42 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/09 15:32:58 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/09 15:56:39 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ void	update_image(t_cub *cub)
 
 	if (cub->key_minimap)
 		rander_reys(cub);
+	generate3DProjection(cub);
 }
 
 void	start_game(t_cub *cub)
