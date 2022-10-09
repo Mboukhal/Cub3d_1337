@@ -6,7 +6,7 @@
 #    By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/24 07:24:22 by mboukhal          #+#    #+#              #
-#    Updated: 2022/10/09 15:57:48 by mboukhal         ###   ########.fr        #
+#    Updated: 2022/10/09 18:56:14 by mboukhal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 
 NAME				= cub3d
 
-OPTION				= -Wall -Wextra -Werror -g -fsanitize=address 
+OPTION				= -Wall -Wextra -Werror #-g -fsanitize=address 
 
 S					= src/
 P					= $(S)parsing/

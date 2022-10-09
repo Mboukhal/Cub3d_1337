@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 20:38:14 by ahmaidi           #+#    #+#             */
-/*   Updated: 2022/10/07 15:51:52 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/09 19:03:32 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int	exit_game(t_cub *cub)
 	free(cub->image);
 	// system("leaks cub3d");
 	exit(EXIT_SUCCESS);
-
 	return (EXIT_SUCCESS);
 }
 
@@ -46,7 +45,6 @@ void	key_rotate_left(t_cub *cub)
 	update_image(cub);
 }
 
-/* key controle {01} */
 int	deal_key(int key, t_cub *cub)
 {
 	if (key == 53)
