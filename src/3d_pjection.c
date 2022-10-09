@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 15:37:19 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/09 16:45:36 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/09 17:13:55 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	generate_3d_projection(t_cub *cub)
 	while (i < NUM_RAYS)
 	{
 		perp_distance = cub->ray[i].distance * cos(cub->ray[i].ray_angle - cub->player->rotationangle);
-		distance_proj_plane = (WIN_W / 2) / tan(FOV_ANGLE / 2);
+		distance_proj_plane = (WIN_W) / tan(FOV_ANGLE / 2);
 		projected_wall_height = (TILE_SIZE / perp_distance) * distance_proj_plane;
 		wall_strip_height = (int)projected_wall_height;
 		wall_top_pixel = (WIN_H / 2) -(wall_strip_height / 2);
@@ -51,7 +51,7 @@ void	generate_3d_projection(t_cub *cub)
 			// cub->layer1_buffer[(WIN_H * 2) + 2] = (color >> 8) & 0xFF;
 			// cub->layer1_buffer[(WIN_H * 2) + 3] = (color >> 16) & 0xFF;
 			// cub->layer1_buffer[(WIN_H * 2) + 4] = (color >> 24);
-			cub->layer1_buffer[(((WIN_W * y) + i) * 4) + 0] = (char)255;
+			cub->layer1_buffer[(((WIN_W * y) + i) * 4)] = (char)255;
 			// cub->layer1_buffer[(((WIN_W * y) + i) * 4) + 1] = (char)255;
 			// cub->layer1_buffer[(((WIN_W * y) + i) * 4) + 2] = (char)255;
 			// cub->layer1_buffer[(((WIN_W * y) + i) * 4) + 3] = (char)255;
