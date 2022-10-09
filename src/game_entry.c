@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_entry.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 09:01:42 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/20 11:23:53 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/10/09 15:32:58 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,11 @@ static void	load_imges(t_cub *c)
 void	update_image(t_cub *cub)
 {
 	mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->layer1, 0, 0);
+	moveplayer(cub);
+	drow_rays(cub);
+
 	if (cub->key_minimap)
-		moveplayer(cub);
+		rander_reys(cub);
 }
 
 void	start_game(t_cub *cub)

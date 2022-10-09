@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 09:26:45 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/08 18:27:04 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/09 15:17:00 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ t_cub	*cub_init(void)
 	c->size_map = 0;
 	c->in_map = 0;
 	c->is_player = 0;
-	c->player->player_x = 0;
-	c->player->player_y = 0;
+	// c->player->player_x = 0;
+	// c->player->player_y = 0;
 	c->px = 0;
 	c->py = 0;
 	c->player->turndirection = 0;

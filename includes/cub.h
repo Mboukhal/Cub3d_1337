@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 07:28:51 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/08 18:26:17 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/09 15:16:48 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ typedef enum s_type
 typedef struct s_ray
 {
 	float 	ray_angle;
-	// float 	wall_hit_x;
-	// float 	wall_hit_y;
+	float 	wall_hit_x;
+	float 	wall_hit_y;
 	float 	distance;
 	int		was_hit_vertical;
 	int		is_ray_facing_no;
@@ -73,8 +73,8 @@ typedef struct s_image
 }	t_image;
 
 typedef struct s_player{
-	float	player_x;
-	float	player_y;
+	// float	player_x;
+	// float	player_y;
 	int		turndirection;
 	int		walkdirection;
 	float	turnleft;

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   transform_map.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 19:02:43 by ahmaidi           #+#    #+#             */
-/*   Updated: 2022/09/20 09:05:38 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/10/08 18:54:12 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub.h"
+#include "../../includes/game_action.h"
 
 void	add_plus(t_cub **cub, int j)
 {
@@ -51,7 +51,8 @@ void	add_front_plus(t_cub **cub)
 
 static void	check_map_size(t_cub *cub, int i, int len)
 {
-	if (len > 36 || i > 36)
+	// if (len > 36 || i > 36)
+	if (len > (WIN_W / TILE_SIZE) || i > (WIN_H / TILE_SIZE))
 	{
 		ft_putstr_fd("ERROR:\n\t\e[31mInvalid map size!\e[00m\n", 2);
 		exit(1);
