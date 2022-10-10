@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 07:28:51 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/09 17:30:40 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/10 15:46:29 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,10 @@ typedef struct s_cub
 	int			is_player;
 	void		*layer1;
 	char		*layer1_buffer;
+	char		*so_buf;
+	char		*we_buf;
+	char		*ea_buf;
+	char		*no_buf;
 	int			size_line;
 }	t_cub;
 

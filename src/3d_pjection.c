@@ -6,11 +6,28 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 15:37:19 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/09 22:20:41 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/10 15:46:26 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/game_action.h"
+
+static void cub_set_buffer(t_cub *cub, int pixel, int ray)
+{
+	uint32_t *dst;
+	uint32_t *src;
+	dst = (uint32_t*)cub->layer1_buffer;
+	src = (uint32_t*)cub->so_buf;
+
+	dst[pixel] = cub->ray[ray].was_hit_vertical ? 0x0000FF00 : 0x00FFCC00;
+	dst[pixel + 1] = cub->ray[ray].was_hit_vertical ? 0x0000FF00 : 0x00FFCC00;
+	dst[pixel + 2] = cub->ray[ray].was_hit_vertical ? 0x0000FF00 : 0x00FFCC00;
+	dst[pixel + 3] = cub->ray[ray].was_hit_vertical ? 0x0000FF00 : 0x00FFCC00;
+	// dst[pixel] 		= 0x0000FF00;
+	// dst[pixel + 1] 	=  0x0000FF00;
+	// dst[pixel + 2] 	=  0x0000FF00;
+	// dst[pixel + 3] 	=  0x0000FF00;
+}
 
 void	generate_3d_projection(t_cub *cub)
 {
@@ -22,20 +39,18 @@ void	generate_3d_projection(t_cub *cub)
 	int 	wall_strip_height;
 	int 	wall_top_pixel;
 	int 	wall_bottom_pixel;
+	int 	x;
 
-	uint32_t *pt;
-	pt = (uint32_t*)cub->layer1_buffer;
-	// int		c[3] = {255, 0, 0};
-	// int		color;
-	// create_trgb(c, &color);
-	int x = 0;
-
+	x = 0;
 	drow_floor_and_ceilling(cub);
+	// while(cub->layer1_buffer[x])
+	// 	cub->layer1_buffer[x++] = 0;
+	x = 0;
 	i = 0;
 	while (i < NUM_RAYS)
 	{
 		perp_distance = cub->ray[i].distance * cos(cub->ray[i].ray_angle - cub->player->rotationangle);
-		distance_proj_plane = (WIN_W / 2) / tan(FOV_ANGLE / 2);
+		distance_proj_plane = (WIN_W) / tan(FOV_ANGLE);
 		projected_wall_height = (TILE_SIZE / perp_distance) * distance_proj_plane;
 		wall_strip_height = (int)projected_wall_height;
 		wall_top_pixel = (WIN_H / 2) -(wall_strip_height / 2);
@@ -48,13 +63,17 @@ void	generate_3d_projection(t_cub *cub)
 		while (y < wall_bottom_pixel)
 		{
 			x = ((WIN_W * y) +  (i * 3.2));
+			cub_set_buffer(cub, x, i);
+			y++;
+		}
+		i++;
+	}
+	mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->layer1, 0, 0);
+}
+
+
+
 			// x = ((WIN_W * y) +  (i * 3.2)) * 4;  //3.2));
-
-			pt[x] = cub->ray[i].was_hit_vertical ? 0x0000FF00 : 0x00FFCC00;
-			pt[x + 1] = cub->ray[i].was_hit_vertical ? 0x0000FF00 : 0x00FFCC00;
-			pt[x + 2] = cub->ray[i].was_hit_vertical ? 0x0000FF00 : 0x00FFCC00;
-			pt[x + 3] = cub->ray[i].was_hit_vertical ? 0x0000FF00 : 0x00FFCC00;
-
 			// int pixel = ((WIN_W * y) + i) * 4;
 			// cub->layer1_buffer[(WIN_H * 2) + 1] = (color) & 0xFF;
 			// cub->layer1_buffer[(WIN_H * 2) + 2] = (color >> 8) & 0xFF;
@@ -79,10 +98,3 @@ void	generate_3d_projection(t_cub *cub)
 			// 	cub->layer1_buffer[x + 15] = (char)255;		// transparant
 			// 	cub->layer1_buffer[x + 16] = (char)255;		// green
 			// }
-
-			y++;
-		}
-		i++;
-	}
-	mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->layer1, 0, 0);
-}

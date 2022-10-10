@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 09:01:42 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/09 18:27:15 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/10 12:43:25 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,21 @@ static void	set_color(t_cub *c, int index, int *size)
 	}
 }
 
-static void	load_imges_const(t_cub *c, int *size)
+static void	load_imges_const(t_cub *cub, int *size)
 {
-	c->image->bg = mlx_xpm_file_to_image(c->mlx,
+	int		i[3];
+
+	cub->layer1 = mlx_new_image(cub->mlx, WIN_W, WIN_H);
+	cub->layer1_buffer = mlx_get_data_addr(cub->layer1, &i[1], &i[0], &i[2]);
+	cub->no_buf = mlx_get_data_addr(cub->image->no, &i[1], &i[0], &i[2]);
+	cub->so_buf = mlx_get_data_addr(cub->image->so, &i[1], &i[0], &i[2]);
+	cub->ea_buf = mlx_get_data_addr(cub->image->ea, &i[1], &i[0], &i[2]);
+	cub->we_buf = mlx_get_data_addr(cub->image->we, &i[1], &i[0], &i[2]);
+	cub->image->bg = mlx_xpm_file_to_image(cub->mlx,
 			"images/minimap_xmp/BgMinimap.xpm", &size[0], &size[1]);
-	c->image->empty = mlx_xpm_file_to_image(c->mlx,
+	cub->image->empty = mlx_xpm_file_to_image(cub->mlx,
 			"images/minimap_xmp/empty.xpm", &size[0], &size[1]);
-	c->image->wall = mlx_xpm_file_to_image(c->mlx,
+	cub->image->wall = mlx_xpm_file_to_image(cub->mlx,
 			"images/minimap_xmp/wall.xpm", &size[0], &size[1]);
 }
 
@@ -85,11 +93,7 @@ void	update_image(t_cub *cub)
 void	start_game(t_cub *cub)
 {
 
-	int		i[3];
-
 	cub->mlx = mlx_init();
-	cub->layer1 = mlx_new_image(cub->mlx, WIN_W, WIN_H);
-	cub->layer1_buffer = mlx_get_data_addr(cub->layer1, &i[1], &i[0], &i[2]);
 	load_imges(cub);
 	cub->mlx_win = mlx_new_window(cub->mlx, WIN_W, WIN_H, "CuB3D");
 	update_image(cub);
