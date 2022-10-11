@@ -6,7 +6,7 @@
 #    By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/24 07:24:22 by mboukhal          #+#    #+#              #
-#    Updated: 2022/10/09 18:56:14 by mboukhal         ###   ########.fr        #
+#    Updated: 2022/10/11 15:58:37 by mboukhal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,6 +59,7 @@ run: all clean
 	@ reset
 	@ ./$(NAME) maps/map1.cub
 	@ rm -rf .vscode
+	@ make fclean
 	@# echo 'for leaks >> while :; do leaks $(NAME); sleep 2; done [and add while(1) in last of main];'
 
 .PHONY: re fclean all clean

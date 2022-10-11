@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 18:33:51 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/09 18:01:59 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/11 12:23:40 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	draw_line(t_cub *cub, int begin_x, int begin_y, int end_x, int end_y, int co
 	pixel_y = begin_y;
 	while (pixels)
 	{
-		mlx_pixel_put(cub->mlx, cub->mlx_win, pixel_x, pixel_y, color);
+		mlx_pixel_put(cub->mlx, cub->win, pixel_x, pixel_y, color);
 		pixel_x += delta_x;
 		pixel_y += delta_y;
 		--pixels;
@@ -70,7 +70,7 @@ static void	set_player(t_cub *cub)
 		while (++i[1] < player_size)
 		{
 			r = i[0] + 3;
-			mlx_pixel_put(cub->mlx, cub->mlx_win,
+			mlx_pixel_put(cub->mlx, cub->win,
 			cub->px + i[0] ,
 			cub->py + i[1] , player_color);
 		}
@@ -86,7 +86,7 @@ static void	set_player_info(t_cub *cub, int *coord_i)
 		cub->py = (TILE_SIZE * coord_i[1]) + TILE_SIZE / 2;
 	}
 	if (cub->key_minimap)
-		mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->image->empty,
+		mlx_put_image_to_window(cub->mlx, cub->win, cub->image->empty,
 			TILE_SIZE * coord_i[0], TILE_SIZE * coord_i[1]);
 }
 

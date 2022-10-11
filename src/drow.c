@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 16:36:19 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/09 17:53:25 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/11 12:23:40 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,10 @@ void	drow_floor_and_ceilling(t_cub *c)
 void	put_image(t_cub *cub, int *coord_i, int empty)
 {
 	if (empty == 1)
-		mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->image->empty,
+		mlx_put_image_to_window(cub->mlx, cub->win, cub->image->empty,
 			TILE_SIZE * coord_i[0], TILE_SIZE * coord_i[1]);
 	else
-		mlx_put_image_to_window(cub->mlx, cub->mlx_win, cub->image->wall,
+		mlx_put_image_to_window(cub->mlx, cub->win, cub->image->wall,
 			TILE_SIZE * coord_i[0], TILE_SIZE * coord_i[1]);
 }
 

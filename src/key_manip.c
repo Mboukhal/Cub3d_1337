@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 20:38:14 by ahmaidi           #+#    #+#             */
-/*   Updated: 2022/10/09 19:03:32 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/11 12:23:40 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	exit_game(t_cub *cub)
 	mlx_destroy_image(cub->mlx, cub->image->so);
 	mlx_destroy_image(cub->mlx, cub->image->we);
 	mlx_destroy_image(cub->mlx, cub->image->no);
-	mlx_destroy_window(cub->mlx, cub->mlx_win);
+	mlx_destroy_window(cub->mlx, cub->win);
 	i = -1;
 	while (cub->map[++i])
 		free_it(cub->map[i]);
@@ -47,6 +47,7 @@ void	key_rotate_left(t_cub *cub)
 
 int	deal_key(int key, t_cub *cub)
 {
+	// LOG(key, "key")
 	if (key == 53)
 		exit_game(cub);
 	if (key == 48)
@@ -59,9 +60,9 @@ int	deal_key(int key, t_cub *cub)
 		key_d(cub);
 	if (key == RIGHT_KEY)
 		key_a(cub);
-	if (key == R_ARROW_KEY)
+	if (key == R_ARROW_KEY)// || key == 4)
 		key_rotate(cub, 1);
-	if (key == L_ARROW_KEY)
+	if (key == L_ARROW_KEY)// || key == 5)
 		key_rotate(cub, -1);
 	cub->player->turndirection = 0;
 	cub->player->walkdirection = 0;

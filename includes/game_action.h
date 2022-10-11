@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 16:37:31 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/09 17:51:01 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/11 17:08:31 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,19 @@
 # define MINI_BG			860
 # define FLT_MAX			3.402823466e+38F
 
+#define FALSE				0
+#define TRUE				1
+
+# define TWO_PI 			6.28318530
+# define FOV_ANGLE			(60 * (PI / 180))	
+# define TILE_SIZE			20
+
+# define LOG(x, s)			printf("%s:\t\t[%d]\n", s, x);
+# define LOGF(x, s)			printf("%s:\t\t[%f]\n", s, x);
+# define LOGC(c, msg)		printf("%s:\t\t[%c]\n", msg, c);
+
+
+int		mouse_hook(int key, t_cub *cub);
 void	drow_row_minimap(t_cub *c);
 void	set_buffer(t_cub *c, int pixel, int color);
 void	drow_minimap(t_cub *c);

@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 09:01:42 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/10 12:43:25 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/11 17:13:34 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,9 @@ static void	load_imges_const(t_cub *cub, int *size)
 	cub->so_buf = mlx_get_data_addr(cub->image->so, &i[1], &i[0], &i[2]);
 	cub->ea_buf = mlx_get_data_addr(cub->image->ea, &i[1], &i[0], &i[2]);
 	cub->we_buf = mlx_get_data_addr(cub->image->we, &i[1], &i[0], &i[2]);
+	// LOG(i[1], "bpp")
+	// LOG(i[0], "size_line")
+	// LOG(i[2], "endian")
 	cub->image->bg = mlx_xpm_file_to_image(cub->mlx,
 			"images/minimap_xmp/BgMinimap.xpm", &size[0], &size[1]);
 	cub->image->empty = mlx_xpm_file_to_image(cub->mlx,
@@ -83,6 +86,8 @@ static void	load_imges(t_cub *c)
 void	update_image(t_cub *cub)
 {
 
+
+	// mlx_clear_window(cub->mlx, cub->win);
 	moveplayer(cub);
 	generate_3d_projection(cub);
 	if (cub->key_minimap)
@@ -95,10 +100,10 @@ void	start_game(t_cub *cub)
 
 	cub->mlx = mlx_init();
 	load_imges(cub);
-	cub->mlx_win = mlx_new_window(cub->mlx, WIN_W, WIN_H, "CuB3D");
+	cub->win = mlx_new_window(cub->mlx, WIN_W, WIN_H, "CuB3D");
 	update_image(cub);
 
-	mlx_hook(cub->mlx_win, 2, 1, deal_key, cub);
-	mlx_hook(cub->mlx_win, EXIT_BOTTON, 0L, exit_game, cub);
+	mlx_hook(cub->win, 2, 1, deal_key, cub);
+	mlx_hook(cub->win, EXIT_BOTTON, 0L, exit_game, cub);
 	mlx_loop(cub->mlx);
 }

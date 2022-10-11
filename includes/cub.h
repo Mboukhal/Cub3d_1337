@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 07:28:51 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/10 15:46:29 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/11 15:13:55 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,8 @@
 # include <math.h>
 # include "utils.h"
 
-#define FALSE			0
-#define TRUE			1
-
 # define PI 			3.14159265
-# define TWO_PI 		6.28318530
-# define NUM_RAYS		500
-# define FOV_ANGLE		(60 * (PI / 180))	
-# define TILE_SIZE		20
-
-# define LOG(x, s)		printf("%s:\t\t[%d]\n", s, x);
-# define LOGF(x, s)		printf("%s:\t\t[%f]\n", s, x);
-# define LOGC(c, msg)	printf("%s:\t\t[%c]\n", msg, c);
+# define NUM_RAYS		1597
 
 typedef enum s_type
 {
@@ -40,7 +30,7 @@ typedef enum s_type
 	EAST,
 	FLOOR,
 	CIEL
-}	t_type;
+}			t_type;
 
 typedef struct s_ray
 {
@@ -55,9 +45,9 @@ typedef struct s_ray
 	int		is_ray_facing_ea;
 	// int		wall_hit_content;
 
-}	t_ray;
+}				t_ray;
 
-typedef struct s_image
+typedef struct	s_image
 {
 	void	*no;
 	void	*so;
@@ -70,9 +60,9 @@ typedef struct s_image
 	char	**f;
 	char	**c;
 
-}	t_image;
+}				t_image;
 
-typedef struct s_player{
+typedef struct	s_player{
 	// float	player_x;
 	// float	player_y;
 	int		turndirection;
@@ -81,7 +71,7 @@ typedef struct s_player{
 	float	rotationangle;
 	float	walkspeed;
 	float	turnspeed;
-}	t_player;
+}				t_player;
 
 typedef struct s_txt_c
 {
@@ -91,10 +81,10 @@ typedef struct s_txt_c
 	int		cf[4];
 }	t_txt_c;
 
-typedef struct s_cub
+typedef struct	s_cub
 {
 	void		*mlx;
-	void		*mlx_win;
+	void		*win;
 	char		**map;
 	char		*bf;
 	t_txt_c		*tab_txt_c;
@@ -122,7 +112,7 @@ typedef struct s_cub
 	char		*ea_buf;
 	char		*no_buf;
 	int			size_line;
-}	t_cub;
+}				t_cub;
 
 t_cub	*cub_init(void);
 int		deal_key(int key, t_cub *cub);
