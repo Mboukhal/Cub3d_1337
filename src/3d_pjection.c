@@ -6,7 +6,7 @@
 /*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 15:37:19 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/12 16:37:41 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/10/12 16:46:40 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,11 @@
 static void cub_set_buffer(t_cub *cub,  int y, int i, int ty, int tx)
 {
 	uint32_t texelColor;
-	// if (cub->ray[i].was_hit_vertical)
-	// 	texelColor = ((uint32_t*)cub->we_buf)[(20 * ty) + tx ];
-	// else
+	if (cub->ray[i].was_hit_vertical)
+		texelColor = ((uint32_t*)cub->we_buf)[(cub->we_size * ty) + tx];
+	else
 		texelColor = ((uint32_t*)cub->no_buf)[(cub->no_size * ty) + tx];// ty = 3 tx =  20
 		
-		// LOG((20 * ty) + tx, "( 20 * ty) + tx")
-		// LOG(ty, "ty")
-		// LOG(tx, "tx")
-		// LOG(y, "y")
-		// if (i == 1)
-		// exit(0);
 	int pos = ((y * WIN_W) + i);
 	uint32_t *ptr = (uint32_t*)cub->layer1_buffer;
 	ptr[pos] = texelColor;
@@ -64,12 +58,16 @@ void	generate_3d_projection(t_cub *cub)
             textureOffsetX = (int)cub->ray[i].wall_hit_y % TILE_SIZE;
         else
             textureOffsetX = (int)cub->ray[i].wall_hit_x % TILE_SIZE;
+			uint32_t texelColor;
 		y = wall_top_pixel;
 		while (y < wall_bottom_pixel)
 		{
 			int distanceFromTop = (y + (wall_strip_height / 2)) - (WIN_H / 2);
             int textureOffsetY = distanceFromTop * ((float)TILE_SIZE / wall_strip_height);
-			uint32_t texelColor = ((uint32_t*)cub->no_buf)[(TXT_W * textureOffsetY) + textureOffsetX];
+			if (cub->ray[i].was_hit_vertical)
+				texelColor = ((uint32_t*)cub->no_buf)[(TXT_W * textureOffsetY) + textureOffsetX];
+			else
+				texelColor = ((uint32_t*)cub->we_buf)[(TXT_W * textureOffsetY) + textureOffsetX];
             ((uint32_t*)cub->layer1_buffer)[(WIN_W * y) + i] = texelColor;
 			y++;
 		}
