@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   3d_pjection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 15:37:19 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/11 17:29:12 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/12 09:25:10 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,32 +15,16 @@
 
 #define RAY_SIZE	WIN_W / NUM_RAYS
 
-static void cub_set_buffer(t_cub *cub,  int x, int y, int i)
+static void cub_set_buffer(t_cub *cub,  int y, int i, int ty, int tx)
 {
-	uint32_t *dst;
-	uint32_t *src;
-	src = (uint32_t*)cub->we_buf;
-	dst = (uint32_t*)cub->layer1_buffer;
-	int pos = (y * 1000 + x * (32 / 8));
-
-
-	// mlx_pixel_put(cub->mlx, cub->win, x, y, 0xFF00);
-	// mlx_pixel_put(cub->mlx, cub->win, x + 1, y, 0xFF00);
-	// mlx_pixel_put(cub->mlx, cub->win, x + 2, y, 0xFF00);
-	// mlx_pixel_put(cub->mlx, cub->win, x + 3, y, 0xFF00);
-	// cub->we_buf[x] = (char)0;
-	// cub->we_buf[x] = (char)255;
-	// cub->we_buf[x] = (char)255;
-	// cub->we_buf[x] = (char)255;
-	// if (cub->key_minimap)
-	// 	sleep(1);
-	// int r = 0;
-	// while (r < RAY_SIZE)
-	// 	dst[x + (r++)] = 0x00FFCC00;
-	cub->layer1_buffer[pos] = 0x00FF;
-
-	// mlx_put_image_to_window(cub->mlx, cub->win, cub->layer1, 0, 0);
-	// dst[x] 		= src[ * i];
+	uint32_t texelColor;
+	if (cub->ray[i].was_hit_vertical)
+		texelColor = ((uint32_t*)cub->we_buf)[(250 * ty) + tx ];
+	else
+		texelColor = ((uint32_t*)cub->no_buf)[(250 * ty) + tx ];
+	int pos = ((y * WIN_W) + i);
+	uint32_t *ptr = (uint32_t*)cub->layer1_buffer;
+	ptr[pos] = texelColor;
 }
 
 void	generate_3d_projection(t_cub *cub)
@@ -60,7 +44,7 @@ void	generate_3d_projection(t_cub *cub)
 	x = 0;
 	i = 0;
 	// offset = 0;
-	while (i < NUM_RAYS )
+	while (i < NUM_RAYS)
 	{
 		perp_distance = cub->ray[i].distance * cos(cub->ray[i].ray_angle - cub->player->rotationangle);
 		distance_proj_plane = (WIN_W / 2) / tan(FOV_ANGLE / 2);
@@ -70,12 +54,18 @@ void	generate_3d_projection(t_cub *cub)
 		wall_top_pixel = wall_top_pixel < 0 ? 0 : wall_top_pixel;
 		wall_bottom_pixel = (WIN_H / 2) + (wall_strip_height / 2);
 		wall_bottom_pixel = wall_bottom_pixel > WIN_H ? WIN_H : wall_bottom_pixel;
+		int textureOffsetX;
+		if (cub->ray[i].was_hit_vertical)
+            textureOffsetX = (int)cub->ray[i].wall_hit_y % 250;
+        else
+            textureOffsetX = (int)cub->ray[i].wall_hit_x % 250;
 		y = wall_top_pixel;
 		while (y < wall_bottom_pixel)
 		{
-			x = ((WIN_W * y) + i) ;
-			cub_set_buffer(cub, x, y, i);
-			// offset = i + (1000);
+			int distanceFromTop = (y + (wall_strip_height / 2)) - (WIN_H / 2);
+            int textureOffsetY = distanceFromTop * ((float)250 / wall_strip_height);
+            // set the color of the wall based on the color from the texture
+			cub_set_buffer(cub, y, i, textureOffsetY, i );
 			y++;
 		}
 		i++;
@@ -85,6 +75,9 @@ void	generate_3d_projection(t_cub *cub)
 
 
 
+			// x = ((WIN_W * y) + i) ;
+			// cub_set_buffer(cub, x, y, i);
+			// // offset = i + (1000);
 			// x = ((WIN_W * y) +  (i * 3.2)) * 4;  //3.2));
 			// int pixel = ((WIN_W * y) + i) * 4;
 			// cub->layer1_buffer[(WIN_H * 2) + 1] = (color) & 0xFF;

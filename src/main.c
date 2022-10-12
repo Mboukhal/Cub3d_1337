@@ -6,7 +6,7 @@
 /*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 07:28:01 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/20 11:22:18 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/10/10 15:38:38 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int	main(int ac, char **av)
 	}
 	check_exteniton(av[1], ".cub");
 	cub = map_init(av[1]);
-	// affiche_cub(cub);
 	start_game(cub);
 	return (EXIT_SUCCESS);
 }
