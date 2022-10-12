@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 15:37:19 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/11 17:29:12 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/12 08:46:44 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ static void cub_set_buffer(t_cub *cub,  int x, int y, int i)
 	// if (cub->key_minimap)
 	// 	sleep(1);
 	// int r = 0;
-	// while (r < RAY_SIZE)
-	// 	dst[x + (r++)] = 0x00FFCC00;
-	cub->layer1_buffer[pos] = 0x00FF;
+	// // while (r < RAY_SIZE)
+	// 	dst[x] = 0x00FFCC00;
+	// cub->layer1_buffer[pos] = 0x00FF;
 
 	// mlx_put_image_to_window(cub->mlx, cub->win, cub->layer1, 0, 0);
 	// dst[x] 		= src[ * i];
