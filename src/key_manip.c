@@ -6,10 +6,9 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 20:38:14 by ahmaidi           #+#    #+#             */
-/*   Updated: 2022/10/11 12:23:40 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/12 18:46:03 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../includes/game_action.h"
 
@@ -28,7 +27,6 @@ int	exit_game(t_cub *cub)
 	while (cub->map[++i])
 		free_it(cub->map[i]);
 	free(cub->image);
-	// system("leaks cub3d");
 	exit(EXIT_SUCCESS);
 	return (EXIT_SUCCESS);
 }
@@ -47,7 +45,6 @@ void	key_rotate_left(t_cub *cub)
 
 int	deal_key(int key, t_cub *cub)
 {
-	// LOG(key, "key")
 	if (key == 53)
 		exit_game(cub);
 	if (key == 48)
@@ -60,9 +57,9 @@ int	deal_key(int key, t_cub *cub)
 		key_d(cub);
 	if (key == RIGHT_KEY)
 		key_a(cub);
-	if (key == R_ARROW_KEY)// || key == 4)
+	if (key == R_ARROW_KEY)
 		key_rotate(cub, 1);
-	if (key == L_ARROW_KEY)// || key == 5)
+	if (key == L_ARROW_KEY)
 		key_rotate(cub, -1);
 	cub->player->turndirection = 0;
 	cub->player->walkdirection = 0;

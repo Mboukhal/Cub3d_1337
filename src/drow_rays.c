@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drow_rays.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:56:33 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/12 13:15:38 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/10/12 18:45:23 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 
 void	rander_reys(t_cub *cub)
 {
-	int	i;
-	int color; 
-
+	int		i;
+	int		color;
 
 	set_map(cub, 1);
 	i = 0;
@@ -27,16 +26,17 @@ void	rander_reys(t_cub *cub)
 		else
 			color = 0x00CCFF;
 		draw_line(cub, cub->px / SCAL, cub->py / SCAL,
-			cub->ray[i].wall_hit_x / SCAL, cub->ray[i].wall_hit_y / SCAL , color);
+			cub->ray[i].wall_hit_x / SCAL,
+			cub->ray[i].wall_hit_y / SCAL, color);
 		i++;
 	}
 }
 
 void	drow_rays(t_cub *cub)
 {
-	float ra;
-	int	stripl;
-	
+	float	ra;
+	int		stripl;
+
 	ra = cub->player->rotationangle - (FOV_ANGLE / 2);
 	stripl = 0;
 	while (stripl < NUM_RAYS)

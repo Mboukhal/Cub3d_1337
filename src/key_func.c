@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   key_func.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 16:13:43 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/20 20:40:16 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/10/12 18:45:40 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../includes/game_action.h"
 
@@ -50,4 +49,3 @@ void	key_rotate(t_cub *cub, int i)
 	cub->player->turndirection = i;
 	update_image(cub);
 }
-

@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   game_action.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 16:37:31 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/12 16:34:22 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/10/12 18:41:28 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef GAME_ACTION_H
 # define GAME_ACTION_H
@@ -28,31 +27,20 @@
 # define WIN_W				1600
 # define WIN_H				900
 
-#define FALSE				0
-#define TRUE				1
+# define FALSE				0
+# define TRUE				1
 
 # define TWO_PI 			6.28318530
 # define FLT_MAX			3.402823466e+38F
-# define FOV_ANGLE			(60 * (PI / 180))	
+# define FOV_ANGLE			(60 * (PI / 180))
 # define TILE_SIZE			64
 # define SCAL   			8
-# define TXT_W         		64
-# define TXT_H         		64
-
-# define SCAL   			8
-
-
-# define LOG(x, s)			printf("%s:\t\t[%d]\n", s, x);
-# define LOGF(x, s)			printf("%s:\t\t[%f]\n", s, x);
-# define LOGC(c, msg)		printf("%s:\t\t[%c]\n", msg, c);
-
 
 int		mouse_hook(int key, t_cub *cub);
 void	drow_row_minimap(t_cub *c);
 void	set_buffer(t_cub *c, int pixel, int color);
 void	drow_minimap(t_cub *c);
 void	drow_floor_and_ceilling(t_cub *c);
-void	create_trgb(int *rgb, int *color);
 void	update_image(t_cub *cub);
 void	moveplayer(t_cub *cub);
 void	minimap_manip(t_cub *cub);

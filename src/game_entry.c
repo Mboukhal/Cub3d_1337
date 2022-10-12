@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_entry.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 09:01:42 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/12 13:16:46 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/10/12 17:26:27 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,20 @@
 
 static void	set_color(t_cub *c, int index, int *size)
 {
+	int	tmp [4];
+
+	tmp[0] = 0;
+	tmp[1] = ft_atoi(c->tab_txt_c[index].splt[0]);
+	tmp[2] = ft_atoi(c->tab_txt_c[index].splt[1]);
+	tmp[3] = ft_atoi(c->tab_txt_c[index].splt[2]);
 	if (c->tab_txt_c[index].type == FLOOR)
-	{
-		c->tab_txt_c->cf[0] = 0;
-		c->tab_txt_c->cf[1] = ft_atoi(c->tab_txt_c[index].splt[0]);
-		c->tab_txt_c->cf[2] = ft_atoi(c->tab_txt_c[index].splt[1]);
-		c->tab_txt_c->cf[3] = ft_atoi(c->tab_txt_c[index].splt[2]);
-	}
+		c->flo = create_trgb(tmp);
 	else if (c->tab_txt_c[index].type == CIEL)
-	{
-		c->tab_txt_c->cc[0] = 0;
-		c->tab_txt_c->cc[1] = ft_atoi(c->tab_txt_c[index].splt[0]);
-		c->tab_txt_c->cc[2] = ft_atoi(c->tab_txt_c[index].splt[1]);
-		c->tab_txt_c->cc[3] = ft_atoi(c->tab_txt_c[index].splt[2]);
-	}
-	else if (size[0] > 250 || size[1] > 250)
+		c->cei = create_trgb(tmp);
+	if (size[0] > TILE_SIZE || size[1] > TILE_SIZE)
 	{
 		ft_putstr_fd("ERROR:\n\tSize textures must \
-		be less or equal than 250x250", 2);
+		be less or equal than 64x64", 2);
 		exit(1);
 	}
 }
@@ -50,9 +46,6 @@ static void	load_imges_const(t_cub *cub, int *size)
 	cub->ea_size = i[0] / 4;
 	cub->we_buf = mlx_get_data_addr(cub->image->we, &i[1], &i[0], &i[2]);
 	cub->we_size = i[0] / 4;
-	// LOG(i[1], "bpp")
-	// LOG(i[0], "size_line")
-	// LOG(i[2], "endian")
 	cub->image->bg = mlx_xpm_file_to_image(cub->mlx,
 			"images/minimap_xmp/BgMinimap.xpm", &size[0], &size[1]);
 	cub->image->empty = mlx_xpm_file_to_image(cub->mlx,

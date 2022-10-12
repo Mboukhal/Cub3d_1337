@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 07:28:51 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/12 09:41:13 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/10/12 18:42:17 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <mlx.h>
 # include <fcntl.h>
 # include <errno.h>
+# include <unistd.h>
 # include <math.h>
 # include "utils.h"
 
@@ -34,20 +35,19 @@ typedef enum s_type
 
 typedef struct s_ray
 {
-	float 	ray_angle;
-	float 	wall_hit_x;
-	float 	wall_hit_y;
-	float 	distance;
+	float	ray_angle;
+	float	wall_hit_x;
+	float	wall_hit_y;
+	float	distance;
 	int		was_hit_vertical;
 	int		is_ray_facing_no;
 	int		is_ray_facing_so;
 	int		is_ray_facing_we;
 	int		is_ray_facing_ea;
-	// int		wall_hit_content;
 
 }				t_ray;
 
-typedef struct	s_image
+typedef struct s_image
 {
 	void	*no;
 	void	*so;
@@ -62,9 +62,7 @@ typedef struct	s_image
 
 }				t_image;
 
-typedef struct	s_player{
-	// float	player_x;
-	// float	player_y;
+typedef struct s_player{
 	int		turndirection;
 	int		walkdirection;
 	float	turnleft;
@@ -77,11 +75,9 @@ typedef struct s_txt_c
 {
 	t_type	type;
 	char	**splt;
-	int		cc[4];
-	int		cf[4];
 }	t_txt_c;
 
-typedef struct	s_cub
+typedef struct s_cub
 {
 	void		*mlx;
 	void		*win;
@@ -94,6 +90,8 @@ typedef struct	s_cub
 	float		px;
 	float		py;
 	int			i;
+	int			cei;
+	int			flo;
 	int			size_tab;
 	char		side_of_player;
 	char		playerside;
@@ -151,7 +149,7 @@ void	check_map(t_cub **cub);
 void	check_str_valid(char *str);
 void	check_nbr_vrg(char *str);
 int		wrong_color(void);
-void	create_trgb(int *rgb, int *color);
+int		create_trgb(int *rgb);
 void	side_of_player(t_cub *cub);
 
 #endif /* __CUB_H__ */

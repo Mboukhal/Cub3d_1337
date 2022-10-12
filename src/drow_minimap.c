@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drow_minimap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 18:33:51 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/12 13:15:07 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/10/12 18:44:36 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ int	is_it_hitt_wall(t_cub *cub, float x, float y)
 	if (index_y < 0 || index_y < 0)
 		return (0);
 	if (cub->map[index_y][index_x] != '0' && cub->map[index_y][index_x] != 'N'
-		&& cub->map[index_y][index_x] != 'S' && cub->map[index_y][index_x] != 'W'
+		&& cub->map[index_y][index_x] != 'S'
+		&& cub->map[index_y][index_x] != 'W'
 		&& cub->map[index_y][index_x] != 'E')
 		return (1);
 	return (0);
@@ -70,8 +71,7 @@ static void	set_player(t_cub *cub)
 		{
 			r = i[0] + 3;
 			mlx_pixel_put(cub->mlx, cub->win,
-			cub->px + i[0] ,
-			cub->py + i[1] , player_color);
+				cub->px + i[0], cub->py + i[1], player_color);
 		}
 	}
 }
@@ -99,19 +99,20 @@ void	set_map(t_cub *cub, int mode)
 		coord_i[1] = -1;
 		while (++coord_i[1] < cub->s_map[1])
 		{
-			if (mode && cub->map[coord_i[1]][coord_i[0]] == '0' && cub->key_minimap )
+			if (mode
+				&& cub->map[coord_i[1]][coord_i[0]] == '0' && cub->key_minimap)
 				put_image(cub, coord_i, 1);
-			else if (mode && cub->map[coord_i[1]][coord_i[0]] == '1' && cub->key_minimap)
+			else if (mode
+				&& cub->map[coord_i[1]][coord_i[0]] == '1' && cub->key_minimap)
 				put_image(cub, coord_i, 0);
 			else if (cub->map[coord_i[1]][coord_i[0]] != '+'
-				&& cub->map[coord_i[1]][coord_i[0]] != ' ' && cub->map[coord_i[1]][coord_i[0]] != '1' 
+				&& cub->map[coord_i[1]][coord_i[0]] != ' '
+				&& cub->map[coord_i[1]][coord_i[0]] != '1'
 				&& cub->map[coord_i[1]][coord_i[0]] != '0')
 				set_player_info(cub, coord_i);
-
 		}
 	}
 }
-
 
 void	moveplayer(t_cub *cub)
 {

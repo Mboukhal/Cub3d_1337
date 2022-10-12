@@ -3,106 +3,80 @@
 /*                                                        :::      ::::::::   */
 /*   3d_pjection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 15:37:19 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/12 16:46:40 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/10/12 18:42:37 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/game_action.h"
-#include <unistd.h>
 
-#define RAY_SIZE	WIN_W / NUM_RAYS
-
-static void cub_set_buffer(t_cub *cub,  int y, int i, int ty, int tx)
+static uint32_t	get_buffer(char *texture, int offset_y, int offset_x)
 {
-	uint32_t texelColor;
+	uint32_t	buffer;
+
+	buffer = ((uint32_t *)texture)[(TILE_SIZE * offset_y) + offset_x];
+	return (buffer);
+}
+
+static void	cub_set_buffer(t_cub *cub, int offset_x, int i, int y, int wsh)
+{
+	uint32_t	texel_color;
+	int			distance_from_top;
+	int			offset_y;
+
+	distance_from_top = (y + (wsh / 2)) - (WIN_H / 2);
+	offset_y = distance_from_top * ((float)TILE_SIZE / wsh);
 	if (cub->ray[i].was_hit_vertical)
-		texelColor = ((uint32_t*)cub->we_buf)[(cub->we_size * ty) + tx];
+		texel_color = get_buffer(cub->so_buf, offset_y, offset_x);
 	else
-		texelColor = ((uint32_t*)cub->no_buf)[(cub->no_size * ty) + tx];// ty = 3 tx =  20
-		
-	int pos = ((y * WIN_W) + i);
-	uint32_t *ptr = (uint32_t*)cub->layer1_buffer;
-	ptr[pos] = texelColor;
+		texel_color = get_buffer(cub->no_buf, offset_y, offset_x);
+	((uint32_t *)cub->layer1_buffer)[(WIN_W * y) + i] = texel_color;
+}
+
+static void loop_init(t_cub *cub, int *wsh, int *wtp, int *wbp, int x)
+{
+	float	perp_distance;
+	float	distance_proj_plane;
+	float	projected_wall_height;
+
+	perp_distance = cub->ray[x].distance
+		* cos(cub->ray[x].ray_angle - cub->player->rotationangle);
+	distance_proj_plane = (WIN_W / 2) / tan(FOV_ANGLE / 2);
+	projected_wall_height = (TILE_SIZE / perp_distance) * distance_proj_plane;
+	*wsh = (int)projected_wall_height;
+	*wtp = (WIN_H / 2) - ((*wsh) / 2);
+	*wtp = *wtp < 0 ? 0 : *wtp;
+	*wbp = (WIN_H / 2) + ((*wsh) / 2);
+	*wbp = *wbp > WIN_H ? WIN_H : *wbp;
 }
 
 void	generate_3d_projection(t_cub *cub)
 {
-	int 	i;
+	int 	x;
 	int 	y;
-	float 	perp_distance;
-	float 	distance_proj_plane;
-	float 	projected_wall_height;
 	int 	wall_strip_height;
 	int 	wall_top_pixel;
 	int 	wall_bottom_pixel;
-	int 	x;
+	int		texture_offset_x;
 
-	drow_floor_and_ceilling(cub);
-	x = 0;
-	i = 0;
-	while (i < NUM_RAYS)
+	x = -1;
+	while (++x < NUM_RAYS)
 	{
-		perp_distance = cub->ray[i].distance * cos(cub->ray[i].ray_angle - cub->player->rotationangle);
-		distance_proj_plane = (WIN_W / 2) / tan(FOV_ANGLE / 2);
-		projected_wall_height = (TILE_SIZE / perp_distance) * distance_proj_plane;
-		wall_strip_height = (int)projected_wall_height;
-		wall_top_pixel = (WIN_H / 2) -(wall_strip_height / 2);
-		wall_top_pixel = wall_top_pixel < 0 ? 0 : wall_top_pixel;
-		wall_bottom_pixel = (WIN_H / 2) + (wall_strip_height / 2);
-		wall_bottom_pixel = wall_bottom_pixel > WIN_H ? WIN_H : wall_bottom_pixel;
-		int textureOffsetX;
-		if (cub->ray[i].was_hit_vertical)
-            textureOffsetX = (int)cub->ray[i].wall_hit_y % TILE_SIZE;
-        else
-            textureOffsetX = (int)cub->ray[i].wall_hit_x % TILE_SIZE;
-			uint32_t texelColor;
-		y = wall_top_pixel;
+		loop_init (cub, &wall_strip_height,
+			&wall_top_pixel, &wall_bottom_pixel, x);
+		if (cub->ray[x].was_hit_vertical)
+			texture_offset_x = (int)cub->ray[x].wall_hit_y % TILE_SIZE;
+		else
+			texture_offset_x = (int)cub->ray[x].wall_hit_x % TILE_SIZE;
+		y = 0;
+		while (y < wall_top_pixel)
+			set_buffer(cub, (((y++) * (WIN_W * 4)) + (x * 4)), cub->cei);
 		while (y < wall_bottom_pixel)
-		{
-			int distanceFromTop = (y + (wall_strip_height / 2)) - (WIN_H / 2);
-            int textureOffsetY = distanceFromTop * ((float)TILE_SIZE / wall_strip_height);
-			if (cub->ray[i].was_hit_vertical)
-				texelColor = ((uint32_t*)cub->no_buf)[(TXT_W * textureOffsetY) + textureOffsetX];
-			else
-				texelColor = ((uint32_t*)cub->we_buf)[(TXT_W * textureOffsetY) + textureOffsetX];
-            ((uint32_t*)cub->layer1_buffer)[(WIN_W * y) + i] = texelColor;
-			y++;
-		}
-		i++;
+			cub_set_buffer(cub, texture_offset_x, x, y++, wall_strip_height);
+		while (y < WIN_H)
+			set_buffer(cub, (((y++) * (WIN_W * 4)) + (x * 4)), cub->flo);
 	}
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->layer1, 0, 0);
 }
-
-
-
-			// x = ((WIN_W * y) + i) ;
-			// cub_set_buffer(cub, x, y, i);
-			// // offset = i + (1000);
-			// x = ((WIN_W * y) +  (i * 3.2)) * 4;  //3.2));
-			// int pixel = ((WIN_W * y) + i) * 4;
-			// cub->layer1_buffer[(WIN_H * 2) + 1] = (color) & 0xFF;
-			// cub->layer1_buffer[(WIN_H * 2) + 2] = (color >> 8) & 0xFF;
-			// cub->layer1_buffer[(WIN_H * 2) + 3] = (color >> 16) & 0xFF;
-			// cub->layer1_buffer[(WIN_H * 2) + 4] = (color >> 24);
-			// if (1)//cub->ray[i].was_hit_vertical)
-			// {
-			// 	cub->layer1_buffer[x + 1] = (char)0;			// bleu
-			// 	cub->layer1_buffer[x + 2] = (char)255;		// red
-			// 	cub->layer1_buffer[x + 3] = (char)255;		// transparant
-			// 	cub->layer1_buffer[x + 4] = (char)255;		// green 
-			// 	cub->layer1_buffer[x + 5] = (char)0;			// bleu
-			// 	cub->layer1_buffer[x + 6] = (char)255;		// red
-			// 	cub->layer1_buffer[x + 7] = (char)255;		// transparant
-			// 	cub->layer1_buffer[x + 8] = (char)255;		// green 
-			// 	cub->layer1_buffer[x + 9] = (char)0;			// bleu
-			// 	cub->layer1_buffer[x + 10] = (char)255;		// red
-			// 	cub->layer1_buffer[x + 11] = (char)255;		// transparant
-			// 	cub->layer1_buffer[x + 12] = (char)255;		// green 
-			// 	cub->layer1_buffer[x + 13] = (char)0;			// bleu
-			// 	cub->layer1_buffer[x + 14] = (char)255;		// red
-			// 	cub->layer1_buffer[x + 15] = (char)255;		// transparant
-			// 	cub->layer1_buffer[x + 16] = (char)255;		// green
-			// }
