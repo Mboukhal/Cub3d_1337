@@ -6,7 +6,7 @@
 /*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 15:37:19 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/12 12:00:40 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/10/12 16:37:41 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,17 +61,16 @@ void	generate_3d_projection(t_cub *cub)
 		wall_bottom_pixel = wall_bottom_pixel > WIN_H ? WIN_H : wall_bottom_pixel;
 		int textureOffsetX;
 		if (cub->ray[i].was_hit_vertical)
-            textureOffsetX = (int)cub->ray[i].wall_hit_y % 20;
+            textureOffsetX = (int)cub->ray[i].wall_hit_y % TILE_SIZE;
         else
-            textureOffsetX = (int)cub->ray[i].wall_hit_x % 20;
+            textureOffsetX = (int)cub->ray[i].wall_hit_x % TILE_SIZE;
 		y = wall_top_pixel;
 		while (y < wall_bottom_pixel)
 		{
 			int distanceFromTop = (y + (wall_strip_height / 2)) - (WIN_H / 2);
-            int textureOffsetY = distanceFromTop * ((float)20 / wall_strip_height);
-         	// uint32_t texelColor = wallTexture[(TEXTURE_WIDTH * textureOffsetY) + textureOffsetX];
-			uint32_t *ptr = (uint32_t*)cub->layer1_buffer;
-            ptr[(WIN_W * y) + i] = 0xFF777777;
+            int textureOffsetY = distanceFromTop * ((float)TILE_SIZE / wall_strip_height);
+			uint32_t texelColor = ((uint32_t*)cub->no_buf)[(TXT_W * textureOffsetY) + textureOffsetX];
+            ((uint32_t*)cub->layer1_buffer)[(WIN_W * y) + i] = texelColor;
 			y++;
 		}
 		i++;
