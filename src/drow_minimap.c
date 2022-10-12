@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   drow_minimap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 18:33:51 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/11 12:23:40 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/12 10:25:56 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/game_action.h"
 
-// int	draw_l(t_cub *cub, int begin_x, int begin_y, int color)
 int	draw_line(t_cub *cub, int begin_x, int begin_y, int end_x, int end_y, int color)
 {
 	double	delta_x;

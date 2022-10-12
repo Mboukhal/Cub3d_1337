@@ -6,7 +6,7 @@
 /*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 15:37:19 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/12 09:25:10 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/10/12 11:07:05 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,11 @@
 static void cub_set_buffer(t_cub *cub,  int y, int i, int ty, int tx)
 {
 	uint32_t texelColor;
-	if (cub->ray[i].was_hit_vertical)
-		texelColor = ((uint32_t*)cub->we_buf)[(250 * ty) + tx ];
-	else
-		texelColor = ((uint32_t*)cub->no_buf)[(250 * ty) + tx ];
+	// if (cub->ray[i].was_hit_vertical)
+	// 	texelColor = ((uint32_t*)cub->we_buf)[(20 * ty) + tx ];
+	// else
+		texelColor = ((uint32_t*)cub->no_buf)[(( 20 * ty) + tx)];// ty = 3 tx =  20
+		// LOG(( 20 * ty) + tx, "( 20 * ty) + tx")
 	int pos = ((y * WIN_W) + i);
 	uint32_t *ptr = (uint32_t*)cub->layer1_buffer;
 	ptr[pos] = texelColor;
@@ -56,16 +57,16 @@ void	generate_3d_projection(t_cub *cub)
 		wall_bottom_pixel = wall_bottom_pixel > WIN_H ? WIN_H : wall_bottom_pixel;
 		int textureOffsetX;
 		if (cub->ray[i].was_hit_vertical)
-            textureOffsetX = (int)cub->ray[i].wall_hit_y % 250;
+            textureOffsetX = (int)cub->ray[i].wall_hit_y % 20;
         else
-            textureOffsetX = (int)cub->ray[i].wall_hit_x % 250;
+            textureOffsetX = (int)cub->ray[i].wall_hit_x % 20;
 		y = wall_top_pixel;
 		while (y < wall_bottom_pixel)
 		{
 			int distanceFromTop = (y + (wall_strip_height / 2)) - (WIN_H / 2);
-            int textureOffsetY = distanceFromTop * ((float)250 / wall_strip_height);
+            int textureOffsetY = distanceFromTop * ((float)20 / wall_strip_height);
             // set the color of the wall based on the color from the texture
-			cub_set_buffer(cub, y, i, textureOffsetY, i );
+			cub_set_buffer(cub, y, i, textureOffsetY, (i % 20));
 			y++;
 		}
 		i++;

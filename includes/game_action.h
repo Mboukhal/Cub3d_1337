@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_action.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 16:37:31 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/11 17:08:31 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/12 10:41:36 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@
 # define TWO_PI 			6.28318530
 # define FOV_ANGLE			(60 * (PI / 180))	
 # define TILE_SIZE			20
+# define TSIZE			    64
 
 # define LOG(x, s)			printf("%s:\t\t[%d]\n", s, x);
 # define LOGF(x, s)			printf("%s:\t\t[%f]\n", s, x);

@@ -6,7 +6,7 @@
 /*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 07:28:51 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/12 09:09:05 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/10/12 09:41:13 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,10 @@ typedef struct	s_cub
 	char		*we_buf;
 	char		*ea_buf;
 	char		*no_buf;
+	int			no_size;
+	int			so_size;
+	int			ea_size;
+	int			we_size;
 	int			size_line;
 }				t_cub;
 

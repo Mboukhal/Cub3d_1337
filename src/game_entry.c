@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_entry.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 09:01:42 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/11 17:13:34 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/12 09:39:09 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,13 @@ static void	load_imges_const(t_cub *cub, int *size)
 	cub->layer1 = mlx_new_image(cub->mlx, WIN_W, WIN_H);
 	cub->layer1_buffer = mlx_get_data_addr(cub->layer1, &i[1], &i[0], &i[2]);
 	cub->no_buf = mlx_get_data_addr(cub->image->no, &i[1], &i[0], &i[2]);
+	cub->no_size = i[0] / 4;
 	cub->so_buf = mlx_get_data_addr(cub->image->so, &i[1], &i[0], &i[2]);
+	cub->so_size = i[0] / 4;
 	cub->ea_buf = mlx_get_data_addr(cub->image->ea, &i[1], &i[0], &i[2]);
+	cub->ea_size = i[0] / 4;
 	cub->we_buf = mlx_get_data_addr(cub->image->we, &i[1], &i[0], &i[2]);
+	cub->we_size = i[0] / 4;
 	// LOG(i[1], "bpp")
 	// LOG(i[0], "size_line")
 	// LOG(i[2], "endian")
