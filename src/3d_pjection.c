@@ -6,7 +6,7 @@
 /*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 15:37:19 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/12 11:07:05 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/10/12 12:00:40 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,14 @@ static void cub_set_buffer(t_cub *cub,  int y, int i, int ty, int tx)
 	// if (cub->ray[i].was_hit_vertical)
 	// 	texelColor = ((uint32_t*)cub->we_buf)[(20 * ty) + tx ];
 	// else
-		texelColor = ((uint32_t*)cub->no_buf)[(( 20 * ty) + tx)];// ty = 3 tx =  20
-		// LOG(( 20 * ty) + tx, "( 20 * ty) + tx")
+		texelColor = ((uint32_t*)cub->no_buf)[(cub->no_size * ty) + tx];// ty = 3 tx =  20
+		
+		// LOG((20 * ty) + tx, "( 20 * ty) + tx")
+		// LOG(ty, "ty")
+		// LOG(tx, "tx")
+		// LOG(y, "y")
+		// if (i == 1)
+		// exit(0);
 	int pos = ((y * WIN_W) + i);
 	uint32_t *ptr = (uint32_t*)cub->layer1_buffer;
 	ptr[pos] = texelColor;
@@ -39,12 +45,10 @@ void	generate_3d_projection(t_cub *cub)
 	int 	wall_top_pixel;
 	int 	wall_bottom_pixel;
 	int 	x;
-	// uint32_t offset;
 
 	drow_floor_and_ceilling(cub);
 	x = 0;
 	i = 0;
-	// offset = 0;
 	while (i < NUM_RAYS)
 	{
 		perp_distance = cub->ray[i].distance * cos(cub->ray[i].ray_angle - cub->player->rotationangle);
@@ -65,8 +69,9 @@ void	generate_3d_projection(t_cub *cub)
 		{
 			int distanceFromTop = (y + (wall_strip_height / 2)) - (WIN_H / 2);
             int textureOffsetY = distanceFromTop * ((float)20 / wall_strip_height);
-            // set the color of the wall based on the color from the texture
-			cub_set_buffer(cub, y, i, textureOffsetY, (i % 20));
+         	// uint32_t texelColor = wallTexture[(TEXTURE_WIDTH * textureOffsetY) + textureOffsetX];
+			uint32_t *ptr = (uint32_t*)cub->layer1_buffer;
+            ptr[(WIN_W * y) + i] = 0xFF777777;
 			y++;
 		}
 		i++;

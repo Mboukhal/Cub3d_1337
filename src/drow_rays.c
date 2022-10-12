@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drow_rays.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:56:33 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/09 17:52:29 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/12 13:15:38 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	rander_reys(t_cub *cub)
 			color = 0x00FF00;
 		else
 			color = 0x00CCFF;
-		draw_line(cub, cub->px, cub->py,
-			cub->ray[i].wall_hit_x , cub->ray[i].wall_hit_y, color);
+		draw_line(cub, cub->px / SCAL, cub->py / SCAL,
+			cub->ray[i].wall_hit_x / SCAL, cub->ray[i].wall_hit_y / SCAL , color);
 		i++;
 	}
 }

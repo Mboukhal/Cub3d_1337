@@ -6,7 +6,7 @@
 /*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 18:33:51 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/12 10:25:56 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/10/12 13:15:07 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ static void	set_player_info(t_cub *cub, int *coord_i)
 	}
 	if (cub->key_minimap)
 		mlx_put_image_to_window(cub->mlx, cub->win, cub->image->empty,
-			TILE_SIZE * coord_i[0], TILE_SIZE * coord_i[1]);
+			(TILE_SIZE * coord_i[0]) / SCAL, (TILE_SIZE * coord_i[1]) / SCAL);
 }
 
 void	set_map(t_cub *cub, int mode)

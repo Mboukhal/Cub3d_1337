@@ -6,7 +6,7 @@
 /*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 16:37:31 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/12 10:41:36 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/10/12 13:19:22 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,17 @@
 # define L_ARROW_KEY		123
 # define R_ARROW_KEY		124
 
-# define ELEMENT_SIZE		250
-
 # define WIN_W				1600
 # define WIN_H				900
-
-# define MINI_BG			860
-# define FLT_MAX			3.402823466e+38F
 
 #define FALSE				0
 #define TRUE				1
 
 # define TWO_PI 			6.28318530
+# define FLT_MAX			3.402823466e+38F
 # define FOV_ANGLE			(60 * (PI / 180))	
-# define TILE_SIZE			20
-# define TSIZE			    64
+# define TILE_SIZE			64
+# define SCAL   			8
 
 # define LOG(x, s)			printf("%s:\t\t[%d]\n", s, x);
 # define LOGF(x, s)			printf("%s:\t\t[%f]\n", s, x);

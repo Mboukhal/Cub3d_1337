@@ -1,27 +1,15 @@
 /* XPM */
-static char *b8c6eb016e354b1eaeab29585db81a28PepvpHbZdCT96tRo[] = {
+static char *_7c09ee059fa4743b35680f5fea26b6ewqGIqMbH2jtTFaN4[] = {
 /* columns rows colors chars-per-pixel */
-"20 20 1 1 ",
+"8 8 1 1 ",
 "  c #E90040",
 /* pixels */
-"                    ",
-"                    ",
-"                    ",
-"                    ",
-"                    ",
-"                    ",
-"                    ",
-"                    ",
-"                    ",
-"                    ",
-"                    ",
-"                    ",
-"                    ",
-"                    ",
-"                    ",
-"                    ",
-"                    ",
-"                    ",
-"                    ",
-"                    "
+"        ",
+"        ",
+"        ",
+"        ",
+"        ",
+"        ",
+"        ",
+"        "
 };
