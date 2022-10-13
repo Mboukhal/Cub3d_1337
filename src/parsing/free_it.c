@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_it.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 21:49:21 by ahmaidi           #+#    #+#             */
-/*   Updated: 2022/09/08 18:43:20 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/10/13 08:36:29 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ void	free_it_split(char **s)
 
 void	free_cub(t_cub *cub)
 {
-	printf("size_tab == %d || size_map == %d\n", cub->size_tab, cub->size_map);
-	affiche_cub(cub);
 	while (cub->size_tab > 0)
 	{
 		free_it_split(cub->tab_txt_c[cub->size_tab - 1].splt);

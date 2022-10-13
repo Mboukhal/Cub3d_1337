@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 09:01:42 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/12 17:26:27 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/13 08:42:21 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,24 +82,18 @@ static void	load_imges(t_cub *c)
 
 void	update_image(t_cub *cub)
 {
-
-
-	// mlx_clear_window(cub->mlx, cub->win);
 	moveplayer(cub);
 	generate_3d_projection(cub);
 	if (cub->key_minimap)
 		rander_reys(cub);
-
 }
 
 void	start_game(t_cub *cub)
 {
-
 	cub->mlx = mlx_init();
 	load_imges(cub);
 	cub->win = mlx_new_window(cub->mlx, WIN_W, WIN_H, "CuB3D");
 	update_image(cub);
-
 	mlx_hook(cub->win, 2, 1, deal_key, cub);
 	mlx_hook(cub->win, EXIT_BOTTON, 0L, exit_game, cub);
 	mlx_loop(cub->mlx);

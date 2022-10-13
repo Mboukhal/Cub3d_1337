@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 12:55:20 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/12 18:31:57 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/13 08:38:26 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,6 @@ void	cast_ray(t_cub *cub, float ray_angle, int stripl)
 	float	vert_wall_hit_x = 0;
 	float	vert_wall_hit_y = 0;
 	int		vert_wall_content = 0;
-
-	
 	xintercept = floor(cub->px / TILE_SIZE ) * TILE_SIZE;
 	xintercept += is_ray_facing_right ? TILE_SIZE : 0;
 	yintercept = cub->py + (xintercept - cub->px) * tan(ray_angle);
