@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drow_minimap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 18:33:51 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/13 11:23:30 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/13 22:37:47 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 int	draw_line_from_player(t_cub *cub, int end_x, int end_y, int color)
 {
-	double	delta_x;
-	double	delta_y;
+	float	delta_x;
+	float	delta_y;
 	int		pixels;
-	double	pixel_x;
-	double	pixel_y;
+	float	pixel_x;
+	float	pixel_y;
 
 	delta_x = end_x - (cub->px / SCAL);
 	delta_y = end_y - (cub->py / SCAL);
@@ -59,7 +59,6 @@ static void	set_player(t_cub *cub)
 	int	player_size;
 	int	player_color;
 	int	i[2];
-	int	r;
 
 	player_size = 2;
 	player_color = 11605993;
@@ -68,11 +67,8 @@ static void	set_player(t_cub *cub)
 	{
 		i[1] = -1;
 		while (++i[1] < player_size)
-		{
-			r = i[0] + 3;
 			mlx_pixel_put(cub->mlx, cub->win,
 				cub->px + i[0], cub->py + i[1], player_color);
-		}
 	}
 }
 

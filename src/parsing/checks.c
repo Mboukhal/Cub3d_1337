@@ -6,7 +6,7 @@
 /*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 08:18:43 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/20 09:52:54 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/10/13 22:26:38 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	compare(char *s1, char *s2)
 		s2++;
 	if (!ft_strncmp(s1, s2, 2))
 	{
-		write(2, "Double Key\n", 11);
+		write(2, "float Key\n", 11);
 		ft_error();
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   transform_map.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 19:02:43 by ahmaidi           #+#    #+#             */
-/*   Updated: 2022/10/13 08:50:00 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/13 22:41:23 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,17 +49,6 @@ void	add_front_plus(t_cub **cub)
 	add_plus(cub, len);
 }
 
-static void	check_map_size(t_cub *cub, int i, int len)
-{
-	if (len > (WIN_W / (TILE_SIZE / SCAL)) || i > (WIN_H / (TILE_SIZE / SCAL)))
-	{
-		ft_putstr_fd("ERROR:\n\t\e[31mInvalid map size!\e[00m\n", 2);
-		exit(1);
-	}
-	cub->s_map[0] = len;
-	cub->s_map[1] = (int) i;
-}
-
 void	add_back(t_cub **cub, int len)
 {
 	size_t	i;
@@ -79,7 +68,8 @@ void	add_back(t_cub **cub, int len)
 		}
 		i++;
 	}
-	check_map_size(*cub, (int)i, len);
+	(*cub)->s_map[0] = len;
+	(*cub)->s_map[1] = (int) i;
 }
 
 void	add_back_plus(t_cub *cub)
