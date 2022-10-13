@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 09:26:45 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/13 08:56:05 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/13 09:51:12 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static void	ray_init(t_cub *cub)
 
 	cub->player->turnspeed = 10 * (PI / 180);
 	cub->size_line = 0;
+	cub->mouse_old = 0;
 	cub->key_minimap = 0;
 	cub->player->walkspeed = 15;
 	i = -1;

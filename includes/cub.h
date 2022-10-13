@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 07:28:51 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/12 18:42:17 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/13 09:51:32 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ typedef struct s_cub
 	char		side_of_player;
 	char		playerside;
 	int			bf_in;
+	int			mouse_old;
 	int			key_minimap;
 	int			flor_trgb[4];
 	int			ceill_trgb[4];

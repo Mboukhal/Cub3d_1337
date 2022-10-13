@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_entry.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 09:01:42 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/13 08:42:21 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/13 10:02:35 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,21 @@ void	update_image(t_cub *cub)
 		rander_reys(cub);
 }
 
+int	mouse_mouve(int x, int y,t_cub *cub)
+{
+	cub->player->turnspeed = 5 * (PI / 180);
+	if ((x >= 0 && x <= WIN_W) && (y >= 0 && y <= WIN_H))
+	{
+		if (x > cub->mouse_old)
+			key_rotate(cub, 1);
+		else if (x < cub->mouse_old)
+			key_rotate(cub, -1);
+	}
+	cub->mouse_old = x;
+	cub->player->turnspeed = 10 * (PI / 180);
+	return (0);
+}
+
 void	start_game(t_cub *cub)
 {
 	cub->mlx = mlx_init();
@@ -95,6 +110,7 @@ void	start_game(t_cub *cub)
 	cub->win = mlx_new_window(cub->mlx, WIN_W, WIN_H, "CuB3D");
 	update_image(cub);
 	mlx_hook(cub->win, 2, 1, deal_key, cub);
+	mlx_hook(cub->win, 6, 1L<<0, mouse_mouve, cub);
 	mlx_hook(cub->win, EXIT_BOTTON, 0L, exit_game, cub);
 	mlx_loop(cub->mlx);
 }
