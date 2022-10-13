@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   3d_pjection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 15:37:19 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/13 11:46:29 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/13 22:04:02 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,14 @@ static void	cub_set_buffer(t_cub *cub, int i, int y, int wsh)
 
 	distance_from_top = (y + (wsh / 2)) - (WIN_H / 2);
 	offset_y = distance_from_top * ((float)TILE_SIZE / wsh);
-	if (cub->ray[i].was_hit_vertical)
+	if (cub->ray[i].was_hit_vertical && (cub->px > cub->ray[i].wall_hit_x))
+		texel_color = get_buffer(cub->we_buf, offset_y, cub->texture_offset);
+	else if (cub->ray[i].was_hit_vertical)
+		texel_color = get_buffer(cub->ea_buf, offset_y, cub->texture_offset);
+	else if (!cub->ray[i].was_hit_vertical
+		&& (cub->py < cub->ray[i].wall_hit_y))
 		texel_color = get_buffer(cub->so_buf, offset_y, cub->texture_offset);
-	else
+	else if (!cub->ray[i].was_hit_vertical)
 		texel_color = get_buffer(cub->no_buf, offset_y, cub->texture_offset);
 	((uint32_t *)cub->layer1_buffer)[(WIN_W * y) + i] = texel_color;
 }
