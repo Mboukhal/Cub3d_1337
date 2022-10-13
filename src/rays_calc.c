@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays_calc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 12:55:20 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/13 22:26:38 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/10/13 21:29:17 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,36 +32,24 @@ void	cast_ray(t_cub *cub, float ray_angle, int stripl)
 {
 	cast_ray_init(cub);
 	ray_angle = normalize_angle(ray_angle);
-	if (ray_angle > 0 && ray_angle < PI)
-		cub->cs.is_ray_facing_down = 1;
+	cub->cs.is_ray_facing_down = ray_angle > 0 && ray_angle < PI;
 	cub->cs.is_ray_facing_up = !cub->cs.is_ray_facing_down;
-	if (ray_angle < 0.5 * PI || ray_angle > 1.5 * PI)
-		cub->cs.is_ray_facing_right = 1;
+	cub->cs.is_ray_facing_right = ray_angle < 0.5 * PI || ray_angle > 1.5 * PI;
 	cub->cs.is_ray_facing_left = !cub->cs.is_ray_facing_right;
-	cub->cs.yintercept = floor(cub->py / TILE_SIZE) * TILE_SIZE;
-	if (cub->cs.is_ray_facing_down)
-		cub->cs.yintercept += TILE_SIZE;
-	cub->cs.xintercept = cub->px
-		+ (cub->cs.yintercept - cub->py) / tan(ray_angle);
+	cub->cs.yintercept = floor(cub->py / TILE_SIZE ) * TILE_SIZE;
+	cub->cs.yintercept += cub->cs.is_ray_facing_down ? TILE_SIZE : 0;
+	cub->cs.xintercept = cub->px + (cub->cs.yintercept - cub->py) / tan(ray_angle);
 	cub->cs.ystep = TILE_SIZE;
-	if (cub->cs.is_ray_facing_up)
-		cub->cs.ystep *= -1;
-	else
-		cub->cs.ystep *= 1;
+	cub->cs.ystep *= cub->cs.is_ray_facing_up ? -1 : 1;
 	cub->cs.xstep = TILE_SIZE / tan(ray_angle);
-	if (cub->cs.is_ray_facing_left && cub->cs.xstep > 0)
-		cub->cs.xstep *= -1;
-	else
-		cub->cs.xstep *= 1;
-	if (cub->cs.is_ray_facing_right && cub->cs.xstep < 0)
-		cub->cs.xstep *= -1;
-	else
-		cub->cs.xstep *= 1;
+	cub->cs.xstep *= (cub->cs.is_ray_facing_left && cub->cs.xstep > 0) ? -1 : 1;
+	cub->cs.xstep *= (cub->cs.is_ray_facing_right && cub->cs.xstep < 0) ? -1 : 1;
 	float next_horz_touch_x = cub->cs.xintercept;
 	float next_horz_touch_y = cub->cs.yintercept;
 	
 	int map_x = cub->s_map[0] * TILE_SIZE;
-	int map_y = cub->s_map[1] * TILE_SIZE;	
+	int map_y = cub->s_map[1] * TILE_SIZE;
+
 	float x_to_check;
 	float y_to_check;
 	while (next_horz_touch_x >= 0 && next_horz_touch_x <= map_x && next_horz_touch_y >= 0 && next_horz_touch_y <= map_y)
@@ -87,14 +75,15 @@ void	cast_ray(t_cub *cub, float ray_angle, int stripl)
 	int		vert_wall_content = 0;
 	cub->cs.xintercept = floor(cub->px / TILE_SIZE ) * TILE_SIZE;
 	cub->cs.xintercept += cub->cs.is_ray_facing_right ? TILE_SIZE : 0;
-	cub->cs.yintercept = cub->py + (cub->cs.xintercept - cub->px) * tan(ray_angle);	
+	cub->cs.yintercept = cub->py + (cub->cs.xintercept - cub->px) * tan(ray_angle);
 	cub->cs.xstep = TILE_SIZE;
-	cub->cs.xstep *= cub->cs.is_ray_facing_left ? -1 : 1;	
+	cub->cs.xstep *= cub->cs.is_ray_facing_left ? -1 : 1;
 	cub->cs.ystep = TILE_SIZE * tan(ray_angle);
 	cub->cs.ystep *= (cub->cs.is_ray_facing_up && cub->cs.ystep > 0) ? -1 : 1;
 	cub->cs.ystep *= (cub->cs.is_ray_facing_down && cub->cs.ystep < 0) ? -1 : 1;
 	float next_vert_touch_x = cub->cs.xintercept;
-	float next_vert_touch_y = cub->cs.yintercept;	
+	float next_vert_touch_y = cub->cs.yintercept;
+
 	while (next_vert_touch_x >= 0 && next_vert_touch_x <= map_x && next_vert_touch_y >= 0 && next_vert_touch_y <= map_y)
 	{
 		x_to_check = next_vert_touch_x+ (cub->cs.is_ray_facing_left ? -1 : 1);
@@ -102,9 +91,9 @@ void	cast_ray(t_cub *cub, float ray_angle, int stripl)
 		if (is_it_hitt_wall(cub, x_to_check, y_to_check))
 		{
 			vert_wall_hit_x = next_vert_touch_x;
-	        vert_wall_hit_y = next_vert_touch_y;
+			vert_wall_hit_y = next_vert_touch_y;
 			fod_vert_wall_hit = TRUE;
-			break;
+			break ;
 		}
 		else
 		{
@@ -112,12 +101,18 @@ void	cast_ray(t_cub *cub, float ray_angle, int stripl)
 			next_vert_touch_y += cub->cs.ystep;
 		}
 	}
-	float horz_hit_distance = cub->cs.fod_hoz_wall_hit ? distance_between_points(
-		cub->px, cub->py, cub->cs.horz_wall_hit_x, cub->cs.horz_wall_hit_y)
-	: FLT_MAX;
-	float vert_hit_distance = fod_vert_wall_hit ? distance_between_points(
-		cub->px, cub->py, vert_wall_hit_x, vert_wall_hit_y)
-	: FLT_MAX;
+	float	horz_hit_distance;
+	if (cub->cs.fod_hoz_wall_hit)
+		horz_hit_distance = distance_between_points(cub->px, cub->py,
+				cub->cs.horz_wall_hit_x, cub->cs.horz_wall_hit_y);
+	else
+		horz_hit_distance = FLT_MAX;
+	float	vert_hit_distance;
+	if (fod_vert_wall_hit)
+		vert_hit_distance = distance_between_points(
+				cub->px, cub->py, vert_wall_hit_x, vert_wall_hit_y);
+	else
+		vert_hit_distance = FLT_MAX;
 	if (vert_hit_distance < horz_hit_distance)
 	{
 		cub->ray[stripl].distance = vert_hit_distance;
