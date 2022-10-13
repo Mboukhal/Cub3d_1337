@@ -6,16 +6,33 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 09:26:45 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/13 11:13:33 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/13 12:04:03 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub.h"
+#include "../../includes/game_action.h"
+
+void	cast_ray_init(t_cub *cub)
+{
+	cub->cs.xintercept = 0;
+	cub->cs.yintercept = 0;
+	cub->cs.xstep = 0;
+	cub->cs.ystep = 0;
+	cub->cs.is_ray_facing_down = 0;
+	cub->cs.is_ray_facing_up = 0;
+	cub->cs.is_ray_facing_right = 0;
+	cub->cs.is_ray_facing_left = 0;
+	cub->cs.fod_hoz_wall_hit = FALSE;
+	cub->cs.horz_wall_hit_x = 0;
+	cub->cs.horz_wall_hit_y = 0;
+	cub->cs.horz_wall_content = 0;
+}
 
 static void	ray_init(t_cub *cub)
 {
 	int	i;
 
+	cast_ray_init(cub);
 	cub->player->turnspeed = 10 * (PI / 180);
 	cub->mouse_old = 0;
 	cub->key_minimap = 0;
@@ -42,7 +59,6 @@ t_cub	*cub_init(void)
 	c->image = var_init(sizeof(t_image));
 	c->tab_txt_c = NULL;
 	c->map = NULL;
-	c->i = 0;
 	c->size_tab = 0;
 	c->size_map = 0;
 	c->in_map = 0;

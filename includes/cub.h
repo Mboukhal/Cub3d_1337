@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 07:28:51 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/13 11:13:36 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/13 11:51:22 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,22 @@ typedef struct s_txt_c
 	char	**splt;
 }	t_txt_c;
 
+typedef struct s_cast_ray
+{
+	float	xintercept;
+	float	yintercept;
+	float	xstep;
+	float	ystep;
+	int		is_ray_facing_down;
+	int		is_ray_facing_up;
+	int		is_ray_facing_right;
+	int		is_ray_facing_left;
+	int		fod_hoz_wall_hit;
+	float	horz_wall_hit_x;
+	float	horz_wall_hit_y;
+	int		horz_wall_content;
+}	t_cr;
+
 typedef struct s_cub
 {
 	void		*mlx;
@@ -85,9 +101,10 @@ typedef struct s_cub
 	t_image		*image;
 	t_player	*player;
 	t_ray		ray[NUM_RAYS];
+	t_cr		cs;
 	float		px;
 	float		py;
-	int			i;
+	int			texture_offset;
 	int			cei;
 	int			flo;
 	int			size_tab;

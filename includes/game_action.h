@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 16:37:31 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/13 09:02:40 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/13 11:54:44 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	key_w_s(t_cub *cub, int i);
 void	key_a(t_cub *cub);
 void	key_d(t_cub *cub);
 void	key_rotate(t_cub *cub, int i);
-int		draw_line(t_cub *cub, int begin_x, int begin_y, int end_x, int end_y, int color);
+int		draw_line_from_player(t_cub *cub, int end_x, int end_y, int color);
 float	normalize_angle(float angle);
 int		is_it_hitt_wall(t_cub *cub, float x, float y);
 void	cast_ray(t_cub *cub, float ra, int stripl);
@@ -56,5 +56,6 @@ void	drow_rays(t_cub *cub);
 void	rander_reys(t_cub *cub);
 void	generate_3d_projection(t_cub *cub);
 void	set_map(t_cub *cub, int mode);
+void	cast_ray_init(t_cub *cub);
 
 #endif

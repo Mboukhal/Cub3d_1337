@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:56:33 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/13 09:02:33 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/13 11:26:07 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ void	rander_reys(t_cub *cub)
 			color = 0x00FF00;
 		else
 			color = 0x00CCFF;
-		draw_line(cub, cub->px / SCAL, cub->py / SCAL,
-			cub->ray[i].wall_hit_x / SCAL,
+		draw_line_from_player(cub, cub->ray[i].wall_hit_x / SCAL,
 			cub->ray[i].wall_hit_y / SCAL, color);
 		i++;
 	}

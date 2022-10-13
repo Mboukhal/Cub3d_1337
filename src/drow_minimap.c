@@ -6,13 +6,13 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 18:33:51 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/12 18:44:36 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/13 11:23:30 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/game_action.h"
 
-int	draw_line(t_cub *cub, int begin_x, int begin_y, int end_x, int end_y, int color)
+int	draw_line_from_player(t_cub *cub, int end_x, int end_y, int color)
 {
 	double	delta_x;
 	double	delta_y;
@@ -20,13 +20,13 @@ int	draw_line(t_cub *cub, int begin_x, int begin_y, int end_x, int end_y, int co
 	double	pixel_x;
 	double	pixel_y;
 
-	delta_x = end_x - begin_x;
-	delta_y = end_y - begin_y;
+	delta_x = end_x - (cub->px / SCAL);
+	delta_y = end_y - (cub->py / SCAL);
 	pixels = sqrt((delta_x * delta_x) + (delta_y * delta_y));
 	delta_x /= pixels;
 	delta_y /= pixels;
-	pixel_x = begin_x;
-	pixel_y = begin_y;
+	pixel_x = (cub->px / SCAL);
+	pixel_y = (cub->py / SCAL);
 	while (pixels)
 	{
 		mlx_pixel_put(cub->mlx, cub->win, pixel_x, pixel_y, color);
@@ -112,26 +112,4 @@ void	set_map(t_cub *cub, int mode)
 				set_player_info(cub, coord_i);
 		}
 	}
-}
-
-void	moveplayer(t_cub *cub)
-{
-	float	movestep;
-
-	set_map(cub, 0);
-	cub->player->rotationangle = normalize_angle(cub->player->rotationangle);
-	cub->player->rotationangle += cub->player->turndirection * \
-	cub->player->turnspeed;
-	movestep = cub->player->walkdirection * cub->player->walkspeed;
-	if (!is_it_hitt_wall(cub, (cub->px + cos(cub->player->rotationangle \
-		+ cub->player->turnleft) * movestep), \
-		(cub->py + sin(cub->player->rotationangle \
-		+ cub->player->turnleft) * movestep)))
-	{
-		cub->px += cos(cub->player->rotationangle
-				+ cub->player->turnleft) * movestep;
-		cub->py += sin(cub->player->rotationangle
-				+ cub->player->turnleft) * movestep;
-	}
-	drow_rays(cub);
 }
