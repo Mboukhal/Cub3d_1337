@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 09:01:42 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/13 10:28:20 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/13 11:13:29 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@ static void	load_imges_const(t_cub *cub, int *size)
 	cub->so_buf = mlx_get_data_addr(cub->image->so, &i[1], &i[0], &i[2]);
 	cub->ea_buf = mlx_get_data_addr(cub->image->ea, &i[1], &i[0], &i[2]);
 	cub->we_buf = mlx_get_data_addr(cub->image->we, &i[1], &i[0], &i[2]);
-	cub->image->bg = mlx_xpm_file_to_image(cub->mlx,
-			"images/minimap_xmp/BgMinimap.xpm", &size[0], &size[1]);
 	cub->image->empty = mlx_xpm_file_to_image(cub->mlx,
 			"images/minimap_xmp/empty.xpm", &size[0], &size[1]);
 	cub->image->wall = mlx_xpm_file_to_image(cub->mlx,

@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 07:28:51 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/13 10:29:45 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/13 11:13:36 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,6 @@ typedef struct s_image
 	void	*ea;
 	void	*empty;
 	void	*wall;
-	void	*tmplet;
-	void	*bg;
 	char	**f;
 	char	**c;
 
@@ -110,7 +108,6 @@ typedef struct s_cub
 	char		*we_buf;
 	char		*ea_buf;
 	char		*no_buf;
-	int			size_line;
 }				t_cub;
 
 t_cub	*cub_init(void);

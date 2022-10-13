@@ -6,7 +6,7 @@
 #    By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/24 07:24:22 by mboukhal          #+#    #+#              #
-#    Updated: 2022/10/13 08:47:43 by mboukhal         ###   ########.fr        #
+#    Updated: 2022/10/13 11:14:46 by mboukhal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,7 +56,7 @@ re: fclean all
 
 run: all clean
 	@ reset
-	@ ./$(NAME) maps/map1.cub
+	@ ./$(NAME) utils/map1.cub
 	@ rm -rf .vscode
 	@ make fclean
 	@# echo 'for leaks >> while :; do leaks $(NAME); sleep 2; done [and add while(1) in last of main];'
