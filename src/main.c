@@ -3,14 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 07:28:01 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/10 15:38:38 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/10/13 10:09:37 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub.h"
+#include "../includes/game_action.h"
+
+void	update_image(t_cub *cub)
+{
+	moveplayer(cub);
+	generate_3d_projection(cub);
+	if (cub->key_minimap)
+		rander_reys(cub);
+}
 
 int	main(int ac, char **av)
 {

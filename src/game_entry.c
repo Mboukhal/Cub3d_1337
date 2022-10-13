@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_entry.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 09:01:42 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/13 10:02:35 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/10/13 10:28:20 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,9 @@ static void	load_imges_const(t_cub *cub, int *size)
 	cub->layer1 = mlx_new_image(cub->mlx, WIN_W, WIN_H);
 	cub->layer1_buffer = mlx_get_data_addr(cub->layer1, &i[1], &i[0], &i[2]);
 	cub->no_buf = mlx_get_data_addr(cub->image->no, &i[1], &i[0], &i[2]);
-	cub->no_size = i[0] / 4;
 	cub->so_buf = mlx_get_data_addr(cub->image->so, &i[1], &i[0], &i[2]);
-	cub->so_size = i[0] / 4;
 	cub->ea_buf = mlx_get_data_addr(cub->image->ea, &i[1], &i[0], &i[2]);
-	cub->ea_size = i[0] / 4;
 	cub->we_buf = mlx_get_data_addr(cub->image->we, &i[1], &i[0], &i[2]);
-	cub->we_size = i[0] / 4;
 	cub->image->bg = mlx_xpm_file_to_image(cub->mlx,
 			"images/minimap_xmp/BgMinimap.xpm", &size[0], &size[1]);
 	cub->image->empty = mlx_xpm_file_to_image(cub->mlx,
@@ -80,17 +76,9 @@ static void	load_imges(t_cub *c)
 	load_imges_const(c, size);
 }
 
-void	update_image(t_cub *cub)
+static int	mouse_mouve(int x, int y, t_cub *cub)
 {
-	moveplayer(cub);
-	generate_3d_projection(cub);
-	if (cub->key_minimap)
-		rander_reys(cub);
-}
-
-int	mouse_mouve(int x, int y,t_cub *cub)
-{
-	cub->player->turnspeed = 5 * (PI / 180);
+	cub->player->turnspeed = (PI / 180);
 	if ((x >= 0 && x <= WIN_W) && (y >= 0 && y <= WIN_H))
 	{
 		if (x > cub->mouse_old)
@@ -109,8 +97,8 @@ void	start_game(t_cub *cub)
 	load_imges(cub);
 	cub->win = mlx_new_window(cub->mlx, WIN_W, WIN_H, "CuB3D");
 	update_image(cub);
-	mlx_hook(cub->win, 2, 1, deal_key, cub);
-	mlx_hook(cub->win, 6, 1L<<0, mouse_mouve, cub);
+	mlx_hook(cub->win, 2, (1L << 0), deal_key, cub);
+	mlx_hook(cub->win, 6, (1L << 0), mouse_mouve, cub);
 	mlx_hook(cub->win, EXIT_BOTTON, 0L, exit_game, cub);
 	mlx_loop(cub->mlx);
 }

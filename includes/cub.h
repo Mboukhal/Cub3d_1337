@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 07:28:51 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/13 09:51:32 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/10/13 10:29:45 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,10 +110,6 @@ typedef struct s_cub
 	char		*we_buf;
 	char		*ea_buf;
 	char		*no_buf;
-	int			no_size;
-	int			so_size;
-	int			ea_size;
-	int			we_size;
 	int			size_line;
 }				t_cub;
 
@@ -130,7 +126,6 @@ int		get_texture(char *str, t_cub **cub, int i);
 int		get_color(char *str, t_cub **cub, int i);
 void	free_it_split(char **s);
 void	free_cub(t_cub *cub);
-void	affiche_cub(t_cub *cub);
 void	allocate(t_cub **cub, char **str, int type);
 void	remove_last_nl(t_cub **cub);
 int		check_up_down_walls(char *s1, char *s2);
