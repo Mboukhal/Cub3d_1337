@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 16:37:31 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/12 18:41:28 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/13 09:02:40 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@
 
 # define TWO_PI 			6.28318530
 # define FLT_MAX			3.402823466e+38F
-# define FOV_ANGLE			(60 * (PI / 180))
 # define TILE_SIZE			64
 # define SCAL   			8
 

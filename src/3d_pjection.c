@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 15:37:19 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/12 18:42:37 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/13 09:02:25 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void loop_init(t_cub *cub, int *wsh, int *wtp, int *wbp, int x)
 
 	perp_distance = cub->ray[x].distance
 		* cos(cub->ray[x].ray_angle - cub->player->rotationangle);
-	distance_proj_plane = (WIN_W / 2) / tan(FOV_ANGLE / 2);
+	distance_proj_plane = (WIN_W / 2) / tan((60 * (PI / 180)) / 2);
 	projected_wall_height = (TILE_SIZE / perp_distance) * distance_proj_plane;
 	*wsh = (int)projected_wall_height;
 	*wtp = (WIN_H / 2) - ((*wsh) / 2);

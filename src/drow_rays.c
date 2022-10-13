@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:56:33 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/13 08:55:07 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/13 09:02:33 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@ void	drow_rays(t_cub *cub)
 	float	ra;
 	int		stripl;
 
-	ra = cub->player->rotationangle - (FOV_ANGLE / 2);
+	ra = cub->player->rotationangle - ((60 * (PI / 180)) / 2);
 	stripl = 0;
 	while (stripl < NUM_RAYS)
 	{
 		cast_ray(cub, ra, stripl);
-		ra += FOV_ANGLE / NUM_RAYS;
+		ra += (60 * (PI / 180)) / NUM_RAYS;
 		stripl++;
 	}
 }
