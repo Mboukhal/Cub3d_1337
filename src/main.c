@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 07:28:01 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/13 22:34:36 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/10/13 23:42:01 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	moveplayer(t_cub *cub)
 {
 	float	movestep;
 
-	set_map(cub, 0);
 	cub->player->rotationangle = normalize_angle(cub->player->rotationangle);
 	cub->player->rotationangle += cub->player->turndirection * \
 	cub->player->turnspeed;
@@ -32,14 +31,6 @@ void	moveplayer(t_cub *cub)
 				+ cub->player->turnleft) * movestep;
 	}
 	drow_rays(cub);
-}
-
-void	update_image(t_cub *cub)
-{
-	moveplayer(cub);
-	generate_3d_projection(cub);
-	if (cub->key_minimap)
-		rander_reys(cub);
 }
 
 int	main(int ac, char **av)

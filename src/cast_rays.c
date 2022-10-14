@@ -1,35 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   drow_rays.c                                        :+:      :+:    :+:   */
+/*   cast_rays.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:56:33 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/13 22:26:38 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/10/13 23:45:32 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/game_action.h"
-
-void	rander_reys(t_cub *cub)
-{
-	int		i;
-	int		color;
-
-	set_map(cub, 1);
-	i = 0;
-	while (i < NUM_RAYS)
-	{
-		if (cub->ray[i].was_hit_vertical)
-			color = 0x00FF00;
-		else
-			color = 0x00CCFF;
-		draw_line_from_player(cub, cub->ray[i].wall_hit_x / SCAL,
-			cub->ray[i].wall_hit_y / SCAL, color);
-		i++;
-	}
-}
 
 void	drow_rays(t_cub *cub)
 {

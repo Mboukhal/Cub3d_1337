@@ -3,26 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   key_func.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 16:13:43 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/13 22:34:19 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/10/14 01:08:28 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/game_action.h"
-
-void	minimap_manip(t_cub *cub)
-{
-	if (cub->key_minimap)
-	{
-		cub->key_minimap = 0;
-		update_image(cub);
-		return ;
-	}
-	cub->key_minimap = 1;
-	update_image(cub);
-}
 
 void	key_w_s(t_cub *cub, int i)
 {

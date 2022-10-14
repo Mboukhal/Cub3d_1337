@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   drow_minimap.c                                     :+:      :+:    :+:   */
+/*   init_player_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 18:33:51 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/13 22:37:47 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/10/14 01:12:28 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	is_it_hitt_wall(t_cub *cub, float x, float y)
 	return (0);
 }
 
-static void	set_player(t_cub *cub)
+static void	set_player_bo(t_cub *cub)
 {
 	int	player_size;
 	int	player_color;
@@ -72,7 +72,7 @@ static void	set_player(t_cub *cub)
 	}
 }
 
-static void	set_player_info(t_cub *cub, int *coord_i)
+static void	set_player_info_bo(t_cub *cub, int *coord_i)
 {
 	cub->playerside = cub->map[coord_i[1]][coord_i[0]];
 	if (!cub->px && !cub->py)
@@ -80,32 +80,44 @@ static void	set_player_info(t_cub *cub, int *coord_i)
 		cub->px = (TILE_SIZE * coord_i[0]) + TILE_SIZE / 2;
 		cub->py = (TILE_SIZE * coord_i[1]) + TILE_SIZE / 2;
 	}
-	if (cub->key_minimap)
-		mlx_put_image_to_window(cub->mlx, cub->win, cub->image->empty,
-			(TILE_SIZE * coord_i[0]) / SCAL, (TILE_SIZE * coord_i[1]) / SCAL);
 }
 
-void	set_map(t_cub *cub, int mode)
+void	set_map_bo(t_cub *cub, int mode)
 {
 	int		coord_i[2];
 
-	coord_i[0] = -1;
-	while (++coord_i[0] < cub->s_map[0])
+	coord_i[0] = 0;
+	while (coord_i[0] < cub->s_map[0])
 	{
-		coord_i[1] = -1;
-		while (++coord_i[1] < cub->s_map[1])
+		coord_i[1] = 0;
+		while (coord_i[1] < cub->s_map[1])
 		{
-			if (mode
-				&& cub->map[coord_i[1]][coord_i[0]] == '0' && cub->key_minimap)
-				put_image(cub, coord_i, 1);
-			else if (mode
-				&& cub->map[coord_i[1]][coord_i[0]] == '1' && cub->key_minimap)
-				put_image(cub, coord_i, 0);
-			else if (cub->map[coord_i[1]][coord_i[0]] != '+'
+			if (cub->map[coord_i[1]][coord_i[0]] != '+'
 				&& cub->map[coord_i[1]][coord_i[0]] != ' '
 				&& cub->map[coord_i[1]][coord_i[0]] != '1'
 				&& cub->map[coord_i[1]][coord_i[0]] != '0')
-				set_player_info(cub, coord_i);
+				set_player_info_bo(cub, coord_i);
+			coord_i[1]++;
 		}
+		coord_i[0]++;
+	}
+}
+
+void	rander_reys(t_cub *cub)
+{
+	int		i;
+	int		color;
+
+	set_map_bo(cub, 1);
+	i = 0;
+	while (i < NUM_RAYS)
+	{
+		if (cub->ray[i].was_hit_vertical)
+			color = 0x00FF00;
+		else
+			color = 0x00CCFF;
+		draw_line_from_player(cub, cub->ray[i].wall_hit_x / SCAL,
+			cub->ray[i].wall_hit_y / SCAL, color);
+		i++;
 	}
 }

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game_entry.c                                       :+:      :+:    :+:   */
+/*   game_entry_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/24 09:01:42 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/14 01:11:05 by mboukhal         ###   ########.fr       */
+/*   Created: 2022/10/13 23:11:53 by mboukhal          #+#    #+#             */
+/*   Updated: 2022/10/14 01:05:49 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/game_action.h"
+#include "../includes/part_bonus.h"
 
 static void	set_color(t_cub *c, int index, int *size)
 {
@@ -72,7 +72,7 @@ static void	load_imges(t_cub *c)
 
 void	update_image(t_cub *cub)
 {
-	set_map(cub, 0);
+	set_map_bo(cub, 0);
 	moveplayer(cub);
 	generate_3d_projection(cub);
 }
@@ -83,7 +83,8 @@ void	start_game(t_cub *cub)
 	load_imges(cub);
 	cub->win = mlx_new_window(cub->mlx, WIN_W, WIN_H, "CuB3D");
 	update_image(cub);
-	mlx_hook(cub->win, 2, (1L << 0), deal_key, cub);
+	mlx_hook(cub->win, 2, (1L << 0), deal_key_bo, cub);
+	mlx_hook(cub->win, 6, (1L << 0), mouse_mouve, cub);
 	mlx_hook(cub->win, EXIT_BOTTON, 0L, exit_game, cub);
 	mlx_loop(cub->mlx);
 }

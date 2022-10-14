@@ -1,47 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_manip.c                                        :+:      :+:    :+:   */
+/*   mouse_move_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/20 20:38:14 by ahmaidi           #+#    #+#             */
-/*   Updated: 2022/10/14 01:05:58 by mboukhal         ###   ########.fr       */
+/*   Created: 2022/10/13 23:04:58 by mboukhal          #+#    #+#             */
+/*   Updated: 2022/10/14 01:12:38 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/game_action.h"
+#include "../includes/part_bonus.h"
 
-int	exit_game(t_cub *cub)
+int	mouse_mouve(int x, int y, t_cub *cub)
 {
-	int	i;
-
-	mlx_destroy_image(cub->mlx, cub->image->ea);
-	mlx_destroy_image(cub->mlx, cub->image->so);
-	mlx_destroy_image(cub->mlx, cub->image->we);
-	mlx_destroy_image(cub->mlx, cub->image->no);
-	mlx_destroy_window(cub->mlx, cub->win);
-	i = -1;
-	while (cub->map[++i])
-		free_it(cub->map[i]);
-	free(cub->image);
-	exit(EXIT_SUCCESS);
-	return (EXIT_SUCCESS);
+	cub->player->turnspeed = (PI / 180);
+	if ((x >= 0 && x <= WIN_W) && (y >= 0 && y <= WIN_H))
+	{
+		if (x > cub->mouse_old)
+			key_rotate(cub, 1);
+		else if (x < cub->mouse_old)
+			key_rotate(cub, -1);
+	}
+	cub->mouse_old = x;
+	cub->player->turnspeed = 10 * (PI / 180);
+	return (0);
 }
 
-void	key_rotate_right(t_cub *cub)
-{
-	cub->player->turndirection = 1;
-	update_image(cub);
-}
-
-void	key_rotate_left(t_cub *cub)
-{
-	cub->player->turndirection = -1;
-	update_image(cub);
-}
-
-int	deal_key(int key, t_cub *cub)
+int	deal_key_bo(int key, t_cub *cub)
 {
 	if (key == 53)
 		exit_game(cub);

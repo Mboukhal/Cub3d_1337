@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 09:26:45 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/13 12:04:03 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/14 01:07:59 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ static void	ray_init(t_cub *cub)
 	cast_ray_init(cub);
 	cub->player->turnspeed = 10 * (PI / 180);
 	cub->mouse_old = 0;
-	cub->key_minimap = 0;
 	cub->player->walkspeed = 15;
 	i = -1;
 	while (++i < NUM_RAYS)
