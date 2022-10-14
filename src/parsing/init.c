@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 09:26:45 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/14 01:07:59 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/14 16:30:50 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 void	cast_ray_init(t_cub *cub)
 {
+	cub->cs.fod_vert_wall_hit = FALSE;
+	cub->cs.vert_wall_hit_x = 0;
+	cub->cs.vert_wall_hit_y = 0;
 	cub->cs.xintercept = 0;
 	cub->cs.yintercept = 0;
 	cub->cs.xstep = 0;
@@ -25,7 +28,6 @@ void	cast_ray_init(t_cub *cub)
 	cub->cs.fod_hoz_wall_hit = FALSE;
 	cub->cs.horz_wall_hit_x = 0;
 	cub->cs.horz_wall_hit_y = 0;
-	cub->cs.horz_wall_content = 0;
 }
 
 static void	ray_init(t_cub *cub)

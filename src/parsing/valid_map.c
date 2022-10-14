@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   valid_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 21:23:06 by ahmaidi           #+#    #+#             */
-/*   Updated: 2022/09/20 09:05:53 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/10/14 16:30:10 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub.h"
+#include "../../includes/game_action.h"
 
 int	check(char c)
 {

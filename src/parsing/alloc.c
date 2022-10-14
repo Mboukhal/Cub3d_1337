@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   alloc.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 08:52:50 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/09/20 09:05:16 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/10/14 16:29:46 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub.h"
+#include "../../includes/game_action.h"
 
 void	*var_init(int size)
 {

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_texture_color.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 21:46:11 by ahmaidi           #+#    #+#             */
-/*   Updated: 2022/10/10 23:20:29 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/10/14 16:30:00 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub.h"
+#include "../../includes/game_action.h"
 
 void	allocate(t_cub **cub, char **str, int type)
 {

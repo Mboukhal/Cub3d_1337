@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   check_str.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 17:53:06 by ahmaidi           #+#    #+#             */
-/*   Updated: 2022/09/08 18:42:17 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/10/14 16:29:50 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub.h"
+#include "../../includes/game_action.h"
 
 void	check_str_valid(char *str)
 {

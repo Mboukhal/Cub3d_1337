@@ -6,36 +6,11 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 18:33:51 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/13 23:46:46 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/14 16:31:46 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/game_action.h"
-
-// int	draw_line_from_player(t_cub *cub, int end_x, int end_y, int color)
-// {
-// 	float	delta_x;
-// 	float	delta_y;
-// 	int		pixels;
-// 	float	pixel_x;
-// 	float	pixel_y;
-
-// 	delta_x = end_x - (cub->px / SCAL);
-// 	delta_y = end_y - (cub->py / SCAL);
-// 	pixels = sqrt((delta_x * delta_x) + (delta_y * delta_y));
-// 	delta_x /= pixels;
-// 	delta_y /= pixels;
-// 	pixel_x = (cub->px / SCAL);
-// 	pixel_y = (cub->py / SCAL);
-// 	while (pixels)
-// 	{
-// 		mlx_pixel_put(cub->mlx, cub->win, pixel_x, pixel_y, color);
-// 		pixel_x += delta_x;
-// 		pixel_y += delta_y;
-// 		--pixels;
-// 	}
-// 	return (0);
-// }
 
 int	is_it_hitt_wall(t_cub *cub, float x, float y)
 {

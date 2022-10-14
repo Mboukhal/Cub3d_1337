@@ -6,7 +6,7 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 07:28:51 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/14 01:07:52 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/14 16:28:09 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,13 @@ typedef struct s_cast_ray
 	int		fod_hoz_wall_hit;
 	float	horz_wall_hit_x;
 	float	horz_wall_hit_y;
-	int		horz_wall_content;
+	float	x_to_check;
+	float	y_to_check;
+	int		map_x;
+	int		map_y;
+	int		fod_vert_wall_hit;
+	float	vert_wall_hit_x;
+	float	vert_wall_hit_y;
 }	t_cr;
 
 typedef struct s_cub
@@ -146,17 +152,5 @@ void	ft_error(void);
 int		check_charactre(char *str, t_cub **cub);
 void	remove_last_spaces(char **str);
 void	filling_map(t_cub **cub, char *str);
-void	add_plus(t_cub **cub, int j);
-void	add_front_plus(t_cub **cub);
-void	add_back_plus(t_cub *cub);
-void	add_back(t_cub **cub, int len);
-int		check(char c);
-int		check_around_zero(t_cub **cub);
-void	check_map(t_cub **cub);
-void	check_str_valid(char *str);
-void	check_nbr_vrg(char *str);
-int		wrong_color(void);
-int		create_trgb(int *rgb);
-void	side_of_player(t_cub *cub);
 
 #endif /* __CUB_H__ */

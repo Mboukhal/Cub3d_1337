@@ -6,36 +6,11 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 18:33:51 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/14 01:12:28 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/14 16:31:31 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/game_action.h"
-
-int	draw_line_from_player(t_cub *cub, int end_x, int end_y, int color)
-{
-	float	delta_x;
-	float	delta_y;
-	int		pixels;
-	float	pixel_x;
-	float	pixel_y;
-
-	delta_x = end_x - (cub->px / SCAL);
-	delta_y = end_y - (cub->py / SCAL);
-	pixels = sqrt((delta_x * delta_x) + (delta_y * delta_y));
-	delta_x /= pixels;
-	delta_y /= pixels;
-	pixel_x = (cub->px / SCAL);
-	pixel_y = (cub->py / SCAL);
-	while (pixels)
-	{
-		mlx_pixel_put(cub->mlx, cub->win, pixel_x, pixel_y, color);
-		pixel_x += delta_x;
-		pixel_y += delta_y;
-		--pixels;
-	}
-	return (0);
-}
 
 int	is_it_hitt_wall(t_cub *cub, float x, float y)
 {
@@ -100,24 +75,5 @@ void	set_map_bo(t_cub *cub, int mode)
 			coord_i[1]++;
 		}
 		coord_i[0]++;
-	}
-}
-
-void	rander_reys(t_cub *cub)
-{
-	int		i;
-	int		color;
-
-	set_map_bo(cub, 1);
-	i = 0;
-	while (i < NUM_RAYS)
-	{
-		if (cub->ray[i].was_hit_vertical)
-			color = 0x00FF00;
-		else
-			color = 0x00CCFF;
-		draw_line_from_player(cub, cub->ray[i].wall_hit_x / SCAL,
-			cub->ray[i].wall_hit_y / SCAL, color);
-		i++;
 	}
 }

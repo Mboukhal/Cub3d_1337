@@ -6,11 +6,11 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 21:49:21 by ahmaidi           #+#    #+#             */
-/*   Updated: 2022/10/13 08:36:29 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/14 16:29:57 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub.h"
+#include "../../includes/game_action.h"
 
 void	free_it_split(char **s)
 {

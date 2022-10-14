@@ -6,11 +6,11 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 18:49:29 by ahmaidi           #+#    #+#             */
-/*   Updated: 2022/10/14 00:09:13 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/14 16:30:04 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub.h"
+#include "../../includes/game_action.h"
 
 int	find_texture_or_colors(char *str, t_cub **cub)
 {

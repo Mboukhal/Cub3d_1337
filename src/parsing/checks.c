@@ -6,11 +6,11 @@
 /*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 08:18:43 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/14 00:07:59 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/14 16:29:54 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub.h"
+#include "../../includes/game_action.h"
 
 void	check_exteniton(char *file, char *str)
 {

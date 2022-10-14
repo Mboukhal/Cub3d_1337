@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_action.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 16:37:31 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/13 22:26:38 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/10/14 16:31:26 by mboukhal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define GAME_ACTION_H
 
 # include "cub.h"
+# include "../includes/rays.h"
 
 # define UP_KEY				13
 # define DOWN_KEY			1
@@ -48,7 +49,6 @@ void	key_w_s(t_cub *cub, int i);
 void	key_a(t_cub *cub);
 void	key_d(t_cub *cub);
 void	key_rotate(t_cub *cub, int i);
-int		draw_line_from_player(t_cub *cub, int end_x, int end_y, int color);
 float	normalize_angle(float angle);
 int		is_it_hitt_wall(t_cub *cub, float x, float y);
 void	cast_ray(t_cub *cub, float ra, int stripl);
@@ -57,5 +57,17 @@ void	rander_reys(t_cub *cub);
 void	generate_3d_projection(t_cub *cub);
 void	set_map(t_cub *cub, int mode);
 void	cast_ray_init(t_cub *cub);
+void	add_plus(t_cub **cub, int j);
+void	add_front_plus(t_cub **cub);
+void	add_back_plus(t_cub *cub);
+void	add_back(t_cub **cub, int len);
+int		check(char c);
+int		check_around_zero(t_cub **cub);
+void	check_map(t_cub **cub);
+void	check_str_valid(char *str);
+void	check_nbr_vrg(char *str);
+int		wrong_color(void);
+int		create_trgb(int *rgb);
+void	side_of_player(t_cub *cub);
 
 #endif
