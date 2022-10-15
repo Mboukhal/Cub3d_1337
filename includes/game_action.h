@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_action.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 16:37:31 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/14 16:31:26 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/15 14:11:51 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	cast_ray(t_cub *cub, float ra, int stripl);
 void	drow_rays(t_cub *cub);
 void	rander_reys(t_cub *cub);
 void	generate_3d_projection(t_cub *cub);
-void	set_map(t_cub *cub, int mode);
+void	set_map(t_cub *cub);
 void	cast_ray_init(t_cub *cub);
 void	add_plus(t_cub **cub, int j);
 void	add_front_plus(t_cub **cub);

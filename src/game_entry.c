@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_entry.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 09:01:42 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/14 01:11:05 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/15 14:12:25 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	set_color(t_cub *c, int index, int *size)
 	}
 }
 
-static void	load_imges_const(t_cub *cub, int *size)
+static void	load_imges_const(t_cub *cub)
 {
 	int		i[3];
 
@@ -67,12 +67,12 @@ static void	load_imges(t_cub *c)
 		else if (c->tab_txt_c[i].type == FLOOR || c->tab_txt_c[i].type == CIEL)
 			set_color(c, i, size);
 	}
-	load_imges_const(c, size);
+	load_imges_const(c);
 }
 
 void	update_image(t_cub *cub)
 {
-	set_map(cub, 0);
+	set_map(cub);
 	moveplayer(cub);
 	generate_3d_projection(cub);
 }

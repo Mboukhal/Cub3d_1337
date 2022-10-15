@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_str.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 17:53:06 by ahmaidi           #+#    #+#             */
-/*   Updated: 2022/10/14 16:29:50 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/14 19:17:06 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	check_str_valid(char *str)
 	}
 	if (str[i] != '\0')
 	{
+		write(2, "ERROR\n", 6);
 		write(2, "texture not valid\n", 18);
 		ft_error();
 	}
@@ -45,6 +46,7 @@ void	check_nbr_vrg(char *str)
 	}
 	if (nbr_vrg != 2)
 	{
+		write(2, "ERROR\n", 6);
 		write(2, "nbre of comma not equal three\n", 30);
 		ft_error();
 	}
@@ -52,6 +54,8 @@ void	check_nbr_vrg(char *str)
 
 int	wrong_color(void)
 {
+	write(2, "ERROR\n", 6);
 	write(2, "The color's value doesn't include to 0-255\n", 43);
+	ft_error();
 	return (0);
 }

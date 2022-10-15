@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   alloc.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 08:52:50 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/14 16:29:46 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/15 14:08:04 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,24 +34,19 @@ void	free_it(void *ptr)
 	free(ptr);
 }
 
-void	*ft_realloc(void *old_alloc, size_t old_size, size_t new_size)
+void	*ft_alloc(void *old_ptr, int old_size, int new_size)
 {
-	unsigned char	*old_alloc_t;
-	unsigned char	*new_alloc;
-	size_t			i;
+	unsigned char	*ptr;
+	int				i;
 
-	i = 0;
-	if (old_alloc == NULL)
+	i = -1;
+	if (old_ptr == NULL)
 		return (malloc(new_size));
-	old_alloc_t = (unsigned char *)old_alloc;
-	new_alloc = (unsigned char *)malloc(new_size);
-	if (new_alloc == NULL)
+	ptr = (unsigned char *)malloc(new_size);
+	if (ptr == NULL)
 		return (NULL);
-	while (i < old_size && i < new_size)
-	{
-		new_alloc[i] = old_alloc_t[i];
-		i++;
-	}
-	free(old_alloc);
-	return (new_alloc);
+	while (++i < old_size && i < new_size)
+		ptr[i] = ((unsigned char *)old_ptr)[i];
+	free(old_ptr);
+	return (ptr);
 }

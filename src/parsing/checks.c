@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checks.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 08:18:43 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/14 16:29:54 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/14 19:19:06 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	check_exteniton(char *file, char *str)
 	size = ft_strlen(file);
 	if (ft_strncmp(&file[size - 4], str, 4))
 	{
+		write(2, "ERROR\n", 6);
 		ft_putstr_fd("ERROR\n\t\e[0;31m", STDERR_FILENO);
 		ft_putstr_fd(file, STDERR_FILENO);
 		ft_putstr_fd(": is not a \"", STDERR_FILENO);
@@ -36,7 +37,8 @@ void	compare(char *s1, char *s2)
 		s2++;
 	if (!ft_strncmp(s1, s2, 2))
 	{
-		write(2, "float Key\n", 11);
+		write(2, "ERROR\n", 6);
+		write(2, "float Key\n", 10);
 		ft_error();
 	}
 }
@@ -55,6 +57,7 @@ void	parse_it(t_cub **cub, char **str, char **str_depl, int *in_map)
 		*in_map += find_texture_or_colors(*str, cub);
 		if ((*in_map == prev && *in_map != 6))
 		{
+			write(2, "ERROR\n", 6);
 			write(2, "nbre of textures not equal five\n", 32);
 			ft_error();
 		}

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+         #
+#    By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/24 07:24:22 by mboukhal          #+#    #+#              #
-#    Updated: 2022/10/14 11:55:30 by mboukhal         ###   ########.fr        #
+#    Updated: 2022/10/15 14:14:28 by ahmaidi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ OBJB				= $(CBONUS:.c=.o)
 LIB_EXT_MAKE 		= make $@ -C $(S)libft
 
 .c.o:
-	@ $(CC) -c $< -o $@
+	@ $(CC) $(OPTION) -c $< -o $@
 
 $(NAME): $(OBJ)
 	@ make -C $(S)libft
@@ -72,16 +72,17 @@ fclean: clean
 re: fclean all
 
 run: all clean
-	@ reset
+	@ clear
+	@ echo "MANDATORY"
 	@ ./$(NAME) utils/map1.cub
 	@ rm -rf .vscode
 	@ make fclean
 
 brun: bonus clean
-	@ reset
+	@ clear
 	@ echo "BONUS"
 	@ ./$(BONUS) utils/map1.cub
 	@ rm -rf .vscode
 	@ make fclean
 
-.PHONY: re fclean all clean bonus
+.PHONY: re fclean all clean bonus brun run

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_texture_color.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 21:46:11 by ahmaidi           #+#    #+#             */
-/*   Updated: 2022/10/14 16:30:00 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/15 14:10:09 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	allocate(t_cub **cub, char **str, int type)
 {
 	(*cub)->size_tab += 1;
-	(*cub)->tab_txt_c = ft_realloc((*cub)->tab_txt_c, sizeof(t_txt_c) * \
+	(*cub)->tab_txt_c = ft_alloc((*cub)->tab_txt_c, sizeof(t_txt_c) * \
 	(*cub)->size_tab - 1, sizeof(t_txt_c) * (*cub)->size_tab);
 	(*cub)->tab_txt_c[(*cub)->size_tab - 1].splt = str;
 	(*cub)->tab_txt_c[(*cub)->size_tab - 1].type = type;
@@ -60,11 +60,18 @@ int	get_texture(char *str, t_cub **cub, int i)
 int	ft_isnumber(char *str)
 {
 	int	i;
+	int	j;
 
+	j = 0;
 	i = 0;
-	while (str[i])
+	while (str[(int)ft_strlen(str) - j - 1] == ' '
+		|| str[(int)ft_strlen(str) - j - 1] == '\t')
+		j++;
+	while (str[i] == ' ' || str[i] == '\t')
+		i++;
+	while (i < ((int)ft_strlen(str) - j))
 	{
-		if (str[i] == ' ' || str[i] == '\t' || str[i] == '+')
+		if (str[i] == '+')
 		{
 			i++;
 			continue ;

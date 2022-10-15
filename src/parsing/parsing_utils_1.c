@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils_1.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 18:49:29 by ahmaidi           #+#    #+#             */
-/*   Updated: 2022/10/14 16:30:04 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/14 19:16:20 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,12 @@ void	filling_map(t_cub **cub, char *str)
 	remove_last_spaces(&str);
 	if (!check_charactre(str, cub))
 	{
+		write(2, "ERROR\n", 6);
 		write(2, "There's a foreign key in the map OR much players\n", 49);
 		ft_error();
 	}
 	++((*cub)->size_map);
-	(*cub)->map = ft_realloc((*cub)->map, sizeof(char *) * \
+	(*cub)->map = ft_alloc((*cub)->map, sizeof(char *) * \
 	(*cub)->size_map - 1, sizeof(char *) * (*cub)->size_map + 1);
 	(*cub)->map[(*cub)->size_map - 1] = ft_strdup(str);
 	(*cub)->map[(*cub)->size_map] = NULL;

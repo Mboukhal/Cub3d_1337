@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 07:28:01 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/13 23:42:01 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/15 14:07:38 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	moveplayer(t_cub *cub)
 int	main(int ac, char **av)
 {
 	t_cub	*cub;
-	int		color;
 
 	errno = 0;
 	if (ac != 2)

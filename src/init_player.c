@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 18:33:51 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/14 16:31:46 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/15 14:11:34 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	set_player_info(t_cub *cub, int *coord_i)
 	}
 }
 
-void	set_map(t_cub *cub, int mode)
+void	set_map(t_cub *cub)
 {
 	int		coord_i[2];
 

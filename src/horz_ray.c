@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   horz_ray.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 11:44:42 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/14 16:21:39 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/15 14:10:43 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	tst(t_cub *cub, int x, int y)
 	cub->cs.y_to_check = y ;
 }
 
-static void	horz_ray_start(t_cub *cub, float *ray_angle)
+static void	horz_ray_start(t_cub *cub)
 {
 	float	next_vert_touch_x;
 	float	next_vert_touch_y;
@@ -62,5 +62,5 @@ void	horz_ray_init(t_cub *cub, float *ray_angle)
 		cub->cs.ystep *= -1;
 	if (cub->cs.is_ray_facing_down && cub->cs.ystep < 0)
 		cub->cs.ystep *= -1;
-	horz_ray_start(cub, ray_angle);
+	horz_ray_start(cub);
 }

@@ -6,7 +6,7 @@
 /*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 19:02:43 by ahmaidi           #+#    #+#             */
-/*   Updated: 2022/10/13 22:41:23 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/10/15 14:09:32 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	add_front_plus(t_cub **cub)
 	size_t	i;
 	size_t	j;
 	size_t	len;
-	char	*temp;
 
 	i = 0;
 	len = ft_strlen((*cub)->map[0]);

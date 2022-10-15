@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mboukhal <mboukhal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 08:08:59 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/12 18:41:43 by mboukhal         ###   ########.fr       */
+/*   Updated: 2022/10/15 14:08:19 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include "../src/libft/libft.h"
 # include "../src/get_next_line/get_next_line.h"
 
-void	*ft_realloc(void *old_alloc, size_t old_size, size_t new_size);
+void	*ft_alloc(void *old_alloc, int old_size, int new_size);
 void	free_it(void *ptr);
 void	*var_init(int size);
 

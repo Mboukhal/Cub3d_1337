@@ -6,7 +6,7 @@
 /*   By: ahmaidi <ahmaidi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 15:37:19 by mboukhal          #+#    #+#             */
-/*   Updated: 2022/10/13 22:26:38 by ahmaidi          ###   ########.fr       */
+/*   Updated: 2022/10/15 14:09:12 by ahmaidi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static void	cub_set_buffer(t_cub *cub, int i, int y, int wsh)
 	int			distance_from_top;
 	int			offset_y;
 
+	texel_color = 0;
 	distance_from_top = (y + (wsh / 2)) - (WIN_H / 2);
 	offset_y = distance_from_top * ((float)TILE_SIZE / wsh);
 	if (cub->ray[i].was_hit_vertical && (cub->px > cub->ray[i].wall_hit_x))
