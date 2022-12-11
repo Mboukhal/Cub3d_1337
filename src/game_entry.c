@@ -35,7 +35,8 @@ static void	set_color(t_cub *c, int index, int *size)
 static void	load_imges_const(t_cub *cub)
 {
 	int		i[3];
-
+	// need to protect the buffer if return NULL exit 
+	// to privent program crach
 	cub->layer1 = mlx_new_image(cub->mlx, WIN_W, WIN_H);
 	cub->layer1_buffer = mlx_get_data_addr(cub->layer1, &i[1], &i[0], &i[2]);
 	cub->no_buf = mlx_get_data_addr(cub->image->no, &i[1], &i[0], &i[2]);
